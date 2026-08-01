@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { OEM_LABEL, PRODUCT_LINE_LABEL, type OEMPrincipal, type ProductLine } from "@/lib/schemas/enums";
 import { addMonths, formatDate, formatDateTime, formatQty } from "@/lib/format";
-import { Overline, Panel, SimulatedBadge, StatusBadge } from "@/components/patterns/primitives";
+import { Overline, Panel, SimulatedBadge, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { CountdownPanel, SubmissionBadge, countdownOf } from "./badges";
 import { CoverageBadge } from "./CoverageBadge";
 import { CommissioningPrintSheet, type PrintSheetData } from "./CommissioningPrintSheet";
@@ -831,10 +831,10 @@ export function CommissioningForm(props: CommissioningFormProps) {
       </div>
 
       {!canEdit ? (
-        <p className="t-body-sm text-text-lo">
+        <Explainer className="text-text-lo">
           Your role holds read access to commissioning records. Writing a report sits with the field
           engineer and the Service Manager.
-        </p>
+        </Explainer>
       ) : null}
 
       {/* Identity footer -------------------------------------------------- */}

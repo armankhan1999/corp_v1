@@ -12,7 +12,7 @@ import {
   type AssetStatus,
 } from "@/lib/schemas/enums";
 import { formatCount, formatDate, formatPercent, formatQty } from "@/lib/format";
-import { EmptyState, Panel, Overline } from "@/components/patterns/primitives";
+import { EmptyState, Panel, Overline , Explainer } from "@/components/patterns/primitives";
 import { AssetStatusBadge, CountdownPill, countdownOf } from "./badges";
 import { AmcAlsoInForce, CoverageBadge } from "./CoverageBadge";
 import {
@@ -711,21 +711,21 @@ export function AssetRegister({
                 unblock="choosing one of the reasons above."
               />
             ) : (
-              <p className="t-body-sm rounded-md border border-line bg-surface-0 px-2.5 py-2 text-text-mid">
+              <Explainer className="rounded-md border border-line bg-surface-0 px-2.5 py-2 text-text-mid">
                 After saving, coverage resolves to Out of coverage, the machine drops out of the
                 attach-rate denominator and the renewal radar, and every ticket, visit and part
                 remains readable on its passport.
-              </p>
+              </Explainer>
             )}
           </div>
         ) : null}
       </Modal>
 
       {!canEdit ? (
-        <p className="t-body-sm text-text-lo">
+        <Explainer className="text-text-lo">
           Your role holds read access to the asset register. Creation, editing and decommissioning
           sit with the Service Manager.
-        </p>
+        </Explainer>
       ) : null}
     </div>
   );

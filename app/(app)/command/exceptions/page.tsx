@@ -207,13 +207,13 @@ export default async function ExceptionFeedPage({
         </ul>
         <div className="border-t border-line px-4 py-3">
           <Overline>Reading the zeroes</Overline>
-          <p className="t-body-sm mt-1 text-text-mid">
+          <Explainer className="mt-1 text-text-mid">
             {evaluatedEmpty.length === 0
               ? "Every rule matched at least one record in this scope."
               : `${formatCount(evaluatedEmpty.length)} rules matched nothing in this scope — ${evaluatedEmpty
                   .map((t) => EXCEPTION_LABEL[t].toLowerCase())
                   .join(", ")}. They are shown at zero rather than hidden, so an empty rule is visibly an empty rule and not a missing one.`}
-          </p>
+          </Explainer>
         </div>
       </Panel>
     </div>

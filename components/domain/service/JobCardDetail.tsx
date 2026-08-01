@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import type { TicketCategory, TicketSeverity, TicketStatus } from "@/lib/schemas/enums";
 import { formatDate, formatDateTime, formatDurationHM, formatINR, formatQty } from "@/lib/format";
-import { Overline, Panel, PanelHeader, StatusBadge } from "@/components/patterns/primitives";
+import { Overline, Panel, PanelHeader, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { cn } from "@/lib/utils";
 import { ServiceReportPreview } from "./ServiceReportPreview";
 import { firstVisitResolved, mergeJobCard, recordExport, useOverlay } from "./store";
@@ -259,10 +259,10 @@ export function JobCardDetail({
               }
             />
             {parts.length === 0 ? (
-              <p className="t-body-sm px-4 py-6 text-center text-text-lo">
+              <Explainer className="px-4 py-6 text-center text-text-lo">
                 No part was consumed on this visit. A standard visit with no parts is the six-tap
                 path the mobile card is measured against.
-              </p>
+              </Explainer>
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[46rem] border-collapse text-left">
@@ -414,10 +414,10 @@ export function JobCardDetail({
           }
         />
         {!showReport ? (
-          <p className="t-body-sm px-4 py-6 text-center text-text-lo">
+          <Explainer className="px-4 py-6 text-center text-text-lo">
             The preview is held closed so the register stays fast. Opening it renders the full A4
             sheet; printing it is written to the audit log against this job card.
-          </p>
+          </Explainer>
         ) : null}
       </Panel>
 

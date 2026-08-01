@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Suspense } from "react";
-import { Panel, Skeleton } from "@/components/patterns/primitives";
+import { Panel, Skeleton, Explainer } from "@/components/patterns/primitives";
 import type { ChartSpec } from "./chartTypes";
 import type { KpiTileData } from "./kpiRegistry";
 import { AnalyticsHeader } from "./AnalyticsHeader";
@@ -89,11 +89,11 @@ export function SurfaceLayout({
       {footer}
 
       <Panel className="px-4 py-3">
-        <p className="t-body-sm text-text-mid">
+        <Explainer className="text-text-mid">
           Every figure on this surface is computed from platform records by the single shared KPI implementation. No
           value here is stored or hand-entered, and the same metric read on the Command Centre or asked of the
           assistant for the same period and scope returns the same number to the last displayed digit.
-        </p>
+        </Explainer>
       </Panel>
     </div>
   );

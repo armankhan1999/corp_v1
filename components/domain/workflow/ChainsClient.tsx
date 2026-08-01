@@ -261,10 +261,10 @@ export function ChainsClient({ snapshot }: { snapshot: WorkflowSnapshot }) {
           </div>
         </div>
 
-        <p className="t-body-sm border-b border-line bg-surface-2 px-3 py-1.5 text-text-lo">
+        <Explainer className="border-b border-line bg-surface-2 px-3 py-1.5 text-text-lo">
           Bands are half-open: <span className="t-mono">[min, max)</span>. The upper bound is exclusive and the last
           band must be unbounded, so 0–5 / 5–10 / 10+ is contiguous rather than a three-way overlap.
-        </p>
+        </Explainer>
 
         {/* -------------------------------------------------------- issues */}
         {issues.length ? (
@@ -755,12 +755,12 @@ function DelegationPanel({
           </Note>
         )}
 
-        <p className="t-body-sm text-text-lo">
+        <Explainer className="text-text-lo">
           Delegated decisions are stamped with the principal on the decision record and appear in the audit log with
           the word <em>delegated</em>, so the trail never loses who actually acted.
           {" "}Median approval turnaround today: {formatPercent(0) === "0%" ? "" : ""}
           <span className="t-mono">{api.medianTurnaroundHours.toFixed(1)} h</span>.
-        </p>
+        </Explainer>
       </div>
     </Panel>
   );

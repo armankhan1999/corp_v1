@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { Explainer } from "@/components/patterns/primitives";
 import { Check, MessageSquare } from "lucide-react";
 import type * as T from "@/lib/schemas/entities";
 import { formatDate } from "@/lib/format";
@@ -128,11 +129,11 @@ export function FollowUpDialog({
           )}
         </Field>
       </div>
-      <p className="t-body-sm mt-3 flex items-start gap-1.5 text-text-lo">
+      <Explainer className="mt-3 flex items-start gap-1.5 text-text-lo">
         <MessageSquare className="mt-0.5 size-3.5 shrink-0" aria-hidden />
         This entry appears on the customer activity timeline immediately and, if a next-action date is set, on the
         sales desk follow-up list for that day.
-      </p>
+      </Explainer>
     </Modal>
   );
 }

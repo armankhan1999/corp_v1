@@ -6,7 +6,7 @@ import {
   ArrowRight, BellRing, CircleCheck, PackageCheck, Truck, TriangleAlert, Undo2,
 } from "lucide-react";
 import { abbreviateINR, formatCount, formatDate, formatINR, formatPercent } from "@/lib/format";
-import { EmptyState, Panel, StatusBadge } from "@/components/patterns/primitives";
+import { EmptyState, Panel, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { cn } from "@/lib/utils";
 import { assetUtilisation, rentalUtilisation } from "@/components/domain/assets/metrics";
 import {
@@ -324,10 +324,10 @@ export function RentalRegister({
               );
             })}
           </ul>
-          <p className="t-body-sm mt-1.5 pl-6 text-text-lo">
+          <Explainer className="mt-1.5 pl-6 text-text-lo">
             The notification matrix dispatches an overdue-return alert to the Service Manager and
             the owning branch as soon as the date passes.
-          </p>
+          </Explainer>
         </div>
       ) : null}
 

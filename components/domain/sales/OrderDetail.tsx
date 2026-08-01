@@ -13,7 +13,7 @@ import {
 } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import * as D from "@/lib/derive";
-import { EmptyState, Overline, Panel, PanelHeader, Skeleton, StatusBadge } from "@/components/patterns/primitives";
+import { EmptyState, Overline, Panel, PanelHeader, Skeleton, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { effectiveStatus, labelStatus, QUOTATION_TONE } from "./calc";
 import {
   FULFILMENT_LABEL, LINE_STATE_LABEL, LINE_STATE_TONE, ORDER_STATUS_TONE, buildOrderView,
@@ -197,13 +197,13 @@ function Detail({
             <p className="t-display-lg mt-1 tabular-nums text-text-hi" title={formatINR(view.value)}>
               {abbreviateINR(view.value)}
             </p>
-            <p className="t-body-sm mt-1 max-w-2xl text-text-mid">
+            <Explainer className="mt-1 max-w-2xl text-text-mid">
               {formatCount(view.lines.length)} lines carried across from{" "}
               {quotation ? `${quotation.number} v${quotation.version}` : "the winning quotation"} with nothing re-entered.{" "}
               {view.inOrderBook
                 ? `${abbreviateINR(view.orderBookValue)} of it remains uninvoiced and stands in the order book.`
                 : "The order has left the order book — it is fulfilled or cancelled."}
-            </p>
+            </Explainer>
             <div className="mt-3">
               <Meter
                 pct={view.deliveredPct}
@@ -713,11 +713,11 @@ function ParticularsDialog({
           )}
         </Field>
       </div>
-      <p className="t-body-sm mt-3 flex items-start gap-1.5 text-text-lo">
+      <Explainer className="mt-3 flex items-start gap-1.5 text-text-lo">
         <CircleDot className="mt-0.5 size-3.5 shrink-0" aria-hidden />
         A fulfilled or cancelled order leaves the order book immediately, so the figure on the register moves the moment
         this is saved. Every change is written to the audit trail with your name against it.
-      </p>
+      </Explainer>
     </Modal>
   );
 }

@@ -63,11 +63,11 @@ export default function CompliancePage() {
             <p className="t-heading-md text-text-hi">
               All seed data in this prototype is fictional
             </p>
-            <p className="t-body-sm mt-1 text-text-mid">
+            <Explainer className="mt-1 text-text-mid">
               Every individual name, mobile number, email address and statutory identifier is
               invented. No real personal data of any employee or customer is held in this build,
               and no client credentials are requested or stored (BRD CN-003, CN-004).
-            </p>
+            </Explainer>
           </div>
         </div>
       </Panel>
@@ -101,12 +101,12 @@ export default function CompliancePage() {
         </div>
         <div className="border-t border-line p-4">
           <Overline>Rights available to data principals</Overline>
-          <p className="t-body-sm mt-1 text-text-mid">
+          <Explainer className="mt-1 text-text-mid">
             Access to a summary of personal data held and the processing performed; correction,
             completion and updating; erasure once the purpose is served; nomination of another
             individual to exercise rights; and grievance redressal. Consent may be withdrawn as
             easily as it was given, and withdrawal is recorded in the register below.
-          </p>
+          </Explainer>
         </div>
       </Panel>
 
@@ -193,11 +193,11 @@ export default function CompliancePage() {
         <div className="p-4">
           <div className="mb-3 flex items-start gap-2 rounded-md border border-warn/40 bg-warn-bg p-3">
             <TriangleAlert className="mt-0.5 size-4 shrink-0 text-warn" aria-hidden />
-            <p className="t-body-sm text-text-mid">
+            <Explainer className="text-text-mid">
               Penalties under the Act reach ₹200 crore for a breach-notification failure and
               ₹250 crore for inadequate safeguards. This checklist records the obligation; it does
               not discharge it.
-            </p>
+            </Explainer>
           </div>
           <ol className="flex list-decimal flex-col gap-2 pl-4">
             {[
@@ -214,10 +214,10 @@ export default function CompliancePage() {
           </ol>
           <div className="mt-4 rounded-md border border-line bg-surface-2 p-3">
             <Overline>72-hour detailed report</Overline>
-            <p className="t-body-sm mt-1 text-text-lo">
+            <Explainer className="mt-1 text-text-lo">
               No breach recorded. In Phase 2 this field captures the report reference and
               submission timestamp against the Board acknowledgement.
-            </p>
+            </Explainer>
           </div>
         </div>
       </Panel>

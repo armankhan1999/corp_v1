@@ -1,6 +1,7 @@
 import { getDataset } from "@/lib/seed";
 import { ROLE_LABEL } from "@/lib/schemas/enums";
 import { LoginPicker } from "./LoginPicker";
+import { BrandMark } from "@/components/patterns/BrandMark";
 import { COMPANY } from "@/lib/seed/catalog";
 
 /** E1-S1 — twelve seeded demo accounts, each selectable in one click. */
@@ -20,7 +21,8 @@ export default async function LoginPage({
     <main className="min-h-dvh bg-surface-0 px-4 py-10 sm:px-8">
       <div className="mx-auto flex max-w-6xl flex-col gap-8">
         <header className="flex flex-col gap-3 border-b border-line pb-6">
-          <div className="flex items-baseline gap-3">
+          <div className="flex items-center gap-3">
+            <BrandMark className="size-8 shrink-0 text-primary-500" />
             <span
               className="t-display-md text-text-hi"
               style={{ fontFamily: "var(--font-display)" }}
@@ -30,9 +32,8 @@ export default async function LoginPage({
             <span className="h-4 w-px bg-line-strong" aria-hidden />
             <span className="t-body-sm text-text-mid">{COMPANY.legalName}</span>
           </div>
-          <p className="t-body-sm max-w-2xl text-text-mid">
-            Unified operations &amp; intelligence platform. Prototype build — authentication is
-            simulated and every external system is faithfully mocked. Choose a role to begin.
+          <p className="t-body-sm text-text-mid">
+            Operations &amp; intelligence platform. Authentication is simulated — choose a role.
           </p>
           {sp.reason === "idle" ? (
             <p className="t-body-sm rounded-md border border-warn/40 bg-warn-bg px-3 py-2 text-warn">

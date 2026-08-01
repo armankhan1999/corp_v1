@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { ExternalLink, X } from "lucide-react";
 import { formatCount } from "@/lib/format";
-import { Overline } from "@/components/patterns/primitives";
+import { Overline , Explainer } from "@/components/patterns/primitives";
 import type { DrillSet } from "./chartTypes";
 
 /**
@@ -70,10 +70,10 @@ export function RecordSetDrawer({ set, onClose }: { set: DrillSet; onClose: () =
 
         <div className="min-h-0 flex-1 overflow-y-auto">
           {set.records.length === 0 ? (
-            <p className="t-body-sm px-4 py-8 text-center text-text-lo">
+            <Explainer className="px-4 py-8 text-center text-text-lo">
               The aggregate is derived from a rate rather than an enumerable record list. Open the full list for the
               underlying records.
-            </p>
+            </Explainer>
           ) : (
             <ul>
               {set.records.map((r) => (

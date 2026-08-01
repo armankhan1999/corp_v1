@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight, ClipboardCheck, Send, TriangleAlert } from "lucide-react";
 import { OEM_LABEL, type CommissioningSubmission, type OEMPrincipal } from "@/lib/schemas/enums";
 import { formatCount, formatDate, formatDateTime, formatPercent } from "@/lib/format";
-import { EmptyState, Overline, Panel, SimulatedBadge } from "@/components/patterns/primitives";
+import { EmptyState, Overline, Panel, SimulatedBadge, Explainer } from "@/components/patterns/primitives";
 import { CountdownPill, SubmissionBadge, countdownOf } from "./badges";
 import {
   EMPTY_COMMISSIONING,
@@ -456,11 +456,11 @@ export function CommissioningRegister({
                 </div>
               ))}
             </dl>
-            <p className="t-body-sm rounded-md border border-line bg-surface-0 px-2.5 py-2 text-text-mid">
+            <Explainer className="rounded-md border border-line bg-surface-0 px-2.5 py-2 text-text-mid">
               A submission timestamp of {formatDateTime(now)} and a simulated acknowledgement
               reference will be recorded against the report. The submission state recomputes
               immediately from that timestamp against the deadline.
-            </p>
+            </Explainer>
           </div>
         ) : null}
       </Modal>

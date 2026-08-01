@@ -6,7 +6,7 @@ import { useMemo } from "react";
 import { ArrowRight, ClipboardList, CircleCheck, Package, Search } from "lucide-react";
 import type { CoverageType, JobOutcome } from "@/lib/schemas/enums";
 import { formatCount, formatDate, formatDateTime } from "@/lib/format";
-import { EmptyState, StatusBadge } from "@/components/patterns/primitives";
+import { EmptyState, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { cn } from "@/lib/utils";
 import { firstVisitResolved, mergeJobCard, useOverlay } from "./store";
 import { FilteredEmpty, Select, Serial, TextInput } from "./ui";
@@ -217,11 +217,11 @@ export function JobCardsTable({
         </label>
       </div>
 
-      <p className="t-body-sm px-3 py-1.5 text-text-lo">
+      <Explainer className="px-3 py-1.5 text-text-lo">
         {formatCount(all.length)} shown
         {shown < total ? ` of ${formatCount(total)} matching · most recent visit first` : ""}
         {sessionRows.length ? ` · ${sessionRows.length} written in this session` : ""}
-      </p>
+      </Explainer>
 
       {all.length === 0 ? (
         activeFilters.length ? (

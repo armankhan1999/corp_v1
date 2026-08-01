@@ -14,7 +14,7 @@ import {
   TriangleAlert,
 } from "lucide-react";
 import { abbreviateINR, formatCount, formatDate, formatINR, formatPercent } from "@/lib/format";
-import { EmptyState, Panel, PanelHeader, StatusBadge } from "@/components/patterns/primitives";
+import { EmptyState, Panel, PanelHeader, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { cn } from "@/lib/utils";
 import { AmcStatusBadge, PrincipalTag, RenewalStatusBadge } from "./badges";
 import { ATTACH_FORMULA, attachFormulaWithNumbers, fulfilmentOf, type AttachSummary } from "./metrics";
@@ -541,13 +541,13 @@ export function RenewalRadar({
           <p className="t-mono mt-1.5 break-words tabular-nums text-info">
             {attachFormulaWithNumbers(attach)}
           </p>
-          <p className="t-body-sm mt-2 text-text-mid">
+          <Explainer className="mt-2 text-text-mid">
             The naive reading — {formatCount(attach.outOfCoverage)} uncovered against{" "}
             {formatCount(attach.totalAssets)} total assets —{" "}
             gives {formatPercent((attach.outOfCoverage / Math.max(1, attach.totalAssets)) * 100, 0)}{" "}
             uncovered, which is a different question. Both figures are published side by side so
             neither can stand in for the other.
-          </p>
+          </Explainer>
         </div>
       </Panel>
 
@@ -585,21 +585,21 @@ export function RenewalRadar({
         <section aria-label={tabs.find((t) => t.id === tab)?.label ?? "Renewal radar"}>
           {tab === "D30" || tab === "D60" || tab === "D90" ? (
             <>
-              <p className="t-body-sm border-b border-line px-3 py-2 text-text-lo">
+              <Explainer className="border-b border-line px-3 py-2 text-text-lo">
                 Contracts reaching their end date within {HORIZON[tab]} days, soonest first. Value
                 shown is the contract value at risk if the renewal is not closed.
-              </p>
+              </Explainer>
               {renderContractTable(within(HORIZON[tab]), "EXPIRING")}
             </>
           ) : null}
 
           {tab === "LAPSED" ? (
             <>
-              <p className="t-body-sm border-b border-line px-3 py-2 text-text-lo">
+              <Explainer className="border-b border-line px-3 py-2 text-text-lo">
                 Contracts that reached their end date without a renewal, retained for the trailing
                 twelve months. An exception is raised for each, and the total is the visible
                 leakage figure — <span className="t-mono text-danger">{formatINR(leakage)}</span>.
-              </p>
+              </Explainer>
               {renderContractTable(lapsedRows, "LAPSED")}
             </>
           ) : null}
@@ -619,10 +619,10 @@ export function RenewalRadar({
               )
             ) : (
               <>
-                <p className="t-body-sm border-b border-line px-3 py-2 text-text-lo">
+                <Explainer className="border-b border-line px-3 py-2 text-text-lo">
                   Machines whose warranty ends within 90 days. Service history is summarised so the
                   AMC conversation opens with evidence rather than a price.
-                </p>
+                </Explainer>
                 <TableFrame className="min-w-full">
                   <thead>
                     <tr>
@@ -717,10 +717,10 @@ export function RenewalRadar({
             ) : (
               <>
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-3 py-2">
-                  <p className="t-body-sm text-text-lo">
+                  <Explainer className="text-text-lo">
                     Every machine with neither a live warranty nor a live AMC. Sorted by how long it
                     has been since anyone was on site.
-                  </p>
+                  </Explainer>
                   <p className="t-body-sm tabular-nums text-text-mid">
                     <span className="t-mono text-text-hi">{formatPercent(attach.pct, 0)}</span> attach
                     · <span className="t-mono text-text-hi">{formatCount(attach.outOfCoverage)}</span>{" "}
@@ -808,11 +808,11 @@ export function RenewalRadar({
         </section>
 
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line px-3 py-2">
-          <p className="t-body-sm text-text-lo">
+          <Explainer className="text-text-lo">
             Estimated AMC value is priced off the live book — total live contract value ÷ total
             covered rated kW, applied to the machine&apos;s rating, floored at{" "}
             <span className="t-mono">{formatINR(18000)}</span>.
-          </p>
+          </Explainer>
           <Link
             href="/service/amc"
             className="t-body-sm inline-flex min-h-6 items-center gap-1.5 text-text-mid hover:text-text-hi"
@@ -886,11 +886,11 @@ export function RenewalRadar({
               />
             </label>
 
-            <p className="t-body-sm rounded-md border border-info/40 bg-info-bg px-2.5 py-2 text-text-mid">
+            <Explainer className="rounded-md border border-info/40 bg-info-bg px-2.5 py-2 text-text-mid">
               The quotation is written to this browser session under{" "}
               <span className="t-mono">pravaah.v1.renewals</span> and shown against the source
               record as its last action. Nothing on the seeded register is altered.
-            </p>
+            </Explainer>
           </div>
         ) : null}
       </Modal>

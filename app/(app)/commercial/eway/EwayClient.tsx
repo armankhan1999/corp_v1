@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { Ban, FileStack, Route, ShieldAlert, Truck } from "lucide-react";
 import { abbreviateINR, daysBetween, formatCount, formatDate, formatDateTime, formatINR } from "@/lib/format";
-import { EmptyState, Overline, Panel, PanelHeader, SimulatedBadge } from "@/components/patterns/primitives";
+import { EmptyState, Overline, Panel, PanelHeader, SimulatedBadge , Explainer } from "@/components/patterns/primitives";
 import { EwayPanel } from "@/components/domain/commercial/EwayPanel";
 import {
   displayEbn, ewayEligibility, EWAY_DECISION_LABEL, EWAY_DECISION_TONE,
@@ -255,11 +255,11 @@ export function EwayClient({
             disabled={!actor.canWrite}
           />
         </Field>
-        <p className="t-body-sm max-w-md text-text-lo">
+        <Explainer className="max-w-md text-text-lo">
           {formatCount(counts.blocked)} of {formatCount(bases.length)} delivery challans currently exceed the age limit,
           {" "}{formatCount(counts.required)} are awaiting a bill and {formatCount(counts.notRequired)} sit at or below
           the {formatINR(settings.ewayThreshold)} threshold.
-        </p>
+        </Explainer>
       </SettingsBar>
 
       {/* --------------------------------------------------- generation form */}
@@ -363,11 +363,11 @@ export function EwayClient({
         {counts.blocked > 0 ? (
           <div className="flex items-start gap-2 border-t border-line px-4 py-3">
             <Ban className="mt-0.5 size-4 shrink-0 text-danger" aria-hidden />
-            <p className="t-body-sm text-text-lo">
+            <Explainer className="text-text-lo">
               {formatCount(counts.blocked)} delivery challans in the seeded history are past the{" "}
               {settings.ewayMaxBaseAgeDays}-day limit and cannot carry a bill. The list above opens on the most recently
               numbered of them, so the refusal can be read against a real document rather than a contrived one.
-            </p>
+            </Explainer>
           </div>
         ) : null}
       </Panel>
@@ -443,7 +443,7 @@ export function EwayClient({
 
       <div className="flex items-start gap-2 px-1">
         <ShieldAlert className="mt-0.5 size-4 shrink-0 text-text-lo" aria-hidden />
-        <p className="t-body-sm text-text-lo">
+        <Explainer className="text-text-lo">
           Every number on this screen is simulated. The live e-way bill portal requires credentials with two-factor
           authentication, a transporter master and a distance source, and returns a bill whose validity the portal
           itself computes.{" "}
@@ -452,7 +452,7 @@ export function EwayClient({
           {overlay.ewayBills.length
             ? <span className="t-mono">{formatDateTime(overlay.ewayBills[overlay.ewayBills.length - 1]!.generatedAt)}</span>
             : "none"}.
-        </p>
+        </Explainer>
       </div>
     </div>
   );

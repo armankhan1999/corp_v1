@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { CircleCheck, Route, ShieldAlert, Truck } from "lucide-react";
 import { formatDate, formatDateTime, formatINR } from "@/lib/format";
-import { Overline, SimulatedBadge } from "@/components/patterns/primitives";
+import { Overline, SimulatedBadge , Explainer } from "@/components/patterns/primitives";
 import {
   displayEbn, ewayEligibility, ewayValidityDays, simulateEbn, EWAY_SUB_TYPES,
 } from "./gst";
@@ -153,12 +153,12 @@ export function EwayPanel({
             </div>
           }
         />
-        <p className="t-body-sm flex items-start gap-2 text-text-lo">
+        <Explainer className="flex items-start gap-2 text-text-lo">
           <ShieldAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
           The rule is enforced by the platform rather than remembered by the user. It applies identically to every
           branch and cannot be waived on a single document — the limit is a Masters setting and any change to it is
           audit-logged against the person who made it.
-        </p>
+        </Explainer>
       </div>
     );
   }
@@ -278,11 +278,11 @@ export function EwayPanel({
         {error ? (
           <p className="t-body-sm border-t border-line px-4 py-2 text-danger">{error}</p>
         ) : (
-          <p className="t-body-sm border-t border-line px-4 py-2 text-text-lo">
+          <Explainer className="border-t border-line px-4 py-2 text-text-lo">
             Generation returns a simulated e-way bill number and validity period. The live portal needs credentials with
             two-factor authentication, a transporter master and a distance source —{" "}
             <Link href="/admin/integrations" className="text-info hover:underline">see Integration Readiness</Link>.
-          </p>
+          </Explainer>
         )}
       </div>
     </div>

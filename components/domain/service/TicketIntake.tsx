@@ -10,7 +10,7 @@ import type { CoverageState, TicketCategory, TicketSeverity } from "@/lib/schema
 import { PRODUCT_LINE_LABEL } from "@/lib/schemas/enums";
 import { OBSERVATION_PRESETS, machineFamily } from "@/lib/seed/catalog";
 import { formatCount, formatDate, formatDateTime, formatPhone } from "@/lib/format";
-import { Panel, PanelHeader, Overline, StatusBadge } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { cn } from "@/lib/utils";
 import type { AssetIntakeRow, ContactRow } from "./project";
 import { addTicket, logEvent, notify } from "./store";
@@ -612,11 +612,11 @@ export function TicketIntake({
                       </span>
                     </label>
                   </div>
-                  <p className="t-body-sm mt-1.5 text-text-lo">
+                  <Explainer className="mt-1.5 text-text-lo">
                     Masters currently configures every SLA definition as elapsed hours. Switch the
                     basis here where the customer&apos;s site runs a day shift only — the clock then
                     excludes closed hours and says so.
-                  </p>
+                  </Explainer>
                 </fieldset>
               </>
             )}
@@ -659,14 +659,14 @@ export function TicketIntake({
         </Panel>
 
         {asset ? (
-          <p className="t-body-sm text-text-lo">
+          <Explainer className="text-text-lo">
             Severity{" "}
             <StatusBadge tone={SEVERITY_TONE[severity]} className="align-middle">
               {SEVERITY_SHORT[severity]}
             </StatusBadge>{" "}
             · the resolved rule and the coverage basis are both written onto the ticket, so the
             record defends its own clock later.
-          </p>
+          </Explainer>
         ) : null}
       </div>
     </div>

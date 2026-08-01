@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { FileStack, Plus, ScrollText, Truck } from "lucide-react";
 import { abbreviateINR, formatDate, formatCount, formatINR, formatQty } from "@/lib/format";
-import { EmptyState, Overline, Panel, PanelHeader, SimulatedBadge } from "@/components/patterns/primitives";
+import { EmptyState, Overline, Panel, PanelHeader, SimulatedBadge , Explainer } from "@/components/patterns/primitives";
 import { ewayEligibility, EWAY_DECISION_LABEL, EWAY_DECISION_TONE } from "./gst";
 import { mergedChallans } from "./merge";
 import { actions, nextSeriesNumber, nextEntityId, useCommercialOverlay } from "./store";
@@ -459,11 +459,11 @@ function NewChallanModal({
           />
         )}
 
-        <p className="t-body-sm text-text-lo">
+        <Explainer className="text-text-lo">
           Issuing consumes the next number in the challan series, <span className="t-mono text-text-mid">{next.number}</span>,
           and writes an audit entry naming you as the actor.{" "}
           <Link href="/commercial/handoff" className="text-info hover:underline">Series state is visible to Accounts.</Link>
-        </p>
+        </Explainer>
       </div>
     </Modal>
   );

@@ -8,7 +8,7 @@ import type { RetentionState } from "@/lib/schemas/enums";
 import {
   abbreviateINR, daysBetween, formatCount, formatDate, formatINR, formatPercent,
 } from "@/lib/format";
-import { Panel, PanelHeader, Overline, StatusBadge, EmptyState } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, StatusBadge, EmptyState , Explainer } from "@/components/patterns/primitives";
 import { cn } from "@/lib/utils";
 import { RETENTION_STATE_LABEL, RETENTION_STATE_TONE } from "./labels";
 import { raiseClaim, recordRelease, useProjectsOverlay } from "./store";
@@ -234,13 +234,13 @@ export function RetentionRegister({
             {withheldTotal - releasedTotal === outstandingTotal ? "Ties to the rupee" : "Does not tie"}
           </StatusBadge>
         </div>
-        <p className="t-body-sm border-t border-line px-3 py-2 text-text-lo">
+        <Explainer className="border-t border-line px-3 py-2 text-text-lo">
           This outstanding total is the retention component of the Command Centre locked-cash panel. The two
           figures are the same number read from the same register — if this moves, the headline moves with it.{" "}
           <Link href="/command" className="underline decoration-line underline-offset-2 hover:text-text-hi">
             Open the Command Centre
           </Link>
-        </p>
+        </Explainer>
       </Panel>
 
       {/* ------------------------------------------------------- exceptions */}

@@ -13,6 +13,7 @@
  */
 
 import * as React from "react";
+import { Explainer } from "@/components/patterns/primitives";
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { useRouter } from "next/navigation";
 import { Command } from "cmdk";
@@ -316,10 +317,10 @@ export function CommandPalette({
                   <Row key={`recent:${rec.type}:${rec.id}`} rec={rec} onSelect={select} recent />
                 ))
               ) : (
-                <p className="t-body-sm px-2 py-2 text-text-lo">
+                <Explainer className="px-2 py-2 text-text-lo">
                   Open a customer, asset, ticket, quotation, invoice, project, document or employee
                   and the five most recent appear here.
-                </p>
+                </Explainer>
               )}
             </Command.Group>
             {staticGroups.map((g) => (

@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import type { AMCStatus } from "@/lib/schemas/enums";
 import { daysBetween, formatCount, formatDate, formatINR, formatPercent } from "@/lib/format";
-import { Overline, Panel, PanelHeader, SimulatedBadge, StatusBadge } from "@/components/patterns/primitives";
+import { Overline, Panel, PanelHeader, SimulatedBadge, StatusBadge, Explainer } from "@/components/patterns/primitives";
 import { AmcStatusBadge } from "./badges";
 import { CoverageBadge } from "./CoverageBadge";
 import { fulfilmentOf } from "./metrics";
@@ -465,7 +465,7 @@ export function AmcDetail({
                 <AmcStatusBadge status={status} />
                 <span className="t-overline text-text-lo">Derived</span>
               </div>
-              <p className="t-body-sm text-text-mid">
+              <Explainer className="text-text-mid">
                 Start {formatDate(contract.startDate)}, end {formatDate(contract.endDate)}, simulated
                 date {formatDate(now)}.{" "}
                 {status === "DRAFT"
@@ -479,7 +479,7 @@ export function AmcDetail({
                         : status === "RENEWED"
                           ? "A successor contract exists, so this one reads Renewed."
                           : `${contract.daysRemaining} days remain, beyond the 60-day window, so the contract reads Active.`}
-              </p>
+              </Explainer>
               <p className="t-body-sm text-text-lo">
                 Advancing the simulated clock moves the status without anyone editing it.
               </p>

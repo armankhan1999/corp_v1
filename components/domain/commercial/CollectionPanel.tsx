@@ -5,7 +5,7 @@ import {
   CircleCheck, Eye, Mail, MessageSquare, PhoneCall, Plus, Send, Smartphone, TriangleAlert, MapPin,
 } from "lucide-react";
 import { formatDate, formatDateTime, formatINR } from "@/lib/format";
-import { EmptyState, Overline, SimulatedBadge, StatusBadge } from "@/components/patterns/primitives";
+import { EmptyState, Overline, SimulatedBadge, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { actions, UPI_FLOW, useCommercialOverlay, type UpiLink, type UpiState } from "./store";
 import {
   FOLLOWUP_MODE_LABEL, PAYMENT_MODE_LABEL,
@@ -195,10 +195,10 @@ function FollowUpModal({
             />
           </Field>
         </div>
-        <p className="t-body-sm text-text-lo">
+        <Explainer className="text-text-lo">
           A promised date that passes without an allocated receipt raises a broken-promise exception carrying the
           promised amount and the days elapsed. Allocating a receipt against this invoice clears it.
-        </p>
+        </Explainer>
       </div>
     </Modal>
   );
@@ -289,11 +289,11 @@ export function UpiCollectionPanel({
     >
       {!link ? (
         <div className="px-4 py-4">
-          <p className="t-body-sm text-text-mid">
+          <Explainer className="text-text-mid">
             No collection link has been raised for this invoice. Generating one produces a simulated request for the
             outstanding balance of {formatINR(outstanding)}, payable to <span className="t-mono">bhushancorp@sbi</span>.
             The live gateway needs merchant onboarding, a VPA and a settlement account mapping.
-          </p>
+          </Explainer>
           <Button
             tone="primary" className="mt-3" onClick={create}
             disabled={!actor.canWrite || outstanding <= 0}
@@ -361,10 +361,10 @@ export function UpiCollectionPanel({
               Receipt created against this invoice and clearly marked as a simulated collection.
             </p>
           )}
-          <p className="t-body-sm mt-2 text-text-lo">
+          <Explainer className="mt-2 text-text-lo">
             The state progression is also driveable from Demo Controls, so the collection can be shown moving without
             leaving the invoice.
-          </p>
+          </Explainer>
         </div>
       )}
     </SectionPanel>

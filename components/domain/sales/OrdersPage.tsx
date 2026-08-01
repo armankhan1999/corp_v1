@@ -11,7 +11,7 @@ import type { Vertical } from "@/lib/schemas/enums";
 import { VERTICAL_LABEL, VERTICAL_TOKEN } from "@/lib/schemas/enums";
 import { abbreviateINR, formatCount, formatDate, formatINR, formatPercent } from "@/lib/format";
 import { cn } from "@/lib/utils";
-import { EmptyState, Overline, Panel, PanelHeader, Skeleton, StatusBadge } from "@/components/patterns/primitives";
+import { EmptyState, Overline, Panel, PanelHeader, Skeleton, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { VERTICALS } from "./calc";
 import {
   FULFILMENT_LABEL, ORDER_STATUS_TONE, buildOrderViews, type Fulfilment, type OrderView,
@@ -154,10 +154,10 @@ function Register({ w, perms }: { w: SalesWorld; perms: SalesPermissions }) {
             <p className="t-display-lg mt-1 tabular-nums text-text-hi" title={formatINR(scopedBook)}>
               {abbreviateINR(scopedBook)}
             </p>
-            <p className="t-body-sm mt-1 max-w-2xl text-text-mid">
+            <Explainer className="mt-1 max-w-2xl text-text-mid">
               {formatCount(scopedOpen.length)} orders neither fulfilled nor cancelled, valued at ordered quantity less
               invoiced quantity times rate. Tax is excluded — an order book is work owed, not GST owed.
-            </p>
+            </Explainer>
           </div>
           <dl className="grid grid-cols-2 gap-x-6 gap-y-2 sm:grid-cols-1">
             <div>
@@ -176,14 +176,14 @@ function Register({ w, perms }: { w: SalesWorld; perms: SalesPermissions }) {
           </dl>
         </div>
         {active.length > 0 && shownBook !== scopedBook ? (
-          <p className="t-body-sm mt-3 flex items-start gap-1.5 border-t border-line pt-3 text-text-lo">
+          <Explainer className="mt-3 flex items-start gap-1.5 border-t border-line pt-3 text-text-lo">
             <PackageOpen className="mt-0.5 size-3.5 shrink-0" aria-hidden />
             <span>
               The filters below narrow the visible book to{" "}
               <span className="tabular-nums text-text-mid">{abbreviateINR(shownBook)}</span>. The headline figure stays
               on the whole scope so a filter can never make the number look better than it is.
             </span>
-          </p>
+          </Explainer>
         ) : null}
       </div>
 

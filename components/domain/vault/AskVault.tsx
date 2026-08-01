@@ -8,7 +8,7 @@ import { getDataset } from "@/lib/seed";
 import { formatCount } from "@/lib/format";
 import { ROLE_LABEL } from "@/lib/schemas/enums";
 import type { Session } from "@/lib/rbac/session";
-import { Panel, PanelHeader, Overline } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline , Explainer } from "@/components/patterns/primitives";
 import { buildAccessIndex, buildCorpus, viewerOf } from "./access";
 import { buildContext, resolveById, resolveQuestion, type ResolvedQuestion } from "./retrieval";
 import { suggestionsFor } from "./questionBank";
@@ -137,10 +137,10 @@ export function AskVault({ session, initialQuestionId }: { session: Session; ini
               Ask <CornerDownLeft className="size-3.5" aria-hidden />
             </button>
           </div>
-          <p className="t-body-sm text-text-lo">
+          <Explainer className="text-text-lo">
             Direct search is on the Browse screen and does not go through this path — you are never obliged to hold a
             conversation to find a file.
-          </p>
+          </Explainer>
         </form>
 
         <div className="border-t border-line p-4">

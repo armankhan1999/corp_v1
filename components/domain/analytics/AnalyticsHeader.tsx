@@ -3,7 +3,7 @@
 import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Calendar, Download, GitCompareArrows, Lock, MapPin, Printer } from "lucide-react";
-import { StatusBadge } from "@/components/patterns/primitives";
+import { StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { cn } from "@/lib/utils";
 import {
   BASIS_IN_WORDS, BASIS_KEYS, BASIS_LABEL, PERIOD_KEYS, PERIOD_LABEL,
@@ -130,10 +130,10 @@ export function AnalyticsHeader(props: HeaderProps) {
         </p>
       </div>
 
-      <p className="t-body-sm text-text-lo">
+      <Explainer className="text-text-lo">
         Every figure below is computed {BASIS_IN_WORDS[props.basis] === BASIS_IN_WORDS.NONE ? "without a comparison" : BASIS_IN_WORDS[props.basis]}
         , from platform records by the shared KPI implementation. No figure on this surface is stored or hand-entered.
-      </p>
+      </Explainer>
 
       {/* Provenance block — hidden on screen, printed on the face of the PDF. E12-S4 */}
       <PrintProvenance p={props.provenance} />

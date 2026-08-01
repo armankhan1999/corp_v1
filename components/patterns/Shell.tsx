@@ -14,6 +14,7 @@ import { encodeSession, SESSION_COOKIE, type Session } from "@/lib/rbac/session"
 import { cn } from "@/lib/utils";
 import { initials } from "@/lib/format";
 import { openCommandPalette } from "@/components/domain/admin/CommandPaletteMount";
+import { BrandLockup } from "@/components/patterns/BrandMark";
 
 interface NavItem { label: string; href: string; cap: Capability }
 interface NavSection { label: string; icon: React.ComponentType<{ className?: string }>; items: NavItem[] }
@@ -176,18 +177,8 @@ export function Shell({
           collapsed ? "w-16" : "w-60",
         )}
       >
-        <div className="flex h-14 items-center gap-2 border-b border-line px-3">
-          <span
-            aria-hidden
-            className="h-4 w-1 shrink-0 rounded-full"
-            style={{ background: "var(--v-equipment)" }}
-          />
-          <span
-            className="truncate text-text-hi"
-            style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: collapsed ? "1rem" : "1.125rem" }}
-          >
-            {collapsed ? "P" : "Pravaah"}
-          </span>
+        <div className="flex h-14 items-center border-b border-line px-3">
+          <BrandLockup compact={collapsed} />
         </div>
         <div className="flex-1 py-2">
           {sections.map((section) => {

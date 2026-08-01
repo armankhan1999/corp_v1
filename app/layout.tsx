@@ -1,4 +1,4 @@
-import { Sora, Inter, JetBrains_Mono } from "next/font/google";
+import { Poppins, Inter, JetBrains_Mono } from "next/font/google";
 import { cookies } from "next/headers";
 import { decodeSession, SESSION_COOKIE } from "@/lib/rbac/session";
 import "./globals.css";
@@ -7,7 +7,10 @@ import "./globals.css";
  * Fonts are self-hosted at build time by next/font, so the production build has
  * no external network dependency at runtime (NFR-22 / A-20 offline demo).
  */
-const sora = Sora({ subsets: ["latin"], weight: ["600", "700"], variable: "--font-sora", display: "swap" });
+/* Poppins is the display face on bhushancorp.in (its h1 rule names it
+   explicitly). Inter stays for dense UI and tables, where Poppins' wide
+   round forms cost too much horizontal room. */
+const poppins = Poppins({ subsets: ["latin"], weight: ["600", "700"], variable: "--font-poppins", display: "swap" });
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-inter", display: "swap" });
 const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-jetbrains", display: "swap" });
 
@@ -28,7 +31,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="en-IN" data-theme={theme} data-density={density} suppressHydrationWarning>
-      <body className={`${sora.variable} ${inter.variable} ${mono.variable}`}>{children}</body>
+      <body className={`${poppins.variable} ${inter.variable} ${mono.variable}`}>{children}</body>
     </html>
   );
 }

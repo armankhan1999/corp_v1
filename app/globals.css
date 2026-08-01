@@ -45,15 +45,23 @@
   --text-lo: #8b919b;
   --text-on-accent: #ffffff;
 
-  /* Primary — anchored to sampled #003388 (H222), lifted for dark legibility */
-  --primary-900: #061334;
-  --primary-800: #003388;
-  --primary-700: #0d4bb0;
-  --primary-600: #1a62d6;
-  --primary-500: #4489f0;
-  --primary-400: #7baef8;
-  --primary-300: #a8caff;
-  --primary-100: #0f2447;
+  /* Primary — the ELGi/Bhushan orange. Re-anchored after reading the live
+     stylesheet at bhushancorp.in: #fd6701 is the site's action colour (primary
+     button, active nav item, hover, tab indicator) and #003388 appears nowhere
+     on it, so the earlier blue anchor was never evidenced.
+
+     --primary-600 is the button fill and must carry white text: #fd6701 gives
+     only 2.95:1 against white and fails AA, so the action step is the darker
+     #c24e00 (4.79:1) and the true brand orange lives at --primary-500, where it
+     is used for the mark, rails, and links on dark. */
+  --primary-900: #2b1200;
+  --primary-800: #7a3100;
+  --primary-700: #9c3f00;
+  --primary-600: #c24e00;
+  --primary-500: #fd6701;
+  --primary-400: #ff8534;
+  --primary-300: #ffb27a;
+  --primary-100: #2a1405;
 
   /* Verticals — exactly four, matching the Vertical enum */
   --v-equipment: #fd6701;
@@ -95,8 +103,8 @@
   --dv-7: #c77dbb;
   --dv-8: #8b9bb0;
 
-  --focus-ring: #7baef8;
-  --focus-glow: rgb(123 174 248 / 0.22);
+  --focus-ring: #ff8534;
+  --focus-glow: rgb(255 133 52 / 0.24);
   --overlay: rgb(3 5 10 / 0.78);
 
   /* Elevation — ambient shadow plus a hairline top highlight. The highlight is
@@ -123,14 +131,14 @@
   --text-lo: #5f656e;
   --text-on-accent: #ffffff;
 
-  --primary-900: #041233;
-  --primary-800: #002a70;
-  --primary-700: #073a8f;
-  --primary-600: #0e47a6;
-  --primary-500: #1560cc;
-  --primary-400: #4489f0;
-  --primary-300: #8fbaf7;
-  --primary-100: #e6eefb;
+  --primary-900: #2b1200;
+  --primary-800: #5c2500;
+  --primary-700: #8f3a00;
+  --primary-600: #c24e00;
+  --primary-500: #d95a00;
+  --primary-400: #fd6701;
+  --primary-300: #ff9d5c;
+  --primary-100: #fdeee4;
 
   --v-equipment: #c24e00;
   --v-service: #0b7c7a;
@@ -169,8 +177,8 @@
   --dv-7: #94408a;
   --dv-8: #4e6a86;
 
-  --focus-ring: #0e47a6;
-  --focus-glow: rgb(14 71 166 / 0.16);
+  --focus-ring: #c24e00;
+  --focus-glow: rgb(194 78 0 / 0.18);
   --overlay: rgb(12 21 32 / 0.42);
 
   --elev-1: 0 1px 2px rgb(20 22 26 / 0.06), 0 0 0 1px rgb(20 22 26 / 0.012) inset;
@@ -238,7 +246,7 @@
   --color-dv-7: var(--dv-7);
   --color-dv-8: var(--dv-8);
 
-  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 

@@ -9,7 +9,7 @@ import { getDataset } from "@/lib/seed";
 import { canDelete } from "@/lib/rbac/matrix";
 import type { Session } from "@/lib/rbac/session";
 import { daysBetween, enumLabel, formatCount, formatDate, formatDateTime } from "@/lib/format";
-import { Panel, PanelHeader, Overline, KeyValue, StatusBadge, Mono } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, KeyValue, StatusBadge, Mono , Explainer } from "@/components/patterns/primitives";
 import { cn } from "@/lib/utils";
 import {
   ACCESS_LEVEL_LABEL, CATEGORY_LABEL, buildAccessIndex, documentAccess, notFoundDenial, viewerOf,
@@ -184,10 +184,10 @@ export function DocumentDetail({ session, documentId, passageId, fromQuestion, q
         {deleteOpen ? (
           <div className="border-b border-line bg-danger-bg/60 p-4">
             <p className="t-heading-md text-text-hi">Confirm deletion</p>
-            <p className="t-body-sm mt-1 text-text-mid">
+            <Explainer className="mt-1 text-text-mid">
               The document will be retained as a deleted record with your name and the reason you give. It is not
               removed, and the action is written to the audit log. A reason is required.
-            </p>
+            </Explainer>
             <div className="mt-3 flex flex-wrap items-center gap-2">
               <input
                 value={reason}
@@ -302,10 +302,10 @@ export function DocumentDetail({ session, documentId, passageId, fromQuestion, q
             );
           })}
           {!viewing.current ? (
-            <p className="t-body-sm text-text-lo">
+            <Explainer className="text-text-lo">
               You are viewing version {viewing.version}, superseded on {formatDate(current.uploadedAt)}. The text shown
               is the retained content of this document; the current version is version {current.version}.
-            </p>
+            </Explainer>
           ) : null}
         </div>
       </Panel>

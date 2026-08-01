@@ -6,7 +6,7 @@ import { useMemo } from "react";
 import { Inbox, Plus, Search } from "lucide-react";
 import { formatCount, formatDateTime } from "@/lib/format";
 import type { CoverageType, SLAState, TicketSeverity, TicketStatus } from "@/lib/schemas/enums";
-import { EmptyState, StatusBadge } from "@/components/patterns/primitives";
+import { EmptyState, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { cn } from "@/lib/utils";
 import { SlaClock, useSimNow } from "./SlaClock";
 import { useOverlay, mergeTicket } from "./store";
@@ -226,11 +226,11 @@ export function TicketsTable({
         ) : null}
       </div>
 
-      <p className="t-body-sm px-3 py-1.5 text-text-lo">
+      <Explainer className="px-3 py-1.5 text-text-lo">
         {formatCount(all.length)} shown
         {shown < total ? ` of ${formatCount(total)} matching · newest first` : ""}
         {sessionRows.length ? ` · ${sessionRows.length} raised in this session` : ""}
-      </p>
+      </Explainer>
 
       {all.length === 0 ? (
         activeFilters.length ? (

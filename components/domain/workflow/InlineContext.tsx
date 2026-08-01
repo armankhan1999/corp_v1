@@ -19,7 +19,7 @@ import {
   abbreviateINR, formatCount, formatDate, formatINR, formatPercent, formatQty, daysBetween,
 } from "@/lib/format";
 import { ROLE_LABEL } from "@/lib/schemas/enums";
-import { Overline, StatusBadge } from "@/components/patterns/primitives";
+import { Overline, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { DataRow, Note, SectionTitle } from "./ui";
 import type { CustomerHistoryContext, SubjectContext } from "./types";
 
@@ -197,12 +197,12 @@ export function InlineContext({ context, now }: { context: SubjectContext; now: 
               <Overline>Median on won business</Overline>
               <p className="t-heading-lg tabular-nums text-text-mid">{formatPercent(context.floorMarginPct)}</p>
             </div>
-            <p className="t-body-sm min-w-48 flex-1 text-text-mid">
+            <Explainer className="min-w-48 flex-1 text-text-mid">
               {belowFloor
                 ? `This discount lands ${formatPercent(context.floorMarginPct - context.marginPct)} below the median margin realised on won business in ${context.vertical}.`
                 : `This discount still clears the median margin realised on won business in ${context.vertical}.`}
               {" "}Cost basis is the item master standard cost; owner is {context.ownerName}.
-            </p>
+            </Explainer>
           </div>
 
           <CustomerCard c={context.customer} now={now} />
@@ -286,11 +286,11 @@ export function InlineContext({ context, now }: { context: SubjectContext; now: 
                 <p className="t-body-sm bg-surface-1 px-3 py-2 text-text-lo">No days resolved for this range.</p>
               ) : null}
             </div>
-            <p className="t-body-sm border-t border-line px-3 py-1.5 text-text-lo">
+            <Explainer className="border-t border-line px-3 py-1.5 text-text-lo">
               <CalendarDays className="mr-1 inline size-3" aria-hidden />
               Overlaps are approved leave for staff of the same designation at the same branch. Holidays are the
               branch calendar.
-            </p>
+            </Explainer>
           </div>
         </div>
       );
@@ -561,10 +561,10 @@ export function InlineContext({ context, now }: { context: SubjectContext; now: 
               <DataRow label="Parts consumed at cost">{abbreviateINR(context.partsCostLastYear)}</DataRow>
               <DataRow label="Margin over parts">{formatPercent(context.marginOverPartsPct)}</DataRow>
             </Grid>
-            <p className="t-body-sm border-t border-line px-3 py-1.5 text-text-lo">
+            <Explainer className="border-t border-line px-3 py-1.5 text-text-lo">
               Margin is over recorded parts cost only. Labour and travel are not costed on job cards in this
               prototype, so the true cost to serve is higher than shown.
-            </p>
+            </Explainer>
           </div>
         </div>
       );

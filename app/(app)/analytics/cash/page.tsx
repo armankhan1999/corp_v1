@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import * as D from "@/lib/derive";
 import { abbreviateINR, formatCount, formatPercent } from "@/lib/format";
-import { Overline, Panel, PanelHeader, StatusBadge } from "@/components/patterns/primitives";
+import { Overline, Panel, PanelHeader, StatusBadge, Explainer } from "@/components/patterns/primitives";
 import { buildKpiTile, kpisForSurface } from "@/components/domain/analytics/kpiRegistry";
 import { SurfaceLayout } from "@/components/domain/analytics/SurfaceLayout";
 import { buildSurfaceContext, type SearchParams } from "@/components/domain/analytics/surfaceContext";
@@ -61,7 +61,7 @@ export default async function CashAnalytics({
         </div>
         <div className="border-t border-line px-4 py-3">
           <Overline>Reconciliation</Overline>
-          <p className="t-body-sm mt-1 text-text-mid">
+          <Explainer className="mt-1 text-text-mid">
             {reconciles ? (
               <>
                 The Command Centre locked-cash panel reads{" "}
@@ -79,7 +79,7 @@ export default async function CashAnalytics({
                 filter in the header above and the two become the same number.
               </>
             )}
-          </p>
+          </Explainer>
           <Link
             href="/commercial/receivables"
             className="t-body-sm mt-2 inline-flex items-center gap-1.5 rounded-md border border-line px-3 py-1.5 text-text-mid hover:border-line-strong hover:text-text-hi"

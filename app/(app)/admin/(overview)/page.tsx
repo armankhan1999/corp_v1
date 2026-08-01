@@ -229,14 +229,14 @@ export default async function AdminIndexPage() {
 
       <Panel className="p-4">
         <Overline>How to read these figures</Overline>
-        <p className="t-body-sm mt-1 text-text-mid">
+        <Explainer className="mt-1 text-text-mid">
           Every count above is read from the seeded dataset at render time, not written into the
           card. The seed is fixed, so the same figures appear on every run and any difference is a
           real difference. The world is generated against{" "}
           <span className="t-mono">{formatDate(TODAY_ISO)}</span>; Demo Controls moves that date and
           the derived states recompute with it. Session changes live in the browser only — the
           seeded dataset is never mutated, which is what makes a reset exact.
-        </p>
+        </Explainer>
         <p className="t-body-sm mt-2 text-text-lo">
           {formatCount(visible.length)} administration{" "}
           {pluralise(visible.length, "screen")} open to {ROLE_LABEL[role]}.

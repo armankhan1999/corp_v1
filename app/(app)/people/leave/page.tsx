@@ -91,7 +91,7 @@ export default async function LeavePage({
         </div>
       </div>
 
-      <p className="t-body-sm rounded-lg border border-line bg-surface-2 shadow-[var(--elev-1)] px-3 py-2 text-text-mid">
+      <Explainer className="rounded-lg border border-line bg-surface-2 shadow-[var(--elev-1)] px-3 py-2 text-text-mid">
         <span className="text-text-hi">Coverage rule.</span> Minimum available field engineers per branch —{" "}
         {Object.entries(MIN_FIELD_ENGINEERS)
           .map(([branchId, minimum]) => {
@@ -106,7 +106,7 @@ export default async function LeavePage({
           : canApprove(session.role, "leave")
             ? "holds approval authority for leave, so an acknowledged coverage warning is required before an approval is accepted."
             : "may raise leave for themselves; the decision sits with the reporting manager."}
-      </p>
+      </Explainer>
 
       <LeaveWorkspace
         actor={{

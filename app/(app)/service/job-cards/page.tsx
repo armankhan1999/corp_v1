@@ -199,12 +199,12 @@ export default async function JobCardsPage({
         })}
       </ul>
 
-      <p className="t-body-sm flex items-start gap-1.5 text-text-lo">
+      <Explainer className="flex items-start gap-1.5 text-text-lo">
         <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden />
         First-visit resolution is derived as{" "}
         <span className="t-mono text-text-mid">outcome = Resolved AND visit sequence = 1</span>. No
         screen offers a control that sets it, so the figure cannot drift from the visit record.
-      </p>
+      </Explainer>
 
       <Panel>
         <PanelHeader

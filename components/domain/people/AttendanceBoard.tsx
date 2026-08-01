@@ -25,7 +25,7 @@ import type {
 } from "@/lib/schemas/entities";
 import type { AttendanceState } from "@/lib/schemas/enums";
 import { formatCount, formatDate, formatTime } from "@/lib/format";
-import { EmptyState, Panel, PanelHeader, Overline, SimulatedBadge } from "@/components/patterns/primitives";
+import { EmptyState, Panel, PanelHeader, Overline, SimulatedBadge , Explainer } from "@/components/patterns/primitives";
 import { cn } from "@/lib/utils";
 import {
   ATTENDANCE_STATES,
@@ -410,11 +410,11 @@ export function AttendanceBoard(props: AttendanceBoardProps) {
                 );
               })}
             </ul>
-            <p className="t-body-sm border-t border-line px-4 py-2 text-text-lo">
+            <Explainer className="border-t border-line px-4 py-2 text-text-lo">
               Shift {SHIFT_LABEL}. {LATE_RULE_LABEL} Late marks are derived from this rule on every
               surface rather than read from a stored flag, so the board, the payroll input and the
               audit log cannot disagree.
-            </p>
+            </Explainer>
           </>
         )}
       </Panel>

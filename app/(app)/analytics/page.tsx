@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowRight, Banknote, Boxes, HardHat, LayoutGrid, Wrench } from "lucide-react";
 import { can, type Capability } from "@/lib/rbac/matrix";
 import { decodeSession, SESSION_COOKIE } from "@/lib/rbac/session";
-import { Overline, Panel, PanelHeader, StatusBadge } from "@/components/patterns/primitives";
+import { Overline, Panel, PanelHeader, StatusBadge, Explainer } from "@/components/patterns/primitives";
 import { formatCount } from "@/lib/format";
 import {
   KPI_IDS, KPI_REGISTRY, buildKpiTile, type SurfaceKey,
@@ -112,12 +112,12 @@ export default async function AnalyticsIndex({
         </div>
         <div className="border-t border-line px-4 py-3">
           <Overline>Why this page exists</Overline>
-          <p className="t-body-sm mt-1 max-w-4xl text-text-mid">
+          <Explainer className="mt-1 max-w-4xl text-text-mid">
             {formatCount(defs.length)} of the 22 dictionary KPIs are visible to the {context.scope.roleLabel} role;
             the remainder belong to surfaces this role cannot read, and are withheld rather than shown as blanks.
             Each tile calls the same function the Command Centre and the assistant call, so a disagreement between two
             screens is not a reconciliation exercise — it is a defect, and there is one place to fix it.
-          </p>
+          </Explainer>
         </div>
       </Panel>
     </div>

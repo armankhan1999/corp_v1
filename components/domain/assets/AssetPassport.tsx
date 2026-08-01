@@ -32,7 +32,7 @@ import {
   formatINR,
   formatQty,
 } from "@/lib/format";
-import { Overline, Panel, SimulatedBadge, StatusBadge } from "@/components/patterns/primitives";
+import { Overline, Panel, SimulatedBadge, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { AssetStatusBadge, CountdownPanel, PrincipalTag, SubmissionBadge, countdownOf } from "./badges";
 import { AmcAlsoInForce, CoverageBadge, CoverageDerivation } from "./CoverageBadge";
 import { CoverageTimeline } from "./CoverageTimeline";
@@ -765,12 +765,12 @@ export function AssetPassport(props: PassportProps) {
         </div>
       </div>
 
-      <p className="t-body-sm flex items-center gap-2 text-text-lo">
+      <Explainer className="flex items-center gap-2 text-text-lo">
         <History className="size-3.5" aria-hidden />
         Every figure on this passport is read from the record behind it. Coverage recomputes on each
         read against the simulated clock at {formatDateTime(now)}.
         <Calendar className="size-3.5" aria-hidden />
-      </p>
+      </Explainer>
     </div>
   );
 }

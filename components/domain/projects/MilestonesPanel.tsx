@@ -5,7 +5,7 @@ import {
   CartesianGrid, Legend, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from "recharts";
 import { CheckCircle2, Flag, ShieldAlert } from "lucide-react";
-import { Panel, PanelHeader, Overline, StatusBadge, EmptyState } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, StatusBadge, EmptyState , Explainer } from "@/components/patterns/primitives";
 import { formatDate, formatPercent } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import { sCurve, type MilestonePoint } from "./compute";
@@ -122,10 +122,10 @@ export function MilestonesPanel({
           </div>
         </div>
       ) : (
-        <p className="t-body-sm text-text-lo">
+        <Explainer className="text-text-lo">
           Inside tolerance — variance {formatPercent(variancePct)} against ±{tolerancePct}%. The project is not
           flagged At Risk and does not appear on the exception feed.
-        </p>
+        </Explainer>
       )}
 
       {/* --------------------------------------------------------- S-curve */}
@@ -190,11 +190,11 @@ export function MilestonesPanel({
                   </LineChart>
                 </ResponsiveContainer>
               </div>
-              <p className="t-body-sm mt-2 text-text-lo">
+              <Explainer className="mt-2 text-text-lo">
                 Same series, tabular — switch to the data table above. Contractual completion{" "}
                 {formatDate(contractualCompletion)}
                 {revisedCompletion ? `, revised to ${formatDate(revisedCompletion)}` : ""}.
-              </p>
+              </Explainer>
             </>
           ) : (
             <DenseTableShell minWidth={520}>
@@ -313,12 +313,12 @@ export function MilestonesPanel({
 
       <div>
         <Overline>How the variance is computed</Overline>
-        <p className="t-body-sm mt-1 max-w-3xl text-text-mid">
+        <Explainer className="mt-1 max-w-3xl text-text-mid">
           Cumulative planned is the sum of weightages for milestones whose planned date has passed. Cumulative
           actual is the sum of weightages for milestones with an actual date on or before today. Variance is
           (actual − planned) ÷ planned, expressed as a percentage. Beyond ±{tolerancePct}% the project is flagged
           At Risk and carried to the exception feed with the magnitude and the responsible manager.
-        </p>
+        </Explainer>
       </div>
     </div>
   );

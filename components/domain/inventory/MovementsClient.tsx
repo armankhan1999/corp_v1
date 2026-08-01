@@ -30,7 +30,7 @@ import { formatCount, formatDate, formatDateTime, formatQty, formatRelative, enu
 import { canWrite, isReadOnlyRole } from "@/lib/rbac/matrix";
 import { ROLE_LABEL } from "@/lib/schemas/enums";
 import type * as T from "@/lib/schemas/entities";
-import { Panel, PanelHeader, StatusBadge } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { availableOf, onHandOf, useInventory, type InvView } from "./model";
 import {
   appendMovements, notify, useMutate, writeAudit, type Actor, type MovementDraft, type Overlay,
@@ -1141,10 +1141,10 @@ function SessionLedger({ view }: { view: InvView }) {
           sub="Every row below was appended by this screen. There is no edit or delete path for any of them."
         />
         {issued.length === 0 ? (
-          <p className="t-body-sm px-3 py-6 text-center text-text-lo">
+          <Explainer className="px-3 py-6 text-center text-text-lo">
             No issue has been made yet in this session. Issue a pending request and its ledger rows appear here with
             their sequence numbers.
-          </p>
+          </Explainer>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full min-w-[32rem] border-collapse">

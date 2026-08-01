@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Search } from "lucide-react";
 import { formatCount, formatDate, formatINR } from "@/lib/format";
-import { Overline } from "@/components/patterns/primitives";
+import { Overline, Explainer } from "@/components/patterns/primitives";
 import { CoverageBadge } from "./CoverageBadge";
 import { BlockedNote, DateInput, Field, Select, Serial, TextArea, TextInput } from "./ui";
 import type { AmcAssetOption, CustomerOption } from "./types";
@@ -326,11 +326,11 @@ export function AmcForm({
 
       <section className="rounded-md border border-line bg-surface-0 p-3">
         <Overline>On activation</Overline>
-        <p className="t-body-sm mt-1 text-text-mid">
+        <Explainer className="mt-1 text-text-mid">
           {generated
             ? `${formatCount(generated)} preventive visits will be generated — ${visits} per machine across ${formatCount(draft.assetIds.length)} machine${draft.assetIds.length === 1 ? "" : "s"}, spread evenly over ${formatCount(spanDays)} days from ${draft.startDate ? formatDate(draft.startDate) : "—"} to ${draft.endDate ? formatDate(draft.endDate) : "—"}.`
             : "Select machines and set the committed visit count to see the schedule that will be generated."}
-        </p>
+        </Explainer>
         {draft.contractValue && !Number.isNaN(Number(draft.contractValue)) ? (
           <p className="t-body-sm mt-1 text-text-lo">
             Contract value {formatINR(Number(draft.contractValue))} ·{" "}

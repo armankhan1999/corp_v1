@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Camera, Minus, Plus, Send, Users } from "lucide-react";
-import { Overline } from "@/components/patterns/primitives";
+import { Overline , Explainer } from "@/components/patterns/primitives";
 import { formatINR, formatQty } from "@/lib/format";
 import { HINDRANCE_CAUSE_LABEL } from "./labels";
 import { DPR_PLANT, DPR_TRADES, DPR_WEATHER } from "./constants";
@@ -243,10 +243,10 @@ export function DprForm({
       <div className="rounded-md border border-line">
         <div className="border-b border-line bg-surface-2 px-3 py-1.5">
           <span className="t-label text-text-hi">Work executed against BOQ lines</span>
-          <p className="t-body-sm text-text-lo">
+          <Explainer className="text-text-lo">
             These quantities increment the cumulative executed quantity on the lines named — that is the only
             way the BOQ moves.
-          </p>
+          </Explainer>
         </div>
         <div className="flex flex-col gap-3 p-3">
           {exec.map((row, i) => {

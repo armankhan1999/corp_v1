@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Coins, HandCoins, Plus, Smartphone, Wallet } from "lucide-react";
 import { abbreviateINR, formatCount, formatDate, formatINR } from "@/lib/format";
 import type { PaymentMode } from "@/lib/schemas/enums";
-import { EmptyState, Overline, Panel, PanelHeader, SimulatedBadge } from "@/components/patterns/primitives";
+import { EmptyState, Overline, Panel, PanelHeader, SimulatedBadge , Explainer } from "@/components/patterns/primitives";
 import { UpiCollectionPanel } from "@/components/domain/commercial/CollectionPanel";
 import {
   inPeriod, mergedInvoices, mergedReceipts, moneyIndex, periodOptions,
@@ -674,12 +674,12 @@ function RecordReceiptModal({
           draft={draft} onChange={setDraft} disabled={!actor.canWrite}
         />
 
-        <p className="t-body-sm text-text-lo">
+        <Explainer className="text-text-lo">
           Allocating recomputes each invoice&apos;s outstanding as total less allocated receipts less credit notes, and moves
           it between ageing buckets accordingly. Where the invoice carried a payment promise, the promise is marked
           fulfilled and leaves the broken-promise list. Anything not allocated stays visible on this screen as an
           unallocated balance.
-        </p>
+        </Explainer>
       </div>
     </Modal>
   );
@@ -817,12 +817,12 @@ function AllocateModal({
           />
         )}
 
-        <p className="t-body-sm flex items-start gap-2 text-text-lo">
+        <Explainer className="flex items-start gap-2 text-text-lo">
           <HandCoins className="mt-0.5 size-4 shrink-0" aria-hidden />
           Allocation is recorded against this browser session and layered over the seeded ledger. The accounting package
           remains the book of record —{" "}
           <Link href="/commercial/handoff" className="text-info hover:underline">the hand-off screen says so plainly</Link>.
-        </p>
+        </Explainer>
       </div>
     </Modal>
   );

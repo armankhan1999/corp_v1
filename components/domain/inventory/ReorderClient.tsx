@@ -28,7 +28,7 @@ import { abbreviateINR, formatCount, formatDateTime, formatINR, formatQty } from
 import { canCreate, canWrite, isReadOnlyRole } from "@/lib/rbac/matrix";
 import { ROLE_LABEL } from "@/lib/schemas/enums";
 import type * as T from "@/lib/schemas/entities";
-import { Panel, PanelHeader, StatusBadge } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, StatusBadge, Explainer } from "@/components/patterns/primitives";
 import {
   CATEGORY_LABEL, reorderRows, sortReorder, useInventory, velocityOf,
   type InvView, type ReorderRow,
@@ -441,10 +441,10 @@ export function ReorderClient({
               <ShoppingCart className="size-8 text-ok" aria-hidden />
               <div>
                 <p className="t-heading-md text-text-hi">Nothing is at or below its reorder level</p>
-                <p className="t-body-sm mx-auto mt-1 max-w-lg text-text-mid">
+                <Explainer className="mx-auto mt-1 max-w-lg text-text-mid">
                   Every carried line is holding above the level set on the item master. The list rebuilds itself from
                   the ledger on every read, so a single issue can bring a line back onto it.
-                </p>
+                </Explainer>
               </div>
               <LinkBtn href="/inventory/stock" icon={ClipboardList}>
                 Stock balances

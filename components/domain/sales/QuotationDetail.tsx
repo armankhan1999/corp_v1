@@ -12,7 +12,7 @@ import type { QuotationStatus } from "@/lib/schemas/enums";
 import {
   abbreviateINR, enumLabel, formatCount, formatDate, formatDateTime, formatINR, formatPercent,
 } from "@/lib/format";
-import { EmptyState, KeyValue, Overline, Panel, PanelHeader, StatusBadge } from "@/components/patterns/primitives";
+import { EmptyState, KeyValue, Overline, Panel, PanelHeader, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import {
   DISCOUNT_BANDS, LOSS_REASONS, QUOTATION_TONE, QUOTATION_TRANSITIONS, checkTransition,
   customerExposure, derivePlaceOfSupply, discountGate, effectiveStatus, labelRole, labelStatus,
@@ -1067,10 +1067,10 @@ function ApprovalDialog({
           {(p) => <TextArea {...p} value={comment} onChange={(e) => { setComment(e.target.value); if (err) setErr(null); }} />}
         </Field>
       </div>
-      <p className="t-body-sm mt-2 text-text-lo">
+      <Explainer className="mt-2 text-text-lo">
         Approval at the final step issues the quotation and stamps the reference, approver and timestamp on it
         permanently. Rejection returns it to Draft with this note attached.
-      </p>
+      </Explainer>
     </Modal>
   );
 }

@@ -367,3 +367,41 @@ second row — the grid is now three even columns. And the receivables segmentat
 The navigation rail now collapses by section, with the section holding the current route opened
 automatically. A Director holds eleven sections and forty-odd links; rendering every one expanded
 was a wall the eye had to climb before reaching the page.
+
+
+---
+
+## Brand re-anchor — reading bhushancorp.in rather than sampling it
+
+PD-002 asked for the primary hue to be sampled from the Bhushan wordmark. The earlier build
+anchored `--primary` to `#003388`. Reading the live theme stylesheet shows that was wrong:
+**`#003388` does not appear anywhere on bhushancorp.in.** What the site actually uses is
+`#fd6701`, and not as an accent — it is the action colour, applied to the primary button
+(`nav .sa-btn`), the active nav item (`#access ul .current-menu-item > a`), every nav hover, the
+tab indicator and the read-more control. Its display face is **Poppins**, declared in the `h1`
+rule; `Hind` carries some UI text. Everything else in that stylesheet is stock Bootstrap 4.
+
+**Primary is now orange, with one constraint that shapes the ramp.** White on `#fd6701` measures
+2.95:1 and fails AA outright, so it cannot be the button fill. `--primary-600` — the step that
+carries white text — is the darker `#c24e00` at 4.79:1, and the true brand orange sits at
+`--primary-500`, where it is used for the mark, rails, focus and links on dark. All 54 assertions
+in `tests/unit/contrast.test.ts` pass in both themes.
+
+**Typography.** Poppins replaces Sora as the display face, matching the site. Inter is retained
+for body, tables and dense UI: Poppins' wide round forms cost too much horizontal room in a
+data-dense register, and the PRD's tabular-numerics rule matters more there than brand match.
+
+**The mark.** The published logo is a 505×80 JPEG reading "BHUSHAN INTERNATIONAL" — a rounded
+square glyph plus wordmark, entirely in `#fd6701`, on an opaque white field. It is rebuilt as SVG
+in `components/patterns/BrandMark.tsx` rather than served as a raster: the white field would sit
+in a box on the dark theme, and the SVG inherits `currentColor` so it takes the brand orange in
+both. Worth raising with the client — **the live mark says "Bhushan International" while the
+documentation set says "Bhushancorp Private Limited"**, and the prototype currently shows the
+legal name from the documents.
+
+**Density, second pass.** A further 113 paragraphs were demoted into `Explainer`: 79 in the
+tertiary tone, which is reserved for derivation notes, and 34 in the secondary tone past 160
+characters. Denial screens, error boundaries and empty states were excluded — there the
+explanation *is* the content. The user register's Manage column was rebuilt as icon-only
+controls; three labelled buttons had been wrapping onto three rows, tripling the height of every
+row in the table.

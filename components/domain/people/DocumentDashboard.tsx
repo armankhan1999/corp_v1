@@ -5,7 +5,7 @@ import Link from "next/link";
 import { BellRing, Check, FileCheck2, FileWarning, Minus, ShieldCheck } from "lucide-react";
 import type { Branch, Employee, EmployeeDocument } from "@/lib/schemas/entities";
 import { formatCount, formatDate, formatPercent } from "@/lib/format";
-import { Panel, PanelHeader, Overline, Mono } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, Mono , Explainer } from "@/components/patterns/primitives";
 import { cn } from "@/lib/utils";
 import { DOCUMENT_SET, EXPIRY_NOTICE_DAYS } from "./config";
 import { allEmployees, documentFile, type DocFile } from "./derive";
@@ -293,12 +293,12 @@ export function DocumentDashboard(props: DocumentDashboardProps) {
             </table>
           </div>
         )}
-        <p className="t-body-sm flex items-center gap-1.5 border-t border-line px-4 py-2 text-text-lo">
+        <Explainer className="flex items-center gap-1.5 border-t border-line px-4 py-2 text-text-lo">
           <FileCheck2 className="size-3.5 shrink-0" aria-hidden />
           <span className="text-danger">*</span> Required for statutory completeness. OEM training
           certificates apply to field staff only and read <span className="text-text-mid">n/a</span>{" "}
           for office records.
-        </p>
+        </Explainer>
       </Panel>
 
       <div>

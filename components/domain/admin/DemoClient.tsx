@@ -28,7 +28,7 @@ import {
   ShieldCheck,
   X,
 } from "lucide-react";
-import { Overline, Panel, PanelHeader, SimulatedBadge, StatusBadge } from "@/components/patterns/primitives";
+import { Overline, Panel, PanelHeader, SimulatedBadge, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { ROLE_LABEL } from "@/lib/schemas/enums";
 import {
   abbreviateINR,
@@ -345,10 +345,10 @@ export function DemoClient({
   /* ------------------------------------------------------------ render */
 
   const auditNote = (
-    <p className="t-body-sm text-text-lo">
+    <Explainer className="text-text-lo">
       Every control on this screen writes an audit entry stamped with the real wall clock, not the
       simulated one, so the log stays a truthful record of when the operator acted.
-    </p>
+    </Explainer>
   );
 
   return (
@@ -410,14 +410,14 @@ export function DemoClient({
           right={<StatusBadge tone={occupied.length > 0 ? "warn" : "ok"}>{ready ? `${formatCount(occupied.length)} of ${formatCount(RESET_KEYS.length)} hold changes` : "Reading…"}</StatusBadge>}
         />
         <div className="flex flex-col gap-3 p-4">
-          <p className="t-body-sm text-text-mid">
+          <Explainer className="text-text-mid">
             Nothing in this prototype writes to a server. Everything a demonstration changes —
             tickets moved, approvals decided, stock issued, users edited — lives in{" "}
             <span className="t-mono">localStorage</span> under{" "}
             <span className="t-mono">pravaah.v1.*</span>, layered over an immutable seeded dataset.
             Reset removes those layers. It does not undo anything on a real system, because there
             is no real system behind it.
-          </p>
+          </Explainer>
 
           <div>
             <Overline>Namespaces this removes</Overline>
@@ -648,11 +648,11 @@ export function DemoClient({
             </section>
           ))}
         </div>
-        <p className="t-body-sm border-t border-line px-4 py-2 text-text-lo">
+        <Explainer className="border-t border-line px-4 py-2 text-text-lo">
           Money is shown abbreviated; the full rupee figure is in each cell&rsquo;s title. Nothing on
           this table is estimated — each number is the derivation named beneath its heading, run
           against the date in the column head.
-        </p>
+        </Explainer>
       </Panel>
 
       {/* =========================================== 3 — the scenario switches */}

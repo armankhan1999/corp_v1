@@ -8,7 +8,7 @@ import {
 import type { CoverageType, TicketSeverity, TicketStatus } from "@/lib/schemas/enums";
 import { OEM_LABEL, type OEMPrincipal } from "@/lib/schemas/enums";
 import { formatCount, formatDate, formatDateTime } from "@/lib/format";
-import { Panel, PanelHeader, Overline, StatusBadge, EmptyState } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, StatusBadge, EmptyState , Explainer } from "@/components/patterns/primitives";
 import { cn } from "@/lib/utils";
 import { SlaClock, slaStateMeta, useSimNow } from "./SlaClock";
 import { AssignDialog, type AssignTarget } from "./AssignDialog";
@@ -457,11 +457,11 @@ export function DispatchBoard({
         )}
       </Panel>
 
-      <p className="t-body-sm flex items-start gap-1.5 text-text-lo">
+      <Explainer className="flex items-start gap-1.5 text-text-lo">
         <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden />
         Board state as of <span className="t-mono">{formatDateTime(now)}</span>. Lanes sort by time
         to breach ascending; a breached ticket sorts above every ticket still inside its window.
-      </p>
+      </Explainer>
 
       <AssignDialog
         open={assignFor !== null}

@@ -28,7 +28,7 @@ import {
 import { canApprove, canCreate, canWrite, isReadOnlyRole } from "@/lib/rbac/matrix";
 import { ROLE_LABEL, type ItemCategory } from "@/lib/schemas/enums";
 import type * as T from "@/lib/schemas/entities";
-import { Panel, StatusBadge } from "@/components/patterns/primitives";
+import { Panel, StatusBadge, Explainer } from "@/components/patterns/primitives";
 import { CATEGORY_LABEL, poReceiptState, poValue, useInventory, type InvView } from "./model";
 import {
   PO_APPROVAL_THRESHOLD, appendMovements, nextCounter, notify, pad, useMutate, writeAudit,
@@ -1189,11 +1189,11 @@ function SuppliersTab({
   return (
     <>
       <div className="border-b border-line px-3 py-2">
-        <p className="t-body-sm text-text-mid">
+        <Explainer className="text-text-mid">
           {formatCount(rows.length)} suppliers carry {formatCount(view.purchaseOrders.length)} orders. Name, GSTIN,
           contact, payment terms and the categories a supplier serves are all held here — the categories are what
           decide the preferred supplier on the reorder list where no purchase history exists yet.
-        </p>
+        </Explainer>
       </div>
       <DataGrid
         rows={rows}

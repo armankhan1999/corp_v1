@@ -12,7 +12,7 @@ import type { Vertical } from "@/lib/schemas/enums";
 import { VERTICAL_LABEL, VERTICAL_TOKEN } from "@/lib/schemas/enums";
 import { abbreviateINR, formatCount, formatDate, formatINR } from "@/lib/format";
 import { cn } from "@/lib/utils";
-import { EmptyState, Overline, Panel, PanelHeader, Skeleton, StatusBadge } from "@/components/patterns/primitives";
+import { EmptyState, Overline, Panel, PanelHeader, Skeleton, StatusBadge, Explainer } from "@/components/patterns/primitives";
 import {
   ACTIVITY_MODES, LOSS_REASONS, STAGES, STAGE_AGEING, STAGE_LABEL, VERTICALS,
   buildOpportunities, type Ageing, type Opportunity, type Stage,
@@ -654,10 +654,10 @@ function MoveDialog({
       }
       footer={<Btn onClick={() => onOpenChange(false)}>Cancel</Btn>}
     >
-      <p className="t-body-sm mb-3 text-text-mid">
+      <Explainer className="mb-3 text-text-mid">
         The keyboard route runs the same validations as the drag route — WCAG 2.2 requires a non-drag path, and it has
         to be the same path, not a lenient one. A stage that is not permitted states the rule and what would unblock it.
-      </p>
+      </Explainer>
       <ul className="flex flex-col gap-2">
         {o
           ? MOVE_TARGETS.map((to) => {

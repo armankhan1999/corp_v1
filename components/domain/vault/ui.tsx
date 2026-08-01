@@ -7,7 +7,7 @@ import { CircleSlash, Lock, ShieldX } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { can } from "@/lib/rbac/matrix";
 import type { Role } from "@/lib/schemas/enums";
-import { Panel } from "@/components/patterns/primitives";
+import { Panel , Explainer } from "@/components/patterns/primitives";
 import { highlightSegments } from "./search";
 import { holderLabels, type Denial } from "./access";
 
@@ -94,10 +94,10 @@ export function DenialPanel({
               Access is held by <span className="text-text-hi">{holderLabels(denial.holders)}</span>.
             </p>
           ) : null}
-          <p className="t-body-sm mt-2 text-text-lo">
+          <Explainer className="mt-2 text-text-lo">
             No title, type or other metadata for the requested document has been disclosed. The denial has been
             written to the vault activity log against your user.
-          </p>
+          </Explainer>
           {extra}
         </div>
       </div>

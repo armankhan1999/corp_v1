@@ -25,7 +25,7 @@ import type {
 import type { OEMPrincipal, Role } from "@/lib/schemas/enums";
 import { OEM_LABEL } from "@/lib/schemas/enums";
 import { formatDate, formatDateTime, formatPhone, formatTime, initials } from "@/lib/format";
-import { KeyValue, Mono, Panel, PanelHeader, StatusBadge } from "@/components/patterns/primitives";
+import { KeyValue, Mono, Panel, PanelHeader, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { cn } from "@/lib/utils";
 import { EXPIRY_NOTICE_DAYS } from "./config";
 import {
@@ -520,7 +520,7 @@ function DocumentsTab({
                   </span>
                   <p className="t-body-sm mt-1 text-text-mid">{slot.spec.note}</p>
                   {slot.document ? (
-                    <p className="t-body-sm mt-1 text-text-lo">
+                    <Explainer className="mt-1 text-text-lo">
                       Issued {formatDate(slot.document.issuedOn)}
                       {slot.expiresOn ? (
                         <>
@@ -536,7 +536,7 @@ function DocumentsTab({
                           ) : null}
                         </>
                       ) : null}
-                    </p>
+                    </Explainer>
                   ) : null}
                   {slot.expiryState === "EXPIRED" || slot.expiryState === "DUE_30" || slot.expiryState === "DUE_60" ? (
                     <p className="t-body-sm mt-1 flex flex-wrap items-center gap-1.5 text-warn">

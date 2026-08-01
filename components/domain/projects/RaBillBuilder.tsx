@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import {
   ArrowLeft, ArrowRight, Check, FileCheck2, Lock, Printer, Receipt, Send, Snowflake,
 } from "lucide-react";
-import { Panel, PanelHeader, Overline, StatusBadge, SimulatedBadge, KeyValue } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, StatusBadge, SimulatedBadge, KeyValue , Explainer } from "@/components/patterns/primitives";
 import {
   abbreviateINR, daysBetween, formatDate, formatDateTime, formatINR, formatPercent, formatQty, inrInWords,
 } from "@/lib/format";
@@ -455,13 +455,13 @@ export function RaBillBuilder({
                     {formatINR(f.varianceAmount)}{" "}
                     <span className="t-heading-md">({formatPercent(f.variancePct ?? 0)})</span>
                   </p>
-                  <p className="t-body-sm mt-0.5 text-text-mid">
+                  <Explainer className="mt-0.5 text-text-mid">
                     {f.varianceAmount === 0
                       ? "Certified in full."
                       : f.varianceAmount < 0
                         ? `The client certified ${formatINR(Math.abs(f.varianceAmount))} below the claim — ${formatPercent(Math.abs(f.variancePct ?? 0))} of the claimed value. Both figures stay on the record.`
                         : "Certified above the claim, which normally means a variation was allowed."}
-                  </p>
+                  </Explainer>
                 </div>
               ) : null}
 
@@ -531,10 +531,10 @@ export function RaBillBuilder({
                     <Btn variant="primary" onClick={submit}>
                       <Send className="size-3.5" aria-hidden /> Submit to client and freeze quantities
                     </Btn>
-                    <p className="t-body-sm text-text-lo">
+                    <Explainer className="text-text-lo">
                       Submission snapshots the cumulative quantity on every BOQ line onto this bill. Execution
                       recorded afterwards flows to the next bill, so the same work cannot be claimed twice.
-                    </p>
+                    </Explainer>
                   </>
                 ) : (
                   <BlockedNotice

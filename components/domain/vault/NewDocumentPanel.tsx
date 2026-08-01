@@ -6,7 +6,7 @@ import type { Dataset, PravaahDocument } from "@/lib/schemas";
 import type { DocumentCategory, DocumentType } from "@/lib/schemas/enums";
 import { zDocumentType } from "@/lib/schemas/enums";
 import { enumLabel } from "@/lib/format";
-import { Overline } from "@/components/patterns/primitives";
+import { Overline , Explainer } from "@/components/patterns/primitives";
 import { CATEGORY_LABEL, CATEGORY_ORDER, type Viewer } from "./access";
 import { addCreatedDocument, recordAudit } from "./store";
 
@@ -210,9 +210,9 @@ export function NewDocumentPanel({
         <button type="submit" className="t-body-sm rounded-md bg-primary-600 px-3 py-1.5 text-white hover:bg-primary-500">
           Create document
         </button>
-        <p className="t-body-sm text-text-lo">
+        <Explainer className="text-text-lo">
           Stored in this browser under <span className="t-mono">pravaah.v1.vault.created</span> and written to the vault activity log. The seeded corpus is not altered.
-        </p>
+        </Explainer>
       </div>
     </form>
   );

@@ -6,7 +6,7 @@ import {
   BookLock, CircleCheck, Download, FileSpreadsheet, Hash, RefreshCw, TriangleAlert, XCircle,
 } from "lucide-react";
 import { abbreviateINR, formatCount, formatDate, formatDateTime, formatINR } from "@/lib/format";
-import { EmptyState, Overline, Panel, PanelHeader, SimulatedBadge, StatusBadge } from "@/components/patterns/primitives";
+import { EmptyState, Overline, Panel, PanelHeader, SimulatedBadge, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { inPeriod, periodOptions, type PeriodSpec } from "@/components/domain/commercial/merge";
 import { actions, useCommercialOverlay, type HandoffExport } from "@/components/domain/commercial/store";
 import type { Actor, SeriesRow } from "@/components/domain/commercial/types";
@@ -415,13 +415,13 @@ export function HandoffClient({ docs: allDocs, series, actor, todayIso }: Handof
                   difference is exactly the {formatCount(rejected)} refused voucher{rejected === 1 ? "" : "s"} listed
                   below, and nothing else.
                 </p>
-                <p className="t-body-sm mt-1 text-text-lo">
+                <Explainer className="mt-1 text-text-lo">
                   The export has been audit-logged against {actor.name} with the period, the document counts and the
                   outcome. The live connector needs the package&apos;s company and financial-year mapping, a ledger and
                   voucher-type map and an ODBC or XML endpoint —{" "}
                   <Link href="/admin/integrations" className="text-info hover:underline">Integration Readiness</Link>{" "}
                   lists the Phase 2 prerequisites.
-                </p>
+                </Explainer>
               </div>
             ) : null}
 
@@ -513,11 +513,11 @@ export function HandoffClient({ docs: allDocs, series, actor, todayIso }: Handof
             </tbody>
           </table>
         </div>
-        <p className="t-body-sm border-t border-line px-4 py-2 text-text-lo">
+        <Explainer className="border-t border-line px-4 py-2 text-text-lo">
           A number is consumed the moment a document is issued and is never reused, so a hand-off can be checked against
           the series without reference to this platform: the count of documents in a financial year must equal the
           highest sequence issued in it.
-        </p>
+        </Explainer>
       </SectionPanel>
 
       {/* ------------------------------------------------------ export log */}

@@ -6,7 +6,7 @@ import { FileText, Plus, ReceiptText, Scale } from "lucide-react";
 import { abbreviateINR, addDays, formatCount, formatDate, formatINR, formatQty } from "@/lib/format";
 import { ageingBucket } from "@/lib/derive";
 import type { TaxTreatment } from "@/lib/schemas/enums";
-import { EmptyState, Overline, Panel, PanelHeader, SimulatedBadge, StatusBadge } from "@/components/patterns/primitives";
+import { EmptyState, Overline, Panel, PanelHeader, SimulatedBadge, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import {
   deriveTax, eInvoiceWindow, simulateIrn, EINVOICE_STATUS_LABEL, EINVOICE_STATUS_TONE,
   TREATMENT_LABEL, TREATMENT_SHORT,
@@ -241,10 +241,10 @@ export function InvoicesClient(props: InvoicesClientProps) {
             disabled={!actor.canWrite}
           />
         </Field>
-        <p className="t-body-sm max-w-md text-text-lo">
+        <Explainer className="max-w-md text-text-lo">
           At {settings.eInvoiceWindowDays} days, {formatCount(totals.reported)} invoices were reported inside the window
           and {formatCount(totals.late)} outside it. Lower the figure and the classification moves with it.
-        </p>
+        </Explainer>
       </SettingsBar>
 
       <Panel>
@@ -547,12 +547,12 @@ function NewInvoiceModal({
               </dl>
             </div>
 
-            <p className="t-body-sm text-text-lo">
+            <Explainer className="text-text-lo">
               Issuing consumes <span className="t-mono text-text-mid">{next.number}</span> from the invoice series,
               generates a simulated IRN and signed QR where e-invoicing applies, and writes an audit entry naming you as
               the actor. From that moment the invoice is immutable —{" "}
               <Link href="/commercial/handoff" className="text-info hover:underline">the series state is visible to Accounts</Link>.
-            </p>
+            </Explainer>
           </>
         )}
       </div>

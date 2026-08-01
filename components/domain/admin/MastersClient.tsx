@@ -24,7 +24,7 @@ import {
   Trash2,
   X,
 } from "lucide-react";
-import { Panel, PanelHeader, Overline, StatusBadge } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { abbreviateINR, formatCount } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import { appendAudit, describeChange } from "./auditStore";
@@ -721,14 +721,14 @@ function SeriesPanel({
         }
       />
       <div className="border-b border-line px-4 py-3">
-        <p className="t-body-sm text-text-mid">
+        <Explainer className="text-text-mid">
           <span className="text-text-hi">How gaps and duplicates are prevented. </span>A number is
           allocated at the moment a document is committed, never when a form is opened, and the
           counter is monotonic — it can only be advanced by an issue, never typed. Two commits
           cannot receive the same number because the counter is read and advanced in one step, and a
           cancelled document keeps its number rather than returning it to the pool, which is what
           would create a hole in the sequence.
-        </p>
+        </Explainer>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full min-w-[900px] border-collapse">
@@ -794,11 +794,11 @@ function SeriesPanel({
           </tbody>
         </table>
       </div>
-      <p className="t-body-sm border-t border-line px-4 py-2 text-text-lo">
+      <Explainer className="border-t border-line px-4 py-2 text-text-lo">
         Numbers issued from this screen are appended to the counter and appear in the audit log; the
         seeded documents are counted from the numbers they already carry, so the check is against
         real data rather than a stored figure.
-      </p>
+      </Explainer>
     </Panel>
   );
 }

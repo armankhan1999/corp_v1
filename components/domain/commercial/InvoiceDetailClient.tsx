@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { COMPANY } from "@/lib/seed/catalog";
 import { formatDate, formatINR, formatQty, inrInWords } from "@/lib/format";
-import { Overline, Panel, PanelHeader, SimulatedBadge, StatusBadge } from "@/components/patterns/primitives";
+import { Overline, Panel, PanelHeader, SimulatedBadge, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { cn } from "@/lib/utils";
 import { EwayPanel } from "./EwayPanel";
 import { FollowUpLog, ReceiptsApplied, UpiCollectionPanel } from "./CollectionPanel";
@@ -397,10 +397,10 @@ function EInvoicePanel({
             <div>
               <p className="t-body font-medium text-text-hi">E-invoicing does not apply to this invoice</p>
               <p className="t-body-sm mt-1 text-text-mid">{win.reason}.</p>
-              <p className="t-body-sm mt-1 text-text-lo">
+              <Explainer className="mt-1 text-text-lo">
                 No Invoice Reference Number is generated and none is required. The invoice states this on its face, so
                 a recipient or an inspector can see why no QR appears.
-              </p>
+              </Explainer>
             </div>
           </div>
         </div>
@@ -468,12 +468,12 @@ function EInvoicePanel({
             </Button>
           ) : null}
 
-          <p className="t-body-sm mt-2 text-text-lo">
+          <Explainer className="mt-2 text-text-lo">
             The live Invoice Registration Portal needs GSP or API credentials through an authorised provider, a
             turnover-band confirmation and sandbox testing.{" "}
             <Link href="/admin/integrations" className="text-info hover:underline">Integration Readiness</Link> lists
             what Phase 2 requires.
-          </p>
+          </Explainer>
         </div>
       )}
     </Panel>
@@ -518,10 +518,10 @@ function SourcePanel({
           </div>
         ) : (
           <>
-            <p className="t-body-sm text-text-mid">
+            <Explainer className="text-text-mid">
               This invoice was raised directly rather than from a source document, so no reference is printed on it.
               Linking one now records the connection in both directions without altering the invoice itself.
-            </p>
+            </Explainer>
             <div className="mt-3 flex flex-wrap items-end gap-2">
               <div className="min-w-64 flex-1">
                 <Overline>{expected.label}</Overline>

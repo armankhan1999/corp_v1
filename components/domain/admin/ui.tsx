@@ -358,12 +358,12 @@ export function BlockedDialog({
         )}
       </Callout>
       <div className="mt-3 flex flex-col gap-2">
-        <p className="t-body-sm text-text-mid">
+        <Explainer className="text-text-mid">
           <span className="text-text-hi">What would unblock it: </span>
           {systemReason
             ? "Nothing in this release — the value is part of the platform's structure."
             : `re-point or close all ${count} referencing ${count === 1 ? "record" : "records"}, after which the value becomes deletable.`}
-        </p>
+        </Explainer>
         {!systemReason ? (
           <p className="t-body-sm text-text-mid">
             <span className="text-text-hi">What you can do now: </span>

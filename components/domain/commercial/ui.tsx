@@ -303,7 +303,7 @@ export function FilteredEmpty({
       <FilterX className="size-8 text-text-lo" aria-hidden />
       <div>
         <p className="t-heading-md text-text-hi">No {subject} match the current filters</p>
-        <p className="t-body-sm mx-auto mt-1 max-w-lg text-text-mid">
+        <Explainer className="mx-auto mt-1 max-w-lg text-text-mid">
           {active.length
             ? <>Filtering by {active.map((a, i) => (
               <React.Fragment key={a}>
@@ -312,7 +312,7 @@ export function FilteredEmpty({
               </React.Fragment>
             ))}. Widen one of them, or clear all filters to see the full set.</>
             : "The current query returns nothing."}
-        </p>
+        </Explainer>
       </div>
       <Button onClick={onClear}><FilterX className="size-3.5" aria-hidden />Clear filters</Button>
     </div>

@@ -11,7 +11,7 @@ import { OEM_LABEL, PRODUCT_LINE_LABEL } from "@/lib/schemas/enums";
 import {
   formatCount, formatDate, formatDateTime, formatINR, formatOverrun, formatPhone,
 } from "@/lib/format";
-import { Panel, PanelHeader, Overline, StatusBadge, EmptyState } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, StatusBadge, EmptyState , Explainer } from "@/components/patterns/primitives";
 import { cn } from "@/lib/utils";
 import { SlaClock, useSimNow } from "./SlaClock";
 import { AssignDialog, type AssignTarget } from "./AssignDialog";
@@ -490,12 +490,12 @@ export function TicketDetail({
                   ))}
                 </ul>
               ) : (
-                <p className="t-body-sm mt-1.5 text-text-lo">
+                <Explainer className="mt-1.5 text-text-lo">
                   No pause window has been opened on this ticket.
                   {ticket.pausedMs > 0
                     ? ` ${formatOverrun(ticket.pausedMs)} of paused time is banked from earlier handling.`
                     : ""}
-                </p>
+                </Explainer>
               )}
             </div>
           </Panel>
@@ -801,10 +801,10 @@ export function TicketDetail({
               sub="Notification matrix rows fired against this ticket."
             />
             {escalations.length === 0 && seededNotifications.length === 0 ? (
-              <p className="t-body-sm px-4 py-4 text-text-lo">
+              <Explainer className="px-4 py-4 text-text-lo">
                 Nothing has escalated. Rows fire automatically at imminent (Service Manager) and at
                 breach (Service Manager and Director – Business).
-              </p>
+              </Explainer>
             ) : (
               <ul className="flex flex-col divide-y divide-line">
                 {seededNotifications.map((n) => (
@@ -992,10 +992,10 @@ export function TicketDetail({
             ))}
           </Select>
         </Field>
-        <p className="t-body-sm mt-3 text-text-lo">
+        <Explainer className="mt-3 text-text-lo">
           Scheduled for <span className="t-mono">{formatDate(now)}</span>. Multiple job cards may sit
           against one ticket — the visit sequence drives the first-visit fix derivation.
-        </p>
+        </Explainer>
       </Modal>
     </div>
   );

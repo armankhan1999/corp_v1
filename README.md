@@ -232,7 +232,10 @@ exercised, either by an automated test or by walking the route.
 
 ## Brand basis
 
-Palette sampled live from **bhushancorp.in** (`scripts/brand-probe.mjs`, `brand-probe2.mjs`):
+Palette read from the live theme stylesheet at **bhushancorp.in**. Its action colour is
+`#FD6701` — primary button, active nav item, hover, tab indicator — and `#003388` appears
+nowhere on the site, so the earlier blue anchor was dropped. Display face is Poppins, as
+declared in the site's `h1` rule. See `docs/PLAN.md` for the ramp and its AA constraint.
 
 - `#FD6701` — ELGi orange. Carries the site's H2 colour rule and the mobile nav button across
   two independent theme sheets. Adopted as the Equipment vertical token.

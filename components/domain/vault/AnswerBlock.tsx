@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FileText, Layers, SearchX, ThumbsDown, ThumbsUp, Ban } from "lucide-react";
 import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
-import { Panel, PanelHeader, Overline, StatusBadge } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import type { BuiltAnswer } from "./answerModel";
 import { ConfidenceChip } from "./AskChrome";
 import { feedbackFor, upsertFeedback, useVaultStore, type StoredCitation } from "./store";
@@ -366,10 +366,10 @@ function FeedbackControls({
         <p className="t-body-sm text-text-mid">Comment: {existing.comment}</p>
       ) : null}
 
-      <p className="t-body-sm text-text-lo">
+      <Explainer className="text-text-lo">
         The question, the answer, the cited sources and the confidence state are retained with your rating for
         Phase 2 evaluation.
-      </p>
+      </Explainer>
     </div>
   );
 }

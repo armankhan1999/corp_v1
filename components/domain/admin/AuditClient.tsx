@@ -13,7 +13,7 @@ import * as React from "react";
 import Link from "next/link";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { Download, ExternalLink, Lock, ScrollText, ShieldCheck, X } from "lucide-react";
-import { Panel, PanelHeader, Overline, StatusBadge } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { formatCount, formatDate, formatDateTime, formatRelative } from "@/lib/format";
 import { ROLE_LABEL, type AuditAction, type Role } from "@/lib/schemas/enums";
 import { cn } from "@/lib/utils";
@@ -226,11 +226,11 @@ export function AuditClient({
           <Lock className="mt-0.5 size-4 shrink-0 text-ok" aria-hidden />
           <div>
             <p className="t-body font-medium text-text-hi">Append-only store</p>
-            <p className="t-body-sm mt-0.5 text-text-mid">
+            <Explainer className="mt-0.5 text-text-mid">
               Entries are written once and never changed. No edit or delete control exists on this
               screen, in any row menu, or on any route behind it — the writer exposes a single
               append function and nothing else. Corrections are made by writing a new entry.
-            </p>
+            </Explainer>
           </div>
         </div>
         <dl className="grid shrink-0 grid-cols-3 gap-px overflow-hidden rounded-lg border border-line bg-line">
@@ -472,10 +472,10 @@ export function AuditClient({
         </div>
 
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-line px-3 py-2">
-          <p className="t-body-sm text-text-lo">
+          <Explainer className="text-text-lo">
             {formatCount(filtered.length)} of {formatCount(all.length)} entries rendered through a
             virtualised window — the register never mounts more rows than the viewport needs.
-          </p>
+          </Explainer>
           <p className="t-body-sm ml-auto text-text-lo">
             Source addresses are simulated; no request address is available in a browser-only
             prototype.
@@ -581,11 +581,11 @@ function AuditDetail({
           {link.blocked}
         </p>
       ) : null}
-      <p className="t-body-sm mt-3 flex items-start gap-2 text-text-lo">
+      <Explainer className="mt-3 flex items-start gap-2 text-text-lo">
         <Lock className="mt-0.5 size-3.5 shrink-0" aria-hidden />
         This entry cannot be edited or deleted. There is no control for it here, and no route
         accepts a mutation against an audit record.
-      </p>
+      </Explainer>
     </Modal>
   );
 }

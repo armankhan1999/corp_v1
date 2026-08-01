@@ -366,12 +366,12 @@ export function NotificationCentre({
           </div>
           <div className="border-t border-line p-4">
             <Overline>Why WhatsApp is the primary actionable channel</Overline>
-            <p className="t-body-sm mt-1 text-text-mid">
+            <Explainer className="mt-1 text-text-mid">
               WhatsApp Business API does not require TRAI DLT registration, and service replies
               inside the 24-hour customer window are free of charge. Transactional SMS does require
               DLT registration of both header and template, which is why it is the fallback rather
               than the default.
-            </p>
+            </Explainer>
           </div>
         </Panel>
       ) : null}

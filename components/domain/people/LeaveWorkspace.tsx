@@ -14,7 +14,7 @@ import {
 import type { Branch, Employee, Holiday, LeaveRequest, LeaveType, User } from "@/lib/schemas/entities";
 import { formatCount, formatDate } from "@/lib/format";
 import { ROLE_LABEL } from "@/lib/schemas/enums";
-import { EmptyState, Mono, Overline, Panel, StatusBadge } from "@/components/patterns/primitives";
+import { EmptyState, Mono, Overline, Panel, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { cn } from "@/lib/utils";
 import { COVERAGE_RULE_LABEL, DEFAULT_BRANCH_HOLIDAYS, MIN_FIELD_ENGINEERS } from "./config";
 import {
@@ -436,10 +436,10 @@ function ApprovalsTab({
         ) : null}
       </Modal>
       {Object.keys(decisions).length > 0 ? (
-        <p className="t-body-sm border-t border-line px-4 py-2 text-text-lo">
+        <Explainer className="border-t border-line px-4 py-2 text-text-lo">
           Decisions recorded in this session update the balance and are reflected as{" "}
           <span className="text-text-mid">On leave</span> on the attendance board for those dates.
-        </p>
+        </Explainer>
       ) : null}
     </>
   );

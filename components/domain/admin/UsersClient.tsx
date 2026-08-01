@@ -30,7 +30,7 @@ import {
   UserX,
   X,
 } from "lucide-react";
-import { EmptyState, Overline, Panel, PanelHeader, StatusBadge } from "@/components/patterns/primitives";
+import { EmptyState, Overline, Panel, PanelHeader, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { CAPABILITIES, LANDING_ROUTE, MATRIX, can } from "@/lib/rbac/matrix";
 import { ROLE_LABEL, type Role } from "@/lib/schemas/enums";
 import { formatCount, formatPhone, pluralise } from "@/lib/format";
@@ -160,10 +160,10 @@ function RuleBlock({ blocked, onClose }: { blocked: BlockedState; onClose: () =>
         <span className="text-text-hi">What would unblock it: </span>
         {blocked.unblock}
       </p>
-      <p className="t-body-sm mt-2 text-text-lo">
+      <Explainer className="mt-2 text-text-lo">
         Nothing was written. The account is exactly as it was, and no audit entry was raised for a
         change that did not happen.
-      </p>
+      </Explainer>
     </Modal>
   );
 }
@@ -735,21 +735,43 @@ export function UsersClient({
                       </Td>
                       {canEdit ? (
                         <Td align="right">
-                          <span className="inline-flex flex-wrap items-center justify-end gap-1">
-                            <Btn icon={Pencil} onClick={() => setEditing(u)}>
-                              Edit
-                            </Btn>
-                            <Btn icon={UserCog} onClick={() => setAssigning(u)}>
-                              Role &amp; branch
-                            </Btn>
+                          {/* Icon-only, on one line. Three labelled buttons wrapped
+                              onto three rows per user, which tripled the height of
+                              every row in the register. Each keeps an accessible
+                              name and a tooltip, and the 32px control clears the
+                              WCAG 2.2 target-size floor. */}
+                          <span className="inline-flex items-center justify-end gap-1">
+                            <Btn
+                              icon={Pencil}
+                              className="w-8 justify-center px-0"
+                              aria-label={`Edit ${u.name}`}
+                              title="Edit"
+                              onClick={() => setEditing(u)}
+                            />
+                            <Btn
+                              icon={UserCog}
+                              className="w-8 justify-center px-0"
+                              aria-label={`Change role and branch for ${u.name}`}
+                              title="Role & branch"
+                              onClick={() => setAssigning(u)}
+                            />
                             {u.active ? (
-                              <Btn tone="danger" icon={UserX} onClick={() => attemptDeactivate(u)}>
-                                Deactivate
-                              </Btn>
+                              <Btn
+                                tone="danger"
+                                icon={UserX}
+                                className="w-8 justify-center px-0"
+                                aria-label={`Deactivate ${u.name}`}
+                                title="Deactivate"
+                                onClick={() => attemptDeactivate(u)}
+                              />
                             ) : (
-                              <Btn icon={RotateCcw} onClick={() => setActive(u, true)}>
-                                Reactivate
-                              </Btn>
+                              <Btn
+                                icon={RotateCcw}
+                                className="w-8 justify-center px-0"
+                                aria-label={`Reactivate ${u.name}`}
+                                title="Reactivate"
+                                onClick={() => setActive(u, true)}
+                              />
                             )}
                           </span>
                         </Td>
@@ -1199,10 +1221,10 @@ function AssignmentForm({
           </p>
         ) : null}
 
-        <p className="t-body-sm text-text-lo">
+        <Explainer className="text-text-lo">
           A reassignment never rewrites history: records already attributed to{" "}
           {row.name} keep the role that was in force when they were raised.
-        </p>
+        </Explainer>
       </div>
     </Modal>
   );

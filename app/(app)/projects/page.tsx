@@ -50,11 +50,11 @@ export default async function ProjectsPortfolioPage() {
 
       <ExceptionFeedPanel items={exceptions} />
 
-      <p className="t-body-sm text-text-lo">
+      <Explainer className="text-text-lo">
         Retention outstanding across the portfolio is {abbreviateINR(ret.outstanding)} across {ret.projectCount} projects,
         of which {abbreviateINR(ret.eligible)} is claimable now across {ret.eligibleProjectCount}. This figure is the
         retention component of the Command Centre locked-cash panel.
-      </p>
+      </Explainer>
     </div>
   );
 }

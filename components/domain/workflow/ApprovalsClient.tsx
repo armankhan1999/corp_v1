@@ -329,11 +329,11 @@ export function ApprovalsClient({
         )}
       </Panel>
 
-      <p className="t-body-sm text-text-lo">
+      <Explainer className="text-text-lo">
         Decisions are held in <span className="t-mono">pravaah.v1.workflow</span> and the audit trail in{" "}
         <span className="t-mono">pravaah.v1.audit</span>. The seeded dataset is never mutated — clearing those keys
         restores the baseline exactly.
-      </p>
+      </Explainer>
 
       <ToastStack items={toasts.items} dismiss={toasts.dismiss} />
     </div>
@@ -549,10 +549,10 @@ function ApprovalRow({
                     );
                   })}
                 </ol>
-                <p className="t-body-sm border-t border-line px-3 py-1.5 text-text-lo">
+                <Explainer className="border-t border-line px-3 py-1.5 text-text-lo">
                   Sequential chain — only the current approver may act. An earlier approver cannot re-decide.
                   {meta.basis !== "NONE" ? ` Band basis: ${meta.basis === "PERCENT" ? "discount percentage" : "rupee value"}.` : ""}
-                </p>
+                </Explainer>
               </div>
 
               <SlaMeter tone={tone} fraction={fraction} caption={describeSla(evaluation)} />

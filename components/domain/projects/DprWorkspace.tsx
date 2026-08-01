@@ -5,7 +5,7 @@ import { useVirtualizer } from "@tanstack/react-virtual";
 import {
   BellRing, CloudRain, FileText, Link2, Lock, Plus, Search, TriangleAlert, Users,
 } from "lucide-react";
-import { Panel, PanelHeader, Overline, StatusBadge, EmptyState, KeyValue } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, StatusBadge, EmptyState, KeyValue , Explainer } from "@/components/patterns/primitives";
 import { formatCount, formatDate, formatDateTime, formatQty, daysBetween } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import { HINDRANCE_CAUSE_LABEL } from "./labels";
@@ -143,21 +143,21 @@ export function DprWorkspace({
             <p className={cn("t-body-sm font-medium", gap.escalate ? "text-danger" : "text-warn")}>
               No progress entry for {gap.missedWorkingDays} consecutive working days
             </p>
-            <p className="t-body-sm mt-0.5 text-text-mid">
+            <Explainer className="mt-0.5 text-text-mid">
               Last entry {gap.lastDprDate ? formatDate(gap.lastDprDate) : "—"}. {managerName} has been notified.
               {gap.escalate
                 ? ` Beyond ${DPR_GAP_ESCALATE_DAYS} working days this escalates to Director – Business, and it has.`
                 : ` It escalates to Director – Business at ${DPR_GAP_ESCALATE_DAYS} working days.`}
               {" "}Sundays and the branch holiday calendar are excluded from the count.
-            </p>
+            </Explainer>
           </div>
         </div>
       ) : projectLive && all.length ? (
-        <p className="t-body-sm text-text-lo">
+        <Explainer className="text-text-lo">
           Cadence healthy — last entry {formatDate(lastDate!)}, {gap.missedWorkingDays} working{" "}
           {gap.missedWorkingDays === 1 ? "day" : "days"} since. The project manager is notified at{" "}
           {DPR_GAP_NOTIFY_DAYS} and Director – Business at {DPR_GAP_ESCALATE_DAYS}.
-        </p>
+        </Explainer>
       ) : null}
 
       {composing || supersedeTarget ? (
@@ -420,10 +420,10 @@ export function DprWorkspace({
               </KeyValue>
 
               <div className="border-t border-line pt-3">
-                <p className="t-body-sm text-text-lo">
+                <Explainer className="text-text-lo">
                   Submitted reports cannot be edited. A correction is filed as a superseding entry with a stated
                   reason; both records are retained and linked.
-                </p>
+                </Explainer>
                 {canWrite && !supersededBy.get(selected.id) ? (
                   <Btn
                     className="mt-2"

@@ -8,7 +8,7 @@ import { formatCount, formatDate } from "@/lib/format";
 import { canCreate } from "@/lib/rbac/matrix";
 import type { Session } from "@/lib/rbac/session";
 import type { DocumentCategory, DocumentType } from "@/lib/schemas/enums";
-import { Panel, PanelHeader, Overline, EmptyState } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, EmptyState, Explainer } from "@/components/patterns/primitives";
 import { buildAccessIndex, buildCorpus, viewerOf, CATEGORY_LABEL } from "./access";
 import { buildFacetIndex, EMPTY_FILTERS, searchDocuments, type VaultFilters as Filters } from "./search";
 import { buildFilterOptions, VaultFilterBar } from "./VaultFilters";
@@ -109,12 +109,12 @@ export function VaultBrowser({ session, initial }: Props) {
 
         <div className="flex items-start gap-2 border-b border-line bg-surface-0/40 px-4 py-2">
           <Info className="mt-0.5 size-3.5 shrink-0 text-text-lo" aria-hidden />
-          <p className="t-body-sm text-text-mid">
+          <Explainer className="text-text-mid">
             <span className="text-text-hi">How access is decided.</span> A document is shown when your role holds the
             vault capability, when it holds the document&apos;s access level, and when you can open the record the
             document belongs to. Company-wide reference material is not record-scoped. A denial discloses no title
             and no metadata, and is written to the activity log.
-          </p>
+          </Explainer>
         </div>
 
         <div className="grid gap-0 lg:grid-cols-[260px_minmax(0,1fr)]">

@@ -21,7 +21,7 @@ import { cn } from "@/lib/utils";
 import { formatPhone, formatTime, formatDateTime, abbreviateINR } from "@/lib/format";
 import { ROLE_LABEL } from "@/lib/schemas/enums";
 import type { MessageState, NotificationChannel } from "@/lib/schemas/enums";
-import { Panel, PanelHeader, Overline, SimulatedBadge, StatusBadge } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, SimulatedBadge, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import { Btn, Field, Note, Select, TextInput, Segmented } from "./ui";
 import { parseRich, renderTemplate, TEMPLATES, TEMPLATE_BY_ID, type MessageTemplate } from "./templates";
 import { REQUEST_TYPE_META } from "./engine";
@@ -576,11 +576,11 @@ export function WhatsAppChannelPanel({ api, requestId, onDecided, compact }: Pan
             </div>
             <div className="flex flex-col gap-2 p-3">
               <DeliveryTimeline state={state} />
-              <p className="t-body-sm text-text-lo">
+              <Explainer className="text-text-lo">
                 {dispatched
                   ? `Dispatched at ${formatTime(dispatched.at)} to ${formatPhone(recipient.phone)}. States advance on a timer; no gateway is contacted.`
                   : "Nothing dispatched yet. The preview above is a draft."}
-              </p>
+              </Explainer>
               <div className="flex flex-wrap gap-2">
                 <Btn variant="primary" onClick={dispatch}>
                   <Send className="size-3.5" aria-hidden /> {dispatched ? "Dispatch again" : "Dispatch"}

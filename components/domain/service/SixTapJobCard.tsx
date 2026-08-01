@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatDate, formatTime } from "@/lib/format";
-import { Overline, Panel, StatusBadge } from "@/components/patterns/primitives";
+import { Overline, Panel, StatusBadge , Explainer } from "@/components/patterns/primitives";
 import type { JobOutcome, RootCause } from "@/lib/schemas/enums";
 import { OUTCOME_LABEL, ROOT_CAUSE_LABEL } from "./types";
 
@@ -310,11 +310,11 @@ export function SixTapJobCard({ input }: { input: SixTapInput }) {
               className="mt-1 min-h-12 w-full rounded-md border border-line bg-surface-2 px-3 text-text-hi"
               style={{ fontFamily: "var(--font-mono)" }}
             />
-            <p className="t-body-sm mt-1 text-text-lo">
+            <Explainer className="mt-1 text-text-lo">
               Pre-filled from the last reading
               {input.previousReading !== null ? ` (${input.previousReading} h)` : ""}. Editing it is
               typing, not a tap.
-            </p>
+            </Explainer>
             {readingTooLow ? (
               <p className="t-body-sm mt-1 text-danger">
                 Below the previous reading. Correct it, or record a meter replacement.
@@ -537,10 +537,10 @@ function TapLedger({ draft }: { draft: Draft }) {
           <li>Confirm signature</li>
           <li>Submit</li>
         </ol>
-        <p className="t-body-sm mt-1 text-text-lo">
+        <Explainer className="mt-1 text-text-lo">
           Typing into a pre-filled field and drawing the signature are not counted. Consuming a
           part adds two taps, budgeted at eight.
-        </p>
+        </Explainer>
         {draft.checkedInAt ? (
           <p className="t-body-sm mt-1 text-text-lo">
             Checked in {formatDate(draft.checkedInAt)} at {formatTime(draft.checkedInAt)}.

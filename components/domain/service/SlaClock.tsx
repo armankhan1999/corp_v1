@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Explainer } from "@/components/patterns/primitives";
 import { CircleCheck, Clock3, OctagonAlert, Pause, TriangleAlert } from "lucide-react";
 import type { SLAState } from "@/lib/schemas/enums";
 import { formatDateTime, formatDurationHM, formatOverrun } from "@/lib/format";
@@ -276,10 +277,10 @@ export function SlaClock({
               <span className="t-mono text-text-lo"> ({breachReasonCode})</span>
             ) : null}
           </p>
-          <p className="t-body-sm mt-1 text-text-lo">
+          <Explainer className="mt-1 text-text-lo">
             Overrun {formatOverrun(clock.overrunMs)} and counting. The timestamp and reason code
             cannot be edited away — no screen in the platform offers that path.
-          </p>
+          </Explainer>
         </div>
       ) : null}
     </div>
