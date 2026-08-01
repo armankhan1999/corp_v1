@@ -1,7 +1,7 @@
 import { ShieldCheck, TriangleAlert } from "lucide-react";
 import { getDataset } from "@/lib/seed";
 import { formatCount, formatDate } from "@/lib/format";
-import { Overline, Panel, PanelHeader, StatusBadge } from "@/components/patterns/primitives";
+import { Overline, Panel, PanelHeader, StatusBadge, Explainer } from "@/components/patterns/primitives";
 
 export const dynamic = "force-dynamic";
 
@@ -46,13 +46,14 @@ export default function CompliancePage() {
     <div className="flex flex-col gap-5">
       <div>
         <h1 className="t-display-md text-text-hi">Compliance &amp; Consent</h1>
-        <p className="t-body-sm mt-1 max-w-3xl text-text-mid">
+        <p className="t-body-sm mt-1 max-w-3xl text-text-mid">DPDP Act 2023 and DPDP Rules 2025 posture, stated as at July 2026.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
           Digital Personal Data Protection Act 2023 and DPDP Rules 2025 posture. Statutory
           positions are stated as at July 2026 and require re-validation before Phase 2 go-live —
           the Labour Code central rules and DPDP enforcement are both mid-implementation, which is
           why every compliance parameter here is configuration-driven and effective-dated rather
           than hard-coded.
-        </p>
+        </Explainer>
       </div>
 
       <Panel className="border-ok/40 bg-ok-bg p-4">

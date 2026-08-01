@@ -5,7 +5,7 @@ import { getDataset } from "@/lib/seed";
 import { decodeSession, SESSION_COOKIE } from "@/lib/rbac/session";
 import { scopeFor } from "@/lib/rbac/matrix";
 import { formatCount, formatDateTime, enumLabel } from "@/lib/format";
-import { Panel, PanelHeader, Overline } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, Explainer } from "@/components/patterns/primitives";
 import {
   EXCEPTION_LABEL, ROLE_LABEL,
   type ExceptionSeverity, type ExceptionType, type Role,
@@ -126,10 +126,11 @@ export default async function ExceptionFeedPage({
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="t-display-md text-text-hi">Exception feed</h1>
-          <p className="t-body-sm mt-1 max-w-2xl text-text-mid">
-            Sixteen rules run against the whole dataset on every load. Ordered by severity, then by
+          <p className="t-body-sm mt-1 max-w-2xl text-text-mid">Sixteen rules, run on every load. Severity first, then age.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
+          Sixteen rules run against the whole dataset on every load. Ordered by severity, then by
             age. Nothing here was typed in by a person — every row is a rule that fired.
-          </p>
+        </Explainer>
         </div>
         <div className="flex flex-col items-end gap-1">
           <span

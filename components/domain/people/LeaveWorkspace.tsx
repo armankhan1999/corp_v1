@@ -785,13 +785,13 @@ function CalendarTab({
     <div className="flex flex-col gap-3 p-3">
       <div className="flex flex-wrap items-center gap-4">
         <span className="t-body-sm flex items-center gap-1.5 text-text-mid">
-          <span className="inline-flex size-4 items-center justify-center rounded border border-ok/50 bg-ok-bg text-ok">
+          <span className="inline-flex size-4 items-center justify-center rounded-md border border-ok/50 bg-ok-bg text-ok">
             <Check className="size-3" aria-hidden />
           </span>
           Approved
         </span>
         <span className="t-body-sm flex items-center gap-1.5 text-text-mid">
-          <span className="inline-flex size-4 items-center justify-center rounded border border-dashed border-warn bg-warn-bg text-warn">
+          <span className="inline-flex size-4 items-center justify-center rounded-md border border-dashed border-warn bg-warn-bg text-warn">
             <Clock3 className="size-3" aria-hidden />
           </span>
           Pending — awaiting a decision
@@ -874,7 +874,7 @@ function CalendarTab({
                             {hit ? (
                               <span
                                 className={cn(
-                                  "inline-flex size-4 items-center justify-center rounded border",
+                                  "inline-flex size-4 items-center justify-center rounded-md border",
                                   hit.status === "APPROVED"
                                     ? "border-ok/50 bg-ok-bg text-ok"
                                     : "border-dashed border-warn bg-warn-bg text-warn",

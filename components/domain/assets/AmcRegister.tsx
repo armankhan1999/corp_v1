@@ -329,7 +329,7 @@ export function AmcRegister({
                         {r.number}
                       </Link>
                       {r.local ? (
-                        <span className="t-overline ml-2 rounded bg-surface-2 px-1 text-text-lo">
+                        <span className="t-overline ml-2 rounded-md bg-surface-2 px-1 text-text-lo">
                           Local
                         </span>
                       ) : null}

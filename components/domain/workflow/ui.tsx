@@ -169,7 +169,7 @@ export function Segmented<V extends string>({
             {o.count !== undefined ? (
               <span
                 className={cn(
-                  "t-mono rounded px-1 text-[0.6875rem]",
+                  "t-mono rounded-md px-1 text-[0.6875rem]",
                   active ? "bg-surface-0 text-text-mid" : "bg-surface-2 text-text-lo",
                 )}
               >

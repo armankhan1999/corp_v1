@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Explainer } from "@/components/patterns/primitives";
 import { getDataset } from "@/lib/seed";
 import { canWrite } from "@/lib/rbac/matrix";
 import { formatCount } from "@/lib/format";
@@ -30,12 +31,13 @@ export default async function MastersPage({
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div className="max-w-3xl">
           <h1 className="t-display-md text-text-hi">Reference data</h1>
-          <p className="t-body-sm mt-1 text-text-mid">
-            {formatCount(totalValues)} values across eighteen sets. Business rules and vocabulary
+          <p className="t-body-sm mt-1 text-text-mid">Business vocabulary as data — edited here, not released.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
+          {formatCount(totalValues)} values across eighteen sets. Business rules and vocabulary
             live here as data, so a client answer is an edit rather than a release. A value that
             existing records point at cannot be deleted — the platform says how many and offers
             deactivation instead.
-          </p>
+        </Explainer>
         </div>
         <Link
           href="/admin"

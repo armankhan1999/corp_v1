@@ -1,6 +1,6 @@
 import { CAPABILITIES, MATRIX, grantFor, type Capability } from "@/lib/rbac/matrix";
 import { ROLE_LABEL, ROLE_SHORT, type Role } from "@/lib/schemas/enums";
-import { Overline, Panel, PanelHeader } from "@/components/patterns/primitives";
+import { Overline, Panel, PanelHeader, Explainer } from "@/components/patterns/primitives";
 import { cn } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -48,11 +48,12 @@ export default function PermissionMatrixPage() {
     <div className="flex flex-col gap-4">
       <div>
         <h1 className="t-display-md text-text-hi">Permission Matrix</h1>
-        <p className="t-body-sm mt-1 max-w-3xl text-text-mid">
+        <p className="t-body-sm mt-1 max-w-3xl text-text-mid">Twelve roles. Generated from the source the route guard reads.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
           Twelve roles across {CAPABILITIES.length} capabilities. This grid is generated from the
           same source the route guard reads, so what is shown here is what is enforced — in
           navigation, in the middleware, and in the data scope.
-        </p>
+        </Explainer>
       </div>
 
       <Panel className="p-3">
@@ -66,7 +67,7 @@ export default function PermissionMatrixPage() {
             ["—", "No access"],
           ].map(([k, v]) => (
             <li key={k} className="flex items-center gap-1.5">
-              <span className={cn("t-mono rounded px-1.5 py-0.5", LEVEL_STYLE[k] ?? "text-text-lo")}>{k}</span>
+              <span className={cn("t-mono rounded-md px-1.5 py-0.5", LEVEL_STYLE[k] ?? "text-text-lo")}>{k}</span>
               <span className="t-body-sm text-text-mid">{v}</span>
             </li>
           ))}
@@ -135,7 +136,7 @@ export default function PermissionMatrixPage() {
                             ) : (
                               <span
                                 className={cn(
-                                  "t-mono rounded px-1 py-0.5 text-[0.6875rem]",
+                                  "t-mono rounded-md px-1 py-0.5 text-[0.6875rem]",
                                   LEVEL_STYLE[g2.level],
                                 )}
                               >

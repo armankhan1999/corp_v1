@@ -316,7 +316,7 @@ export function RentalRegister({
                   <span className="t-mono">{formatDate(a.expectedReturn)}</span>, overdue by{" "}
                   <span className="t-mono tabular-nums text-danger">{overdueDays(a)} days</span>
                   {overlay.notified[a.id] ? (
-                    <span className="t-overline ml-2 rounded border border-ok/40 bg-ok-bg px-1 py-px text-ok">
+                    <span className="t-overline ml-2 rounded-md border border-ok/40 bg-ok-bg px-1 py-px text-ok">
                       Reminder sent
                     </span>
                   ) : null}
@@ -487,7 +487,7 @@ export function RentalRegister({
                       <Td nowrap>
                         <span className="t-mono text-text-hi">{a.number}</span>
                         {a.local ? (
-                          <span className="t-overline ml-2 rounded bg-surface-2 px-1 text-text-lo">
+                          <span className="t-overline ml-2 rounded-md bg-surface-2 px-1 text-text-lo">
                             Local
                           </span>
                         ) : null}

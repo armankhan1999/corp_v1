@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Explainer } from "@/components/patterns/primitives";
 import { Info } from "lucide-react";
 import { TODAY_ISO, getDataset } from "@/lib/seed";
 import { canWrite, grantFor } from "@/lib/rbac/matrix";
@@ -66,13 +67,14 @@ export default async function DemoControlsPage({
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div className="max-w-3xl">
           <h1 className="t-display-md text-text-hi">Demo Controls</h1>
-          <p className="t-body-sm mt-1 text-text-mid">
-            These controls exist so a demonstration is reproducible: the same seed, the same
+          <p className="t-body-sm mt-1 text-text-mid">Reset state, move the simulated clock, or arm a scenario.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
+          These controls exist so a demonstration is reproducible: the same seed, the same
             starting date and the same awkward states, on demand, every time. Nothing here contacts
             a real system — there is no server behind this prototype to contact. Reset removes
             browser overlays, the clock changes the date derivations are measured against, and a
             scenario switch sets a flag that the owning screen reads.
-          </p>
+        </Explainer>
           <p className="t-body-sm mt-2 flex items-start gap-1.5 text-text-lo">
             <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden />
             <span>

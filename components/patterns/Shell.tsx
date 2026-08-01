@@ -109,9 +109,15 @@ export function Shell({
   const [theme, setTheme] = useState(session.theme);
   const [density, setDensity] = useState(session.density);
 
+  const [openPref, setOpenPref] = useState<string[]>([]);
+
   useEffect(() => {
     const stored = window.localStorage.getItem("pravaah.v1.rail");
     if (stored) setCollapsed(stored === "1");
+    try {
+      const nav = window.localStorage.getItem("pravaah.v1.nav");
+      if (nav) setOpenPref(JSON.parse(nav) as string[]);
+    } catch { /* corrupt preference — the active section still opens */ }
   }, []);
 
   function toggleRail() {
@@ -136,6 +142,26 @@ export function Shell({
   const sections = NAV
     .map((s) => ({ ...s, items: s.items.filter((i) => can(session.role, i.cap)) }))
     .filter((s) => s.items.length > 0);
+
+  /* The section holding the current route is always open; the rest remember
+     what the user last chose. Derived during render rather than in an effect,
+     so navigating never shows a frame with the wrong section expanded. */
+  const activeSection =
+    sections.find((s) =>
+      s.items.some((i) => pathname === i.href || pathname.startsWith(i.href + "/")),
+    )?.label ?? sections[0]?.label;
+
+  const openSections = Array.from(
+    new Set([...(activeSection ? [activeSection] : []), ...openPref]),
+  );
+
+  function toggleSection(label: string) {
+    setOpenPref((prev) => {
+      const next = prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label];
+      window.localStorage.setItem("pravaah.v1.nav", JSON.stringify(next));
+      return next;
+    });
+  }
 
   const crumbs = pathname.split("/").filter(Boolean);
 
@@ -164,16 +190,36 @@ export function Shell({
           </span>
         </div>
         <div className="flex-1 py-2">
-          {sections.map((section) => (
-            <div key={section.label} className="mb-1">
+          {sections.map((section) => {
+            const open = openSections.includes(section.label);
+            return (
+            <div key={section.label} className="mb-0.5">
               {!collapsed ? (
-                <p className="t-overline px-3 pb-1 pt-3 text-text-lo">{section.label}</p>
+                /* Sections collapse. A Director sees eleven of them and forty-odd
+                   links; rendering every one expanded turned the rail into a
+                   wall the eye had to climb before it reached the page. The
+                   section holding the current route opens itself. */
+                <button
+                  type="button"
+                  onClick={() => toggleSection(section.label)}
+                  aria-expanded={open}
+                  className="t-overline flex w-full items-center gap-1.5 px-3 pb-1 pt-3 text-text-lo transition-colors hover:text-text-mid"
+                >
+                  <ChevronLeft
+                    aria-hidden
+                    className={cn(
+                      "size-3 shrink-0 transition-transform duration-150",
+                      open ? "-rotate-90" : "rotate-0",
+                    )}
+                  />
+                  <span className="truncate">{section.label}</span>
+                </button>
               ) : (
                 <div className="grid place-items-center py-2" title={section.label}>
                   <section.icon className="size-4 text-text-lo" aria-hidden />
                 </div>
               )}
-              <ul>
+              <ul hidden={!collapsed && !open}>
                 {section.items.map((item) => {
                   const active = pathname === item.href || pathname.startsWith(item.href + "/");
                   return (
@@ -186,7 +232,7 @@ export function Shell({
                           "relative mx-2 flex items-center gap-2 rounded-md px-2.5 py-1.5 text-[0.8125rem]",
                           "transition-[background-color,color,box-shadow] duration-150 ease-out",
                           active
-                            ? "bg-primary-100 font-medium text-text-hi shadow-[inset_0_0_0_1px_var(--line-strong)]"
+                            ? "bg-surface-2 font-medium text-text-hi"
                             : "text-text-mid hover:bg-surface-2 hover:text-text-hi",
                           collapsed && "mx-1 justify-center px-0",
                         )}
@@ -205,7 +251,8 @@ export function Shell({
                 })}
               </ul>
             </div>
-          ))}
+            );
+          })}
         </div>
         <button
           type="button"
@@ -232,7 +279,7 @@ export function Shell({
             >
               <Search className="size-4" aria-hidden />
               <span className="t-body-sm hidden sm:inline">Search</span>
-              <kbd className="t-mono hidden rounded border border-line px-1 text-[0.6875rem] text-text-lo sm:inline">
+              <kbd className="t-mono hidden rounded-md border border-line px-1 text-[0.6875rem] text-text-lo sm:inline">
                 Ctrl K
               </kbd>
             </button>
@@ -274,7 +321,7 @@ export function Shell({
             >
               <span
                 aria-hidden
-                className="grid size-5 place-items-center rounded bg-surface-3 text-[0.625rem]"
+                className="grid size-5 place-items-center rounded-md bg-surface-3 text-[0.625rem]"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
                 {initials(session.name)}

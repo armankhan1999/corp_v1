@@ -3,7 +3,7 @@ import { CircleDot, Info, TriangleAlert } from "lucide-react";
 import {
   INTEGRATIONS, INTEGRATION_VERTICALS, PREREQ_LABEL, type Integration,
 } from "@/components/domain/admin/integrations";
-import { Panel, PanelHeader, Overline, StatusBadge, SimulatedBadge } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, StatusBadge, SimulatedBadge, Explainer } from "@/components/patterns/primitives";
 import { formatCount } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
@@ -28,12 +28,13 @@ export default function IntegrationReadinessPage() {
     <div className="flex flex-col gap-5">
       <div>
         <h1 className="t-display-md text-text-hi">Integration Readiness</h1>
-        <p className="t-body-sm mt-1 max-w-3xl text-text-mid">
+        <p className="t-body-sm mt-1 max-w-3xl text-text-mid">Eleven external systems, every one simulated and labelled.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
           Every external system in this prototype is simulated. Each simulation is behaviourally
           faithful — correct sequence, states and failure modes — so Phase 2 replaces the
           simulation without redesigning the interface. Nothing below is connected to a live
           service, and nothing here requests or holds client credentials.
-        </p>
+        </Explainer>
       </div>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">

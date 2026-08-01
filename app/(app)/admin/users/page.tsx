@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Explainer } from "@/components/patterns/primitives";
 import { getDataset } from "@/lib/seed";
 import { canCreate, canWrite, isReadOnlyRole } from "@/lib/rbac/matrix";
 import { formatCount, pluralise } from "@/lib/format";
@@ -69,14 +70,15 @@ export default async function UsersPage({
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div className="max-w-3xl">
           <h1 className="t-display-md text-text-hi">Users &amp; roles</h1>
-          <p className="t-body-sm mt-1 text-text-mid">
-            {formatCount(users.length)} seeded {pluralise(users.length, "account")} across{" "}
+          <p className="t-body-sm mt-1 text-text-mid">One seeded account per role, across every branch.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
+          {formatCount(users.length)} seeded {pluralise(users.length, "account")} across{" "}
             {formatCount(branches.length)} {pluralise(branches.length, "branch", "branches")} — one
             per role, so every persona in the demonstration signs in as a real record rather than a
             switch. A role decides what an account can reach; a branch decides how much of it.
             Accounts are deactivated, never deleted, so the work already attributed to them keeps
             reading correctly.
-          </p>
+        </Explainer>
         </div>
         <Link
           href="/admin"

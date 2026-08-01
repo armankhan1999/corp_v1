@@ -150,7 +150,7 @@ export function AmcDetail({
               <Overline>AMC contract</Overline>
               <AmcStatusBadge status={status} />
               {contract.local ? (
-                <span className="t-overline rounded border border-line bg-surface-2 px-1 text-text-lo">
+                <span className="t-overline rounded-md border border-line bg-surface-2 px-1 text-text-lo">
                   Created in this browser
                 </span>
               ) : null}

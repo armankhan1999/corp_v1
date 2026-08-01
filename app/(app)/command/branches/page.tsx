@@ -5,7 +5,7 @@ import { getDataset } from "@/lib/seed";
 import * as D from "@/lib/derive";
 import { decodeSession, SESSION_COOKIE } from "@/lib/rbac/session";
 import { abbreviateINR, formatCount, formatDateTime, formatPercent } from "@/lib/format";
-import { Panel, PanelHeader, Overline, StatusBadge } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, StatusBadge, Explainer } from "@/components/patterns/primitives";
 import type { Role } from "@/lib/schemas/enums";
 import { cn } from "@/lib/utils";
 import { PeriodBar } from "@/components/domain/command/PeriodBar";
@@ -75,11 +75,12 @@ export default async function BranchLeaguePage({
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="t-display-md text-text-hi">Branch league table</h1>
-          <p className="t-body-sm mt-1 max-w-3xl text-text-mid">
-            Four branches on a like-for-like basis. Every column is a ratio against that branch&rsquo;s
+          <p className="t-body-sm mt-1 max-w-3xl text-text-mid">Four branches, like for like. Every column is a ratio against its own base.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
+          Four branches on a like-for-like basis. Every column is a ratio against that branch&rsquo;s
             own base, so size is neutralised before anything is compared. The method is printed
             below the table — the ranking is arithmetic you can check, not an opinion.
-          </p>
+        </Explainer>
         </div>
         <p className="t-body-sm text-text-lo">
           Position as at <span className="t-mono text-text-mid">{formatDateTime(resolved.asOf)}</span> IST

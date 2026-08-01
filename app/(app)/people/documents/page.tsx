@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { Explainer } from "@/components/patterns/primitives";
 import { redirect } from "next/navigation";
 import { getDataset } from "@/lib/seed";
 import { decodeSession, SESSION_COOKIE } from "@/lib/rbac/session";
@@ -21,11 +22,12 @@ export default async function StatutoryDocumentsPage() {
     <div className="flex flex-col gap-4">
       <div>
         <h1 className="t-display-md text-text-hi">Statutory document dashboard</h1>
-        <p className="t-body-sm mt-1 max-w-3xl text-text-mid">
+        <p className="t-body-sm mt-1 max-w-3xl text-text-mid">Completeness per employee, so a gap shows before an inspection finds it.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
           Completeness per employee, so a gap is visible at a glance rather than discovered during an
           inspection. The appointment letter is the required document; expiry-bearing certificates
           raise notices to the owner and to HR.
-        </p>
+        </Explainer>
       </div>
 
       <DocumentDashboard

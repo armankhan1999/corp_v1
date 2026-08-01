@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Explainer } from "@/components/patterns/primitives";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { CalendarRange, ShieldAlert } from "lucide-react";
@@ -57,8 +58,9 @@ export default async function LeavePage({
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div className="max-w-3xl">
           <h1 className="t-display-md text-text-hi">Leave</h1>
-          <p className="t-body-sm mt-1 text-text-mid">
-            Balances accrue by type, requests capture their own cover arrangement and route to the reporting
+          <p className="t-body-sm mt-1 text-text-mid">Balances, requests and cover — against each branch&rsquo;s engineer floor.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
+          Balances accrue by type, requests capture their own cover arrangement and route to the reporting
             manager, and the team calendar keeps pending visually apart from approved.{" "}
             <span className="text-text-hi">{formatCount(pending.length)}</span>{" "}
             {pending.length === 1 ? "request is" : "requests are"} awaiting a decision
@@ -69,7 +71,7 @@ export default async function LeavePage({
               </>
             ) : null}
             .
-          </p>
+        </Explainer>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <Link

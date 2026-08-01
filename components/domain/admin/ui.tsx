@@ -7,6 +7,7 @@
  */
 
 import * as React from "react";
+import { Explainer } from "@/components/patterns/primitives";
 import { AlertTriangle, Ban, Check, Info, Loader2, TriangleAlert, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -507,7 +508,13 @@ export function PageHead({
     <div className="flex flex-wrap items-end justify-between gap-3">
       <div className="max-w-3xl">
         <h1 className="t-display-md text-text-hi">{title}</h1>
-        <p className="t-body-sm mt-1 text-text-mid">{lede}</p>
+        {lede.length > 90 ? (
+          /* Long ledes are explanations, not captions. Collapsed so the
+             screen opens on its data rather than on three lines of prose. */
+          <Explainer className="mt-1" label="About this screen">{lede}</Explainer>
+        ) : (
+          <p className="t-body-sm mt-1 text-text-mid">{lede}</p>
+        )}
         {meta}
       </div>
       {right ? <div className="flex flex-wrap items-center gap-2">{right}</div> : null}

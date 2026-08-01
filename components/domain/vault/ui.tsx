@@ -26,7 +26,7 @@ export function Highlight({ text, terms, className }: { text: string; terms: str
     <span className={className}>
       {highlightSegments(text, terms).map((seg, i) =>
         seg.hit ? (
-          <mark key={i} className="rounded bg-warn-bg px-[1px] text-warn">{seg.text}</mark>
+          <mark key={i} className="rounded-md bg-warn-bg px-[1px] text-warn">{seg.text}</mark>
         ) : (
           <React.Fragment key={i}>{seg.text}</React.Fragment>
         ),

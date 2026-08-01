@@ -13,7 +13,7 @@ import { CAPABILITIES, MATRIX, can, grantFor, type Capability } from "@/lib/rbac
 import { requireCapability } from "@/lib/rbac/guard";
 import { ROLE_LABEL, type Role } from "@/lib/schemas/enums";
 import { formatCount, formatDate, pluralise } from "@/lib/format";
-import { Overline, Panel } from "@/components/patterns/primitives";
+import { Overline, Panel , Explainer } from "@/components/patterns/primitives";
 import { INTEGRATIONS } from "@/components/domain/admin/integrations";
 import { buildMasters } from "@/components/domain/admin/mastersData";
 
@@ -167,14 +167,15 @@ export default async function AdminIndexPage() {
     <div className="flex flex-col gap-5">
       <div className="max-w-3xl">
         <h1 className="t-display-md text-text-hi">Administration</h1>
-        <p className="t-body-sm mt-1 text-text-mid">
+        <p className="t-body-sm mt-1 text-text-mid">Identity, permissions, reference data, integrations and the audit trail.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
           Governance is inherited here rather than bolted on: identity, the permission matrix that
           the route guard actually enforces, the reference data every module reads, the disclosure
           of what is simulated, the data-protection posture, and the append-only record of
           everything that has happened. Signed in as{" "}
           <span className="text-text-hi">{session.name}</span> —{" "}
           <span className="text-text-hi">{ROLE_LABEL[role]}</span>.
-        </p>
+        </Explainer>
       </div>
 
       {visible.length === 0 ? (

@@ -56,7 +56,7 @@ export function DataGrid<R>({
   rowKey,
   ariaLabel,
   height = 520,
-  rowHeight = 36,
+  rowHeight = 40,
   rowTone,
   virtualiseAbove = 100,
   emptyState,
@@ -118,7 +118,7 @@ export function DataGrid<R>({
           <div
             role="row"
             aria-rowindex={1}
-            className="grid items-center gap-x-3 border-b border-line-strong bg-surface-2 px-3"
+            className="grid items-center gap-x-3 border-b border-line bg-surface-1/95 px-3 backdrop-blur-sm"
             style={{ gridTemplateColumns: template, minHeight: 32 }}
           >
             {columns.map((c) => (
@@ -185,7 +185,7 @@ export function SortHeader({
       onClick={onClick}
       aria-label={`Sort by ${label}${active ? `, currently ${direction === "asc" ? "ascending" : "descending"}` : ""}`}
       className={cn(
-        "t-overline inline-flex h-6 min-h-6 w-full items-center gap-1 rounded px-1 text-text-lo hover:text-text-hi",
+        "t-overline inline-flex h-6 min-h-6 w-full items-center gap-1 rounded-md px-1 text-text-lo hover:text-text-hi",
         align === "right" && "justify-end",
         active && "text-text-hi",
       )}
@@ -230,7 +230,7 @@ export function GridCheckbox({
 export function GridSkeleton({ rows = 10, columns = 7 }: { rows?: number; columns?: number }) {
   return (
     <div>
-      <div className="flex items-center gap-3 border-b border-line-strong bg-surface-2 px-3" style={{ height: 32 }}>
+      <div className="flex items-center gap-3 border-b border-line bg-surface-1/95 px-3 backdrop-blur-sm" style={{ height: 34 }}>
         {Array.from({ length: columns }).map((_, i) => (
           <Skeleton key={i} className="h-2.5 flex-1" />
         ))}

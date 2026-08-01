@@ -259,7 +259,7 @@ export function Checkbox({
         checked={checked}
         disabled={disabled}
         onChange={(e) => onChange(e.target.checked)}
-        className="mt-0.5 size-4 shrink-0 rounded border border-line-strong bg-surface-0 accent-[var(--primary-600)]"
+        className="mt-0.5 size-4 shrink-0 rounded-md border border-line-strong bg-surface-0 accent-[var(--primary-600)]"
       />
       <label htmlFor={id} className="min-w-0">
         <span className="t-body-sm block text-text-hi">{label}</span>
@@ -398,7 +398,7 @@ export function TabBar<T extends string>({
             {typeof t.count === "number" ? (
               <span
                 className={cn(
-                  "t-mono rounded px-1 text-[0.6875rem]",
+                  "t-mono rounded-md px-1 text-[0.6875rem]",
                   on ? "bg-primary-100 text-text-hi" : "bg-surface-2 text-text-lo",
                 )}
               >

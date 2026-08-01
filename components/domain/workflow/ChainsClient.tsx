@@ -20,7 +20,7 @@ import {
 import { abbreviateINR, formatCount, formatDate, formatDateTime, formatPercent } from "@/lib/format";
 import { ROLE_LABEL, type ApprovalRequestType, type Role } from "@/lib/schemas/enums";
 import type * as T from "@/lib/schemas/entities";
-import { Panel, PanelHeader, Overline, StatusBadge, EmptyState } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, StatusBadge, EmptyState, Explainer } from "@/components/patterns/primitives";
 import {
   AuthorityNote, Btn, Field, Note, SectionTitle, Select, TextInput, ToastStack, useToasts,
 } from "./ui";
@@ -198,10 +198,11 @@ export function ChainsClient({ snapshot }: { snapshot: WorkflowSnapshot }) {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="t-display-md text-text-hi">Approval chains</h1>
-          <p className="t-body-sm mt-1 max-w-3xl text-text-mid">
-            Authority, drawn. Each request type resolves to exactly one band by value; the band&rsquo;s ordered steps
+          <p className="t-body-sm mt-1 max-w-3xl text-text-mid">Authority, drawn. One band per request type, by value.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
+          Authority, drawn. Each request type resolves to exactly one band by value; the band&rsquo;s ordered steps
             are the approvers, in sequence, each with its own escalation timer.
-          </p>
+        </Explainer>
         </div>
         <p className="t-body-sm text-text-lo">
           As at <span className="t-mono text-text-mid">{formatDateTime(api.now)}</span> IST
@@ -275,7 +276,7 @@ export function ChainsClient({ snapshot }: { snapshot: WorkflowSnapshot }) {
             <ul className="mt-1 flex flex-col gap-1">
               {issues.map((i, k) => (
                 <li key={k} className="t-body-sm text-text-hi">
-                  <span className="t-overline mr-2 rounded border border-danger/40 px-1 text-danger">{i.kind}</span>
+                  <span className="t-overline mr-2 rounded-md border border-danger/40 px-1 text-danger">{i.kind}</span>
                   {i.message}
                 </li>
               ))}

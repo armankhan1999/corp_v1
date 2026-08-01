@@ -16,14 +16,14 @@ export function ProgressBar({
       : tone === "danger" ? "var(--danger)" : "var(--v-projects)";
   return (
     <div
-      className={cn("h-1.5 w-full overflow-hidden rounded bg-surface-3", className)}
+      className={cn("h-1.5 w-full overflow-hidden rounded-md bg-surface-3", className)}
       role="progressbar"
       aria-valuenow={Math.round(clamped)}
       aria-valuemin={0}
       aria-valuemax={100}
       aria-label={label ?? "Progress"}
     >
-      <div className="h-full rounded" style={{ width: `${clamped}%`, background: colour }} />
+      <div className="h-full rounded-md" style={{ width: `${clamped}%`, background: colour }} />
     </div>
   );
 }

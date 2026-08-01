@@ -487,7 +487,7 @@ export function TicketIntake({
                     <li key={s.test} className="flex items-start gap-2">
                       <span
                         className={cn(
-                          "mt-0.5 grid size-4 shrink-0 place-items-center rounded border",
+                          "mt-0.5 grid size-4 shrink-0 place-items-center rounded-md border",
                           s.passed ? "border-ok/50 bg-ok-bg text-ok" : "border-line bg-surface-2 text-text-lo",
                         )}
                         aria-hidden

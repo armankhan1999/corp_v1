@@ -282,7 +282,7 @@ export function JobCardDetail({
                         <td className="t-body-sm px-3 py-1.5 text-text-mid">
                           {p.description}
                           {p.returned ? (
-                            <span className="t-overline ml-2 rounded bg-surface-2 px-1 text-text-lo">
+                            <span className="t-overline ml-2 rounded-md bg-surface-2 px-1 text-text-lo">
                               Returned
                             </span>
                           ) : null}

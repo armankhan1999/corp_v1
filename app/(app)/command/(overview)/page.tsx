@@ -85,8 +85,8 @@ export default async function CommandCentre({
         <h1 className="t-display-md text-text-hi">Command Centre</h1>
         <p className="t-body-sm mt-1 text-text-mid">
           {executive
-            ? "Six figures, nothing else. Every one opens the records behind it."
-            : "All four verticals, one position. Every figure below opens the records behind it."}
+            ? "Six figures. Every one opens its records."
+            : "All four verticals. Every figure opens its records."}
         </p>
       </div>
       <div className="flex flex-col items-end gap-1">
@@ -114,7 +114,7 @@ export default async function CommandCentre({
         {header}
         <PeriodBar resolved={resolved} basePath="/command" preserve={{ view: "executive" }} />
         {exceptionStrip}
-        <ExecutiveFigures kpis={metrics.kpis} asOf={resolved.asOf} />
+        <ExecutiveFigures kpis={metrics.kpis} />
         <p className="t-body-sm text-text-lo">
           {resolved.label} · compared with {resolved.priorLabel}. Position figures are stated as at{" "}
           <span className="t-mono text-text-mid">{formatDateTime(resolved.asOf)}</span> IST.
@@ -130,7 +130,7 @@ export default async function CommandCentre({
       {exceptionStrip}
 
       {/* E2-S1 */}
-      <KpiRow kpis={metrics.kpis} asOf={resolved.asOf} />
+      <KpiRow kpis={metrics.kpis} />
 
       <div className="grid grid-cols-1 gap-5 xl:grid-cols-[1fr_380px]">
         <div className="flex min-w-0 flex-col gap-5">

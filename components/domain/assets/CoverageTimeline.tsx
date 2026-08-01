@@ -114,7 +114,7 @@ export function CoverageTimeline({
                       <span
                         key={`${b.kind}-${b.from}-${b.to}`}
                         title={`${b.label} · ${formatDate(b.from)} to ${formatDate(b.to)}`}
-                        className={`absolute top-1/2 h-4 -translate-y-1/2 rounded border ${meta.bar} ${
+                        className={`absolute top-1/2 h-4 -translate-y-1/2 rounded-md border ${meta.bar} ${
                           b.live ? "ring-1 ring-inset ring-current" : ""
                         }`}
                         style={{ left: `${left}%`, width: `${width}%` }}
@@ -174,7 +174,7 @@ export function CoverageTimeline({
                     <Icon className="size-3.5 shrink-0" aria-hidden />
                     {b.label}
                     {b.live ? (
-                      <span className="t-overline rounded border border-line bg-surface-2 px-1 text-text-mid">
+                      <span className="t-overline rounded-md border border-line bg-surface-2 px-1 text-text-mid">
                         In force
                       </span>
                     ) : null}

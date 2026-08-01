@@ -4,7 +4,7 @@ import * as D from "@/lib/derive";
 import { decodeSession, SESSION_COOKIE } from "@/lib/rbac/session";
 import { canCreate as rbacCanCreate } from "@/lib/rbac/matrix";
 import { formatCount, formatPercent } from "@/lib/format";
-import { Panel, PanelHeader, Overline } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, Explainer } from "@/components/patterns/primitives";
 import { serviceCtx } from "@/components/domain/service/project";
 import { TicketsTable, type TicketFilters, type TicketRow } from "@/components/domain/service/TicketsTable";
 
@@ -120,10 +120,11 @@ export default async function TicketsPage({
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="t-display-md text-text-hi">Service tickets</h1>
-          <p className="t-body-sm mt-1 max-w-3xl text-text-mid">
-            Every request logged against a serial-numbered machine, with coverage derived from the
+          <p className="t-body-sm mt-1 max-w-3xl text-text-mid">Every request against a serial-numbered machine, with its coverage.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
+          Every request logged against a serial-numbered machine, with coverage derived from the
             live warranty and AMC state and a commitment clock resolved from the applicable rule.
-          </p>
+        </Explainer>
         </div>
         <p className="t-body-sm text-text-lo">
           Mean response <span className="t-mono text-text-mid">{mean.respond.toFixed(1)} h</span> ·

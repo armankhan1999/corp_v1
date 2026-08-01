@@ -96,8 +96,9 @@ LCP is still unmeasured; that gate remains open.
   analytics surfaces; admin audit log and masters.
 - **176 domain modules** under `components/domain/**` covering sales, service, assets,
   projects, inventory, commercial, people, vault/AI, workflow and analytics.
-- **Design tokens** — full dark and light sets, with the PRD's contrast failures and six token
-  collisions corrected (see `PLAN.md` C-07 to C-10).
+- **Design tokens** — near-achromatic surface ramps in both themes, with the PRD's contrast
+  failures and six token collisions corrected (see `docs/PLAN.md` C-07 to C-10, and the design
+  revision note at the end of that file for why the palette was de-blued and the radii opened).
 
 ### Notable screens
 

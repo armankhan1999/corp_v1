@@ -29,7 +29,7 @@ export function WorkspaceTabs({ tabs }: { tabs: WorkspaceTab[] }) {
                 {t.label}
                 {t.count ? (
                   <span
-                    className="t-mono rounded bg-surface-3 px-1 text-[0.6875rem] text-text-lo"
+                    className="t-mono rounded-md bg-surface-3 px-1 text-[0.6875rem] text-text-lo"
                     style={{ fontVariantNumeric: "tabular-nums" }}
                   >
                     {t.count}

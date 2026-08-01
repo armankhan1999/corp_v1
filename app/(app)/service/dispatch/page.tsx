@@ -3,7 +3,7 @@ import * as D from "@/lib/derive";
 import { canWrite, scopeFor } from "@/lib/rbac/matrix";
 import { formatCount, formatDate } from "@/lib/format";
 import { getDataset } from "@/lib/seed";
-import { Overline } from "@/components/patterns/primitives";
+import { Overline, Explainer } from "@/components/patterns/primitives";
 import { requireSession } from "@/components/domain/admin/serverSession";
 import {
   projectEngineers,
@@ -115,11 +115,12 @@ export default async function DispatchPage() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="t-display-md text-text-hi">Dispatch board</h1>
-          <p className="t-body-sm mt-1 max-w-3xl text-text-mid">
-            Every open ticket in a status lane, sorted by time to breach ascending, against every
+          <p className="t-body-sm mt-1 max-w-3xl text-text-mid">Open tickets by lane, sorted by time to breach, against engineer load.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
+          Every open ticket in a status lane, sorted by time to breach ascending, against every
             engineer&apos;s load for today. Assignment is either a drag or the Assign dialog — the
             dialog is the keyboard path and enforces the capacity and certification gates.
-          </p>
+        </Explainer>
         </div>
         <p className="t-body-sm text-text-lo">
           Simulated today <span className="t-mono text-text-mid">{formatDate(now)}</span>

@@ -233,7 +233,7 @@ export function AmcForm({
                         type="checkbox"
                         checked={checked}
                         onChange={() => toggleAsset(a.id)}
-                        className="size-4 shrink-0 rounded border border-line-strong bg-surface-0 accent-[var(--primary-600)]"
+                        className="size-4 shrink-0 rounded-md border border-line-strong bg-surface-0 accent-[var(--primary-600)]"
                       />
                       <span className="min-w-0 flex-1">
                         <Serial value={a.serial} />

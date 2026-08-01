@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { Explainer } from "@/components/patterns/primitives";
 import { redirect } from "next/navigation";
 import { getDataset } from "@/lib/seed";
 import { decodeSession, SESSION_COOKIE } from "@/lib/rbac/session";
@@ -27,11 +28,12 @@ export default async function EmployeeRegisterPage() {
     <div className="flex flex-col gap-4">
       <div>
         <h1 className="t-display-md text-text-hi">Employee register</h1>
-        <p className="t-body-sm mt-1 max-w-3xl text-text-mid">
+        <p className="t-body-sm mt-1 max-w-3xl text-text-mid">Organisational, contact and statutory records, with evidence attached.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
           {ds.employees.length} records across {ds.branches.length} branches. Each record carries the
           organisational fields, the contact and emergency details, the masked statutory identifiers
           and the document file that evidences compliance without opening a cabinet.
-        </p>
+        </Explainer>
       </div>
 
       <EmployeeRegister

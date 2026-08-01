@@ -109,7 +109,7 @@ export function AssignDialog({
                   <span
                     key={c}
                     className={cn(
-                      "t-overline rounded border px-1 py-px",
+                      "t-overline rounded-md border px-1 py-px",
                       target && c === target.assetPrincipal
                         ? "border-ok/50 bg-ok-bg text-ok"
                         : "border-line bg-surface-2 text-text-lo",
@@ -122,7 +122,7 @@ export function AssignDialog({
                 <span className="t-overline text-text-lo">No OEM certification recorded</span>
               )}
               {noCert ? (
-                <span className="t-overline rounded border border-warn/50 bg-warn-bg px-1 py-px text-warn">
+                <span className="t-overline rounded-md border border-warn/50 bg-warn-bg px-1 py-px text-warn">
                   Missing {target ? OEM_LABEL[target.assetPrincipal] : ""}
                 </span>
               ) : null}

@@ -48,3 +48,6 @@ next-env.d.ts
 # Agent scratch probes — never committed
 probe*.ts
 _probe*.ts
+
+# Local design screenshots
+/shots

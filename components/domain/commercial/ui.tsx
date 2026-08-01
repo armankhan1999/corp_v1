@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { abbreviateINR, formatINR } from "@/lib/format";
-import { Overline, Panel, PanelHeader, StatusBadge } from "@/components/patterns/primitives";
+import { Overline, Panel, PanelHeader, StatusBadge, Explainer } from "@/components/patterns/primitives";
 
 /**
  * Shared instruments for Epic E8. Dense rows, hairline structure, tabular
@@ -26,7 +26,13 @@ export function PageHead({
     <div className="no-print flex flex-wrap items-end justify-between gap-3">
       <div className="min-w-0">
         <h1 className="t-display-md text-text-hi">{title}</h1>
-        <p className="t-body-sm mt-1 max-w-3xl text-text-mid">{lede}</p>
+        {lede.length > 90 ? (
+          /* Long ledes are explanations, not captions. Collapsed so the
+             screen opens on its data rather than on three lines of prose. */
+          <Explainer className="mt-1" label="About this screen">{lede}</Explainer>
+        ) : (
+          <p className="t-body-sm mt-1 max-w-3xl text-text-mid">{lede}</p>
+        )}
         {meta}
       </div>
       {right ? <div className="flex shrink-0 flex-wrap items-center gap-2">{right}</div> : null}
@@ -450,7 +456,7 @@ export function DataTable<R>({
   const virtualizer = useVirtualizer({
     count: rows.length,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => 36,
+    estimateSize: () => 40,
     overscan: 12,
     enabled: virtualise,
   });
@@ -460,7 +466,7 @@ export function DataTable<R>({
   const header = (
     <div
       role="row"
-      className="sticky top-0 z-10 grid items-center gap-3 border-b border-line-strong bg-surface-2 px-3 py-2"
+      className="sticky top-0 z-10 grid items-center gap-3 border-b border-line bg-surface-1/95 px-3 py-2.5 backdrop-blur-sm"
       style={{ gridTemplateColumns: template }}
     >
       {columns.map((c) => (
@@ -496,7 +502,7 @@ export function DataTable<R>({
     ));
 
   const rowClass =
-    "grid items-center gap-3 border-b border-line px-3 text-text-mid transition-colors duration-150 hover:bg-surface-2";
+    "grid items-center gap-3 border-b border-line/70 px-3 text-text-mid transition-colors duration-150 hover:bg-surface-2";
 
   return (
     <div role="table" aria-label={caption} aria-rowcount={rows.length}>
@@ -511,7 +517,7 @@ export function DataTable<R>({
             ? virtualizer.getVirtualItems().map((v) => {
               const row = rows[v.index]!;
               const inner = (
-                <div role="row" className={cn(rowClass, "h-9")} style={{ gridTemplateColumns: template }}>
+                <div role="row" className={cn(rowClass, "h-10")} style={{ gridTemplateColumns: template }}>
                   {cellsOf(row)}
                 </div>
               );

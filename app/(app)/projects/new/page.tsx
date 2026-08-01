@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Explainer } from "@/components/patterns/primitives";
 import { getDataset } from "@/lib/seed";
 import * as D from "@/lib/derive";
 import { getViewer } from "@/components/domain/projects/server";
@@ -27,14 +28,15 @@ export default async function NewProjectPage() {
     <div className="flex flex-col gap-5">
       <div>
         <h1 className="t-display-md text-text-hi">Record a project</h1>
-        <p className="t-body-sm mt-1 max-w-3xl text-text-mid">
+        <p className="t-body-sm mt-1 max-w-3xl text-text-mid">The full contractual position, captured once.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
           The full contractual position, captured once. Retention percentage, defect-liability period and
           schedule tolerance entered here govern the retention register and the At Risk flag for the life of
           the contract.{" "}
           <Link href="/projects" className="underline decoration-line underline-offset-2 hover:text-text-hi">
             Back to the portfolio
           </Link>
-        </p>
+        </Explainer>
       </div>
 
       <ProjectForm

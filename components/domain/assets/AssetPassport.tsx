@@ -327,7 +327,7 @@ export function AssetPassport(props: PassportProps) {
                         )}
                         {enumLabel(r.cause)}
                         {r.count >= 2 ? (
-                          <span className="t-overline rounded border border-warn/40 bg-warn-bg px-1 text-warn">
+                          <span className="t-overline rounded-md border border-warn/40 bg-warn-bg px-1 text-warn">
                             Recurring
                           </span>
                         ) : null}

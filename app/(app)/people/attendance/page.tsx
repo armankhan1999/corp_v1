@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { Explainer } from "@/components/patterns/primitives";
 import { redirect } from "next/navigation";
 import { getDataset } from "@/lib/seed";
 import { decodeSession, SESSION_COOKIE } from "@/lib/rbac/session";
@@ -44,10 +45,11 @@ export default async function AttendanceBoardPage({
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="t-display-md text-text-hi">Attendance board</h1>
-          <p className="t-body-sm mt-1 max-w-3xl text-text-mid">
-            Every employee&rsquo;s state for the selected date, grouped by branch and department, with
+          <p className="t-body-sm mt-1 max-w-3xl text-text-mid">Every state for the selected date, with exceptions lifted out.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
+          Every employee&rsquo;s state for the selected date, grouped by branch and department, with
             exceptions lifted into their own section. Regularisation keeps the original record.
-          </p>
+        </Explainer>
         </div>
       </div>
 

@@ -3,7 +3,7 @@ import { ArrowRight, ClipboardCheck } from "lucide-react";
 import { getDataset } from "@/lib/seed";
 import * as D from "@/lib/derive";
 import { formatDate } from "@/lib/format";
-import { EmptyState, Overline, Panel, PanelHeader } from "@/components/patterns/primitives";
+import { EmptyState, Overline, Panel, PanelHeader, Explainer } from "@/components/patterns/primitives";
 import { CountdownPill, SubmissionBadge, countdownOf } from "@/components/domain/assets/badges";
 import { buildCommissioningRows, buildIndexes } from "@/components/domain/assets/server";
 
@@ -33,10 +33,11 @@ export default function FieldCommissioningIndex() {
       <header>
         <Overline>Field · commissioning</Overline>
         <h1 className="t-display-md text-text-hi">OEM submission clocks</h1>
-        <p className="t-body-sm mt-1 text-text-mid">
+        <p className="t-body-sm mt-1 text-text-mid">Commissionings whose OEM window is still running. Late paperwork voids warranty.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
           Every commissioning whose OEM window is still running. Late paperwork is what invalidates a
           customer warranty, so these come first.
-        </p>
+        </Explainer>
       </header>
 
       <Panel>

@@ -57,7 +57,7 @@ export function LocalAssetFallback({ serial, todayIso }: { serial: string; today
           <Overline>Asset passport</Overline>
           <PrincipalTag principal={asset.principal} />
           <AssetStatusBadge status={asset.status} />
-          <span className="t-overline rounded border border-line bg-surface-2 px-1 text-text-lo">
+          <span className="t-overline rounded-md border border-line bg-surface-2 px-1 text-text-lo">
             Created in this browser
           </span>
         </div>

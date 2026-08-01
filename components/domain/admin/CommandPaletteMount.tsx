@@ -36,7 +36,7 @@ export function CommandPaletteButton({ className }: { className?: string }) {
       }
     >
       Search anything
-      <kbd className="t-mono rounded border border-line px-1 text-[0.6875rem] text-text-lo">
+      <kbd className="t-mono rounded-md border border-line px-1 text-[0.6875rem] text-text-lo">
         Ctrl K
       </kbd>
     </button>

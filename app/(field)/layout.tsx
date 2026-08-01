@@ -40,7 +40,7 @@ export default async function FieldLayout({ children }: { children: React.ReactN
         >
           <span
             aria-hidden
-            className="grid size-6 place-items-center rounded bg-surface-3 text-[0.625rem]"
+            className="grid size-6 place-items-center rounded-md bg-surface-3 text-[0.625rem]"
             style={{ fontFamily: "var(--font-mono)" }}
           >
             {initials(session.name)}

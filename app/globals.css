@@ -27,19 +27,22 @@
 [data-theme="dark"] {
   color-scheme: dark;
 
-  /* Surfaces — cool near-black, never pure #000 (OLED smear, hairlines vanish) */
-  --surface-0: #070b14;
-  --surface-1: #0e1420;
-  --surface-2: #151d2c;
-  --surface-3: #1c2739;
-  --surface-inset: #04070d;
-  --line: #222e42;
-  --line-strong: #33415b;
+  /* Surfaces — near-achromatic. v2 sat at hue 220 with real chroma, which is
+     what made the product read as dated corporate navy rather than as an
+     instrument. Chroma is now close to zero, so the brand blue and the ELGi
+     orange are the only saturated things on screen and they carry properly. */
+  --surface-0: #0d0e11;
+  --surface-1: #141519;
+  --surface-2: #1a1c21;
+  --surface-3: #23262c;
+  --surface-inset: #08090b;
+  --line: #272a30;
+  --line-strong: #3a3e46;
 
   /* Text — verified against --surface-3, the worst case (hovered row) */
-  --text-hi: #f1f5fb;
-  --text-mid: #a9b8cc;
-  --text-lo: #849ab2;
+  --text-hi: #f4f5f7;
+  --text-mid: #b0b5be;
+  --text-lo: #8b919b;
   --text-on-accent: #ffffff;
 
   /* Primary — anchored to sampled #003388 (H222), lifted for dark legibility */
@@ -98,26 +101,26 @@
 
   /* Elevation — ambient shadow plus a hairline top highlight. The highlight is
      what separates a raised surface from a flat one in a dark theme. */
-  --elev-1: 0 1px 2px rgb(0 0 0 / 0.34), 0 0 0 1px rgb(255 255 255 / 0.02) inset;
-  --elev-2: 0 8px 24px -6px rgb(0 0 0 / 0.55), 0 0 0 1px rgb(255 255 255 / 0.03) inset;
-  --elev-3: 0 20px 48px -12px rgb(0 0 0 / 0.68), 0 0 0 1px rgb(255 255 255 / 0.04) inset;
-  --hairline-top: linear-gradient(to bottom, rgb(255 255 255 / 0.055), transparent 42%);
+  --elev-1: 0 1px 2px rgb(0 0 0 / 0.24), 0 0 0 1px rgb(255 255 255 / 0.025) inset;
+  --elev-2: 0 12px 32px -12px rgb(0 0 0 / 0.5), 0 0 0 1px rgb(255 255 255 / 0.035) inset;
+  --elev-3: 0 28px 60px -18px rgb(0 0 0 / 0.62), 0 0 0 1px rgb(255 255 255 / 0.045) inset;
+  --hairline-top: linear-gradient(to bottom, rgb(255 255 255 / 0.05), transparent 46%);
 }
 
 [data-theme="light"] {
   color-scheme: light;
 
-  --surface-0: #eef2f7;
+  --surface-0: #f4f5f7;
   --surface-1: #ffffff;
-  --surface-2: #f4f7fb;
-  --surface-3: #e6ecf4;
-  --surface-inset: #e2e8f0;
-  --line: #dbe3ec;
-  --line-strong: #b6c3d3;
+  --surface-2: #f7f8fa;
+  --surface-3: #eceef2;
+  --surface-inset: #e8eaee;
+  --line: #e2e5ea;
+  --line-strong: #c3c8d0;
 
-  --text-hi: #0c1520;
-  --text-mid: #45535f;
-  --text-lo: #5b6875;
+  --text-hi: #14161a;
+  --text-mid: #4b5058;
+  --text-lo: #5f656e;
   --text-on-accent: #ffffff;
 
   --primary-900: #041233;
@@ -170,9 +173,9 @@
   --focus-glow: rgb(14 71 166 / 0.16);
   --overlay: rgb(12 21 32 / 0.42);
 
-  --elev-1: 0 1px 2px rgb(16 30 54 / 0.07), 0 0 0 1px rgb(16 30 54 / 0.015) inset;
-  --elev-2: 0 8px 24px -8px rgb(16 30 54 / 0.14), 0 0 0 1px rgb(255 255 255 / 0.6) inset;
-  --elev-3: 0 20px 48px -14px rgb(16 30 54 / 0.2), 0 0 0 1px rgb(255 255 255 / 0.7) inset;
+  --elev-1: 0 1px 2px rgb(20 22 26 / 0.06), 0 0 0 1px rgb(20 22 26 / 0.012) inset;
+  --elev-2: 0 12px 32px -14px rgb(20 22 26 / 0.13), 0 0 0 1px rgb(255 255 255 / 0.6) inset;
+  --elev-3: 0 28px 60px -20px rgb(20 22 26 / 0.18), 0 0 0 1px rgb(255 255 255 / 0.7) inset;
   --hairline-top: linear-gradient(to bottom, rgb(255 255 255 / 0.85), transparent 42%);
 }
 
@@ -239,10 +242,14 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 
-  /* Radii — opened from the original 3/5/8. Precise, no longer austere. */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
+  /* Radii. PRD §11.4 specified 3/5/8 — "squared geometry, not rounded
+     friendliness". That is overridden on explicit instruction: the tight
+     geometry was a large part of why the build read austere rather than
+     considered. 12px core matches the reference the client chose. */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
 
   --shadow-e1: var(--elev-1);
   --shadow-e2: var(--elev-2);
@@ -382,13 +389,38 @@
     letter-spacing: -0.01em;
   }
 
-  /* Panels now read as objects: hairline, ambient shadow, top highlight. */
+  /* Panels read as objects: hairline, ambient shadow, top highlight. */
   .panel {
     position: relative;
     background: var(--surface-1);
     border: 1px solid var(--line);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     box-shadow: var(--elev-1);
+  }
+
+  /* Standard card padding, tied to the density preference so a card never
+     needs to hardcode its own spacing. */
+  .panel-pad {
+    padding: var(--card-pad);
+  }
+
+  /* Card header: title row with optional trailing control, separated by space
+     rather than a rule. One less line on screen, which is most of what made
+     the build feel busy. */
+  .card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .card-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    line-height: 1.35;
+    letter-spacing: -0.012em;
+    color: var(--text-hi);
   }
   .panel::before {
     content: "";
@@ -401,7 +433,7 @@
   .panel-raised {
     background: var(--surface-2);
     border: 1px solid var(--line);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     box-shadow: var(--elev-2);
   }
 
@@ -425,7 +457,7 @@
       background-color 140ms ease-out;
   }
   .lift:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px);
     box-shadow: var(--elev-2);
     border-color: var(--line-strong);
   }
@@ -443,7 +475,7 @@
     position: absolute;
     inset-block: 0;
     inset-inline-start: 0;
-    width: 3px;
+    width: 2px;
     background: var(--accent, var(--primary-500));
     border-start-start-radius: inherit;
     border-end-start-radius: inherit;
@@ -452,14 +484,14 @@
 
 /* ---- Density (E1-S4) --------------------------------------------------- */
 [data-density="compact"] {
-  --row-h: 36px;
-  --card-pad: 14px;
-  --stack-gap: 12px;
+  --row-h: 38px;
+  --card-pad: 16px;
+  --stack-gap: 14px;
 }
 [data-density="comfortable"] {
-  --row-h: 44px;
-  --card-pad: 18px;
-  --stack-gap: 16px;
+  --row-h: 46px;
+  --card-pad: 20px;
+  --stack-gap: 18px;
 }
 
 /* Field routes always run comfortable touch targets regardless of preference */

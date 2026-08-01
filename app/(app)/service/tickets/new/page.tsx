@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { decodeSession, SESSION_COOKIE } from "@/lib/rbac/session";
 import { canCreate } from "@/lib/rbac/matrix";
-import { EmptyState } from "@/components/patterns/primitives";
+import { EmptyState, Explainer } from "@/components/patterns/primitives";
 import { Ban } from "lucide-react";
 import { projectAssetIndex, projectContacts, serviceCtx } from "@/components/domain/service/project";
 import { TicketIntake } from "@/components/domain/service/TicketIntake";
@@ -48,11 +48,12 @@ export default async function NewTicketPage() {
           Ticket register
         </Link>
         <h1 className="t-display-md mt-1 text-text-hi">Log a service ticket</h1>
-        <p className="t-body-sm mt-1 max-w-3xl text-text-mid">
+        <p className="t-body-sm mt-1 max-w-3xl text-text-mid">Coverage and the commitment clock are derived before you save.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
           Every ticket attaches to a serial-numbered machine. Coverage and the commitment clock are
           derived from that machine — the derivation is shown here before you save, not asserted
           afterwards.
-        </p>
+        </Explainer>
       </div>
 
       <TicketIntake

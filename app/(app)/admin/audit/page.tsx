@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Explainer } from "@/components/patterns/primitives";
 import { ScrollText } from "lucide-react";
 import { getDataset } from "@/lib/seed";
 import { ROLE_LABEL, type AuditAction, type Role } from "@/lib/schemas/enums";
@@ -64,12 +65,13 @@ export default async function AuditPage() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div className="max-w-3xl">
           <h1 className="t-display-md text-text-hi">Audit log</h1>
-          <p className="t-body-sm mt-1 text-text-mid">
-            Every create, update, delete, state transition, approval, export, login and access
+          <p className="t-body-sm mt-1 text-text-mid">Every mutation, written once and never altered.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
+          Every create, update, delete, state transition, approval, export, login and access
             denial in Pravaah, written once and never altered. Held from{" "}
             <span className="t-mono text-text-hi">{formatDate(facets.earliest)}</span> to{" "}
             <span className="t-mono text-text-hi">{formatDate(facets.latest)}</span>.
-          </p>
+        </Explainer>
         </div>
         <div className="flex items-center gap-2">
           <ScrollText className="size-4 text-text-lo" aria-hidden />

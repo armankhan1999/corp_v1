@@ -444,7 +444,7 @@ export function NumLink({ href, children, className }: { href: string; children:
 export function Meter({ pct, tone = "info" }: { pct: number; tone?: "ok" | "warn" | "danger" | "info" }) {
   const bg = { ok: "bg-ok", warn: "bg-warn", danger: "bg-danger", info: "bg-primary-500" }[tone];
   return (
-    <div className="h-1.5 w-full overflow-hidden rounded bg-surface-3">
+    <div className="h-1.5 w-full overflow-hidden rounded-md bg-surface-3">
       <div className={cn("h-full", bg)} style={{ width: `${Math.max(0, Math.min(100, pct))}%` }} />
     </div>
   );

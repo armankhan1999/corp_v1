@@ -235,7 +235,7 @@ export function DispatchBoard({
                     e.oemCertifications.map((c) => (
                       <span
                         key={c}
-                        className="t-overline rounded border border-line bg-surface-2 px-1 py-px text-text-lo"
+                        className="t-overline rounded-md border border-line bg-surface-2 px-1 py-px text-text-lo"
                       >
                         {OEM_LABEL[c]}
                       </span>

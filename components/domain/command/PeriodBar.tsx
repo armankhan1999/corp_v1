@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CalendarRange, CircleAlert } from "lucide-react";
-import { Overline } from "@/components/patterns/primitives";
+import { Overline, Explainer } from "@/components/patterns/primitives";
 import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import { PERIOD_OPTIONS, type ResolvedPeriod } from "./period";
@@ -117,12 +117,15 @@ export function PeriodBar({
         </p>
       ) : null}
 
-      <p className="t-body-sm text-text-lo">
+      {/* This distinction matters and has to stay reachable, but it is the same
+          two sentences on every load. Collapsed, it stops being a paragraph the
+          eye has to step over before it reaches the figures. */}
+      <Explainer label="Period basis">
         Flow figures — revenue, conversion, SLA compliance — follow the selected period. Position
         figures — locked cash, order book, open commitments — are stated as at{" "}
         <span className="t-mono text-text-mid">{formatDate(resolved.asOf)}</span>
         {asOfNote ? `, ${asOfNote}` : ", because a balance cannot be reported for a date that has not happened."}
-      </p>
+      </Explainer>
     </div>
   );
 }

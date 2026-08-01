@@ -122,7 +122,7 @@ export function AnswerBlock({ answer, answerId, question, charsPerSecond, stream
                               {k > 0 ? <span className="text-text-lo">,</span> : null}
                               <a
                                 href={`#source-${answerId}-${m}`}
-                                className="t-mono rounded px-[2px] text-[0.6875rem] text-primary-400 hover:bg-primary-100 hover:text-primary-500"
+                                className="t-mono rounded-md px-[2px] text-[0.6875rem] text-primary-400 hover:bg-primary-100 hover:text-primary-500"
                                 aria-label={`Citation ${m}`}
                               >
                                 {m}

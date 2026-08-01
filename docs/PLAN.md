@@ -314,3 +314,56 @@ across all twelve roles before the layouts were generated.
 streams, so the 200 is committed before the guard resolves and the redirect is delivered inside
 the RSC stream rather than as a 307. The page component still never renders — a denied role
 receives no data from it, only the redirect — and the browser follows it normally.
+
+
+---
+
+## Design revision — the neutral palette and the prose demotion
+
+PRD §11.1 asks for "squared geometry, not rounded friendliness" at 3/5/8 px radii, and treats the
+explanatory text on each screen as part of the product's evidence. Both were built as specified.
+On review the client's judgement was that the result read dated and text-heavy, and nominated
+takeuforward.org as the reference register. That instruction overrides §11.1, and the change is
+recorded here rather than made silently.
+
+**What the reference actually uses.** Its stylesheet was read rather than eyeballed:
+`--radius: .625rem` with a sm/md/lg/xl scale; a neutral ramp at `oklch(… 0 0)` — chroma exactly
+zero — for both themes; a single warm accent `#ea763f`, used 92 times; Fira Sans; shadcn token
+naming. The accent is a near-match for the ELGi orange `#FD6701` already evidenced on
+bhushancorp.in, so the brand and the reference agree.
+
+**What changed.**
+
+| | Before | After | Why |
+|---|---|---|---|
+| Dark surfaces | `#070b14` … `#1c2739`, hue ≈ 220 with real chroma | `#0d0e11` … `#23262c`, near-achromatic | The blue cast, not the layout, is what made it read as dated corporate navy. Neutral greys let the brand blue and the ELGi orange be the only saturated things on screen. |
+| Light surfaces | blue-tinted `#eef2f7` … | neutral `#f4f5f7` … | Same reasoning, both themes. |
+| Radii | 6 / 10 / 14 | 8 / 12 / 16 / 20 | Matches the reference's 10px core. |
+| Elevation | tight, dark | softer, more diffuse | Reads as depth rather than as a drawn border. |
+| Row height | 36 px | 40 px | |
+
+`--primary` is unchanged and still anchored to the sampled `#003388`. No semantic, vertical, SLA
+or data-visualisation token moved. All 54 assertions in `tests/unit/contrast.test.ts` — which
+parses `app/globals.css` at runtime rather than holding its own copy — pass in both themes.
+
+**The text.** The rationale on each screen is worth keeping: a demonstration has to be able to
+answer "where does this figure come from?". It does not have to answer it before it is asked. An
+`Explainer` disclosure was added and the long-form text moved into it, wording unchanged:
+
+- `PanelHeader` demotes any `sub` longer than 90 characters — 101 of them across 62 files, in one
+  change. The three `lede` renderers do the same.
+- 24 page subtitles were rewritten to a single short line, with the original preserved in the
+  disclosure beneath.
+- Three outright duplications were deleted: the as-at timestamp repeated on every KPI card while
+  already stated in the page header; the vertical health rule printed under each tile *and* in its
+  chip tooltip; the period-basis paragraph restated on every load.
+
+**Two defects found while doing it.** The Command Centre KPI grid declared six columns and let the
+hero span two, so seven units competed for six slots and the last card was stranded alone on a
+second row — the grid is now three even columns. And the receivables segmentation note expanded
+`INSTITUTIONAL_TYPES` to its own labels, rendering as "Institutional and government customers
+(institutional and government)".
+
+The navigation rail now collapses by section, with the section holding the current route opened
+automatically. A Director holds eleven sections and forty-odd links; rendering every one expanded
+was a wall the eye had to climb before reaching the page.

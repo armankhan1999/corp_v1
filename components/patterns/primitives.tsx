@@ -21,6 +21,9 @@ export function Panel({
   );
 }
 
+/** Longest `sub` that still reads as a caption rather than a paragraph. */
+const SUB_INLINE_MAX = 90;
+
 export function PanelHeader({
   title, sub, right, className,
 }: { title: string; sub?: string; right?: React.ReactNode; className?: string }) {
@@ -33,7 +36,20 @@ export function PanelHeader({
     >
       <div className="min-w-0">
         <h2 className="t-heading-md text-text-hi">{title}</h2>
-        {sub ? <p className="t-body-sm mt-0.5 text-text-mid">{sub}</p> : null}
+        {/* A short sub is a caption and belongs on screen. A long one is an
+            explanation, and 101 of them across the app were being printed under
+            every panel title at all times — collectively the single largest
+            reason the product read as a wall of text. Past this threshold it
+            collapses; the wording is unchanged and one click away. */}
+        {sub ? (
+          sub.length > SUB_INLINE_MAX ? (
+            <Explainer className="mt-1" label="About this panel">
+              {sub}
+            </Explainer>
+          ) : (
+            <p className="t-body-sm mt-0.5 text-text-mid">{sub}</p>
+          )
+        ) : null}
       </div>
       {right ? <div className="shrink-0">{right}</div> : null}
     </div>
@@ -132,5 +148,44 @@ export function KeyValue({ label, children }: { label: string; children: React.R
       <Overline>{label}</Overline>
       <span className="t-body text-text-hi">{children}</span>
     </div>
+  );
+}
+
+/**
+ * Explainer — a collapsed disclosure for the "why" behind a screen.
+ *
+ * The prototype was carrying its rationale as always-visible prose: page
+ * subtitles of three hundred-plus characters, derivation notes under every
+ * card, method statements beneath every table. The reasoning is worth keeping —
+ * a client demonstration needs to be able to answer "where does this figure
+ * come from?" — but it does not need to occupy the screen before it is asked
+ * for. This keeps the text one click away instead of deleting it.
+ *
+ * `<details>` is used deliberately: it needs no JavaScript, it is keyboard
+ * operable, it is announced correctly by screen readers, and it prints open.
+ */
+export function Explainer({
+  label = "How this is derived",
+  children,
+  className,
+}: {
+  label?: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <details className={cn("group", className)}>
+      <summary
+        className={cn(
+          "t-body-sm inline-flex min-h-6 cursor-pointer list-none items-center gap-1.5",
+          "text-text-lo transition-colors hover:text-text-mid",
+          "[&::-webkit-details-marker]:hidden",
+        )}
+      >
+        <Info className="size-3.5 shrink-0" aria-hidden />
+        <span className="underline decoration-dotted underline-offset-2">{label}</span>
+      </summary>
+      <div className="t-body-sm mt-2 max-w-[70ch] text-text-mid">{children}</div>
+    </details>
   );
 }

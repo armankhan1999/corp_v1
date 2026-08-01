@@ -16,7 +16,7 @@ import {
   Check, ChevronDown, Info, Lock, RotateCcw, Search, SlidersHorizontal, TriangleAlert, X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Overline, Panel, Skeleton } from "@/components/patterns/primitives";
+import { Overline, Panel, Skeleton, Explainer } from "@/components/patterns/primitives";
 
 /* ------------------------------------------------------------ page header */
 
@@ -27,7 +27,13 @@ export function PageHeader({
     <div className="flex flex-wrap items-end justify-between gap-3">
       <div className="min-w-0">
         <h1 className="t-display-md text-text-hi">{title}</h1>
-        <p className="t-body-sm mt-1 max-w-3xl text-text-mid">{lede}</p>
+        {lede.length > 90 ? (
+          /* Long ledes are explanations, not captions. Collapsed so the
+             screen opens on its data rather than on three lines of prose. */
+          <Explainer className="mt-1" label="About this screen">{lede}</Explainer>
+        ) : (
+          <p className="t-body-sm mt-1 max-w-3xl text-text-mid">{lede}</p>
+        )}
       </div>
       {right ? <div className="flex shrink-0 flex-wrap items-center gap-2">{right}</div> : null}
     </div>
@@ -129,7 +135,7 @@ export function SearchField({
         <button
           type="button"
           onClick={() => onChange("")}
-          className="absolute right-1.5 grid size-5 place-items-center rounded text-text-lo hover:text-text-hi"
+          className="absolute right-1.5 grid size-5 place-items-center rounded-md text-text-lo hover:text-text-hi"
           aria-label="Clear search"
         >
           <X className="size-3.5" aria-hidden />
@@ -899,7 +905,7 @@ export function ActionResult({
         type="button"
         onClick={onDismiss}
         aria-label="Dismiss"
-        className="grid size-6 shrink-0 place-items-center rounded text-text-lo hover:text-text-hi"
+        className="grid size-6 shrink-0 place-items-center rounded-md text-text-lo hover:text-text-hi"
       >
         <X className="size-3.5" aria-hidden />
       </button>

@@ -8,7 +8,7 @@ import {
 import { abbreviateINR, formatCount, formatDate, formatINR } from "@/lib/format";
 import type { AgeingBucket } from "@/lib/derive";
 import type { CustomerType } from "@/lib/schemas/enums";
-import { EmptyState, Overline, Panel, PanelHeader, StatusBadge } from "@/components/patterns/primitives";
+import { EmptyState, Overline, Panel, PanelHeader, StatusBadge, Explainer } from "@/components/patterns/primitives";
 import {
   ageingSummary, applyAgeingFilters, brokenPromises, escalations, mergedFollowUps,
   mergedInvoices, moneyIndex, openInvoices, NO_FILTERS,
@@ -276,11 +276,14 @@ export function ReceivablesClient({
             sub={`The remaining ${100 - instShare}% — ${formatINR(summary.privateSector.value)}`}
           />
         </div>
-        <p className="t-body-sm border-t border-line px-4 py-2 text-text-lo">
-          Institutional and government customers ({INSTITUTIONAL_TYPES.map((t) => CUSTOMER_TYPE_LABEL[t].toLowerCase()).join(" and ")})
-          are read as one exposure because they share a payment rhythm — bill passing, committee approval, budget release —
-          that private customers do not.
-        </p>
+        {/* The parenthetical used to expand INSTITUTIONAL_TYPES to their own
+            labels, which rendered as "Institutional and government customers
+            (institutional and government)" — the sentence restating itself. */}
+        <Explainer className="border-t border-line px-4 py-2" label="Why these two are counted together">
+          {INSTITUTIONAL_TYPES.map((t) => CUSTOMER_TYPE_LABEL[t]).join(" and ")} customers are read
+          as one exposure because they share a payment rhythm — bill passing, committee approval,
+          budget release — that private customers do not.
+        </Explainer>
       </SectionPanel>
 
       {/* ---------------------------------------------------- invoice detail */}

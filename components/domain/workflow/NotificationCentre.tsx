@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatDateTime, formatRelative, formatCount, enumLabel } from "@/lib/format";
-import { EmptyState, Overline, Panel, PanelHeader, SimulatedBadge, StatusBadge } from "@/components/patterns/primitives";
+import { EmptyState, Overline, Panel, PanelHeader, SimulatedBadge, StatusBadge, Explainer } from "@/components/patterns/primitives";
 import { ROLE_LABEL, type NotificationChannel, type Role } from "@/lib/schemas/enums";
 
 const READ_KEY = "pravaah.v1.notifications.read";
@@ -92,10 +92,11 @@ export function NotificationCentre({
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="t-display-md text-text-hi">Notification Centre</h1>
-          <p className="t-body-sm mt-1 text-text-mid">
-            Everything the platform needs you to know, so nothing depends on your having
+          <p className="t-body-sm mt-1 text-text-mid">Everything the platform needs you to know.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
+          Everything the platform needs you to know, so nothing depends on your having
             noticed it at the moment it happened.
-          </p>
+        </Explainer>
         </div>
         {tab === "INBOX" && unread > 0 ? (
           <button

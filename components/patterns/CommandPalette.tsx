@@ -295,7 +295,7 @@ export function CommandPalette({
           placeholder="Search records, screens and actions…"
           className="h-12 w-full bg-transparent text-[0.9375rem] text-text-hi outline-none placeholder:text-text-lo"
         />
-        <kbd className="t-mono hidden rounded border border-line px-1 text-[0.6875rem] text-text-lo sm:inline">
+        <kbd className="t-mono hidden rounded-md border border-line px-1 text-[0.6875rem] text-text-lo sm:inline">
           Esc
         </kbd>
       </div>
@@ -353,7 +353,7 @@ export function CommandPalette({
         <Hint keys={[ArrowUp, ArrowDown]} label="Navigate" />
         <Hint keys={[CornerDownLeft]} label="Open" />
         <span className="t-body-sm text-text-lo">
-          <kbd className="t-mono rounded border border-line px-1 text-[0.6875rem]">Esc</kbd> Close
+          <kbd className="t-mono rounded-md border border-line px-1 text-[0.6875rem]">Esc</kbd> Close
         </span>
         <span className="t-body-sm ml-auto text-text-lo">
           {indexNote ?? `${records.length.toLocaleString("en-IN")} indexed for your role`}
@@ -421,7 +421,7 @@ function Hint({
   return (
     <span className="t-body-sm flex items-center gap-1 text-text-lo">
       {keys.map((K, i) => (
-        <kbd key={i} className="grid size-4 place-items-center rounded border border-line">
+        <kbd key={i} className="grid size-4 place-items-center rounded-md border border-line">
           <K className="size-2.5" aria-hidden />
         </kbd>
       ))}

@@ -356,7 +356,7 @@ export function AuditClient({
               <div
                 role="row"
                 className={cn(
-                  "t-overline grid items-center gap-0 border-b border-line bg-surface-2 px-3 py-2 text-text-lo",
+                  "t-overline grid items-center gap-0 border-b border-line bg-surface-1/95 px-3 py-2.5 text-text-lo backdrop-blur-sm",
                   GRID,
                 )}
               >

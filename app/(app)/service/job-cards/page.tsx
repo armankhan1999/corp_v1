@@ -4,7 +4,7 @@ import * as D from "@/lib/derive";
 import { scopeFor } from "@/lib/rbac/matrix";
 import { getDataset } from "@/lib/seed";
 import { formatCount, formatPercent } from "@/lib/format";
-import { Overline, Panel, PanelHeader } from "@/components/patterns/primitives";
+import { Overline, Panel, PanelHeader, Explainer } from "@/components/patterns/primitives";
 import { requireSession } from "@/components/domain/admin/serverSession";
 import { serviceCtx } from "@/components/domain/service/project";
 import {
@@ -156,10 +156,11 @@ export default async function JobCardsPage({
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="t-display-md text-text-hi">Job cards</h1>
-          <p className="t-body-sm mt-1 max-w-3xl text-text-mid">
-            One card per visit. A ticket may carry several, so the visit sequence is on every row and
+          <p className="t-body-sm mt-1 max-w-3xl text-text-mid">One card per visit, with the visit sequence on every row.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
+          One card per visit. A ticket may carry several, so the visit sequence is on every row and
             the first-visit resolution flag is computed from outcome and sequence rather than typed.
-          </p>
+        </Explainer>
         </div>
         <p className="t-body-sm text-text-lo">
           {scope === "BRANCH"

@@ -1,4 +1,5 @@
 import { getDataset } from "@/lib/seed";
+import { Explainer } from "@/components/patterns/primitives";
 import * as D from "@/lib/derive";
 import { abbreviateINR, formatDate } from "@/lib/format";
 import { getViewer, portfolioRows } from "@/components/domain/projects/server";
@@ -24,10 +25,11 @@ export default async function ProjectsPortfolioPage() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="t-display-md text-text-hi">Projects &amp; EPC execution</h1>
-          <p className="t-body-sm mt-1 max-w-3xl text-text-mid">
-            Every rupee of executed BOQ is traceable to a dated progress entry, every running-account
+          <p className="t-body-sm mt-1 max-w-3xl text-text-mid">BOQ, progress, running-account claims and retention — all traceable.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
+          Every rupee of executed BOQ is traceable to a dated progress entry, every running-account
             claim is built from cumulative quantities, and every rupee of retention is tracked to release.
-          </p>
+        </Explainer>
         </div>
         <div className="text-right">
           <p className="t-body-sm text-text-lo">

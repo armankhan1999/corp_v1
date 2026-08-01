@@ -65,15 +65,19 @@ function DeltaGlyph({ direction }: { direction: Kpi["direction"] }) {
   return <Minus className="size-3 shrink-0" aria-hidden />;
 }
 
-export function KpiRow({ kpis, asOf }: { kpis: Kpi[]; asOf: Date }) {
+export function KpiRow({ kpis }: { kpis: Kpi[] }) {
   return (
-    <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+    /* Six equal cards on a three-column grid — two clean rows. The hero used to
+       span two columns of a six-column grid, which made seven units fight for
+       six slots and stranded the last card alone on a second row. The hero now
+       earns its emphasis from `panel-hero` alone, and the grid stays even. */
+    <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
       {kpis.map((k) => (
-        <li key={k.id} className={cn(k.hero && "sm:col-span-2 xl:col-span-2")}>
+        <li key={k.id}>
           <Link
             href={k.href}
             className={cn(
-              "group flex h-full flex-col gap-1.5 p-3.5 lift",
+              "group flex h-full flex-col gap-1.5 panel-pad lift",
               k.hero ? "panel-hero" : "panel",
             )}
           >
@@ -94,10 +98,10 @@ export function KpiRow({ kpis, asOf }: { kpis: Kpi[]; asOf: Date }) {
               <span>{k.delta}</span>
             </span>
             <Sparkline series={k.series} label={k.seriesLabel} />
-            <span className="t-body-sm mt-auto text-text-lo">
-              {k.basis}
-              {k.position ? ` · as at ${formatDateTime(asOf)}` : ""}
-            </span>
+            {/* The as-at timestamp is stated once in the page header. Repeating
+                it on every card added a line of identical text to each one and
+                was most of what made this grid read as a wall of prose. */}
+            <span className="t-body-sm mt-auto text-text-lo">{k.basis}</span>
           </Link>
         </li>
       ))}
@@ -110,7 +114,7 @@ export function VerticalTiles({ tiles }: { tiles: VerticalTile[] }) {
     <Panel>
       <PanelHeader
         title="Vertical health"
-        sub="Each vertical declares its own state from a published rule, printed under the chip."
+        sub="State is declared by a published rule — hover a chip to read it."
       />
       <ul className="grid grid-cols-1 gap-px bg-line sm:grid-cols-2">
         {tiles.map((t) => {
@@ -156,7 +160,6 @@ export function VerticalTiles({ tiles }: { tiles: VerticalTile[] }) {
                       <p className="t-body-sm text-text-mid">{t.supportB}</p>
                     </>
                   )}
-                  <p className="t-body-sm mt-2 border-t border-line pt-2 text-text-lo">{t.rule}</p>
                 </div>
               </div>
             </li>
@@ -270,7 +273,7 @@ export function LockedCashPanel({
 }
 
 /** E2-S7 — six figures, display type, nothing else. Legible on a phone without zooming. */
-export function ExecutiveFigures({ kpis, asOf }: { kpis: Kpi[]; asOf: Date }) {
+export function ExecutiveFigures({ kpis }: { kpis: Kpi[] }) {
   return (
     <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
       {kpis.map((k) => (
@@ -297,7 +300,6 @@ export function ExecutiveFigures({ kpis, asOf }: { kpis: Kpi[]; asOf: Date }) {
             </span>
             <span className="t-body-sm text-text-lo">
               {k.basis}
-              {k.position ? ` · as at ${formatDateTime(asOf)}` : ""}
             </span>
           </Link>
         </li>

@@ -21,7 +21,7 @@ import {
   abbreviateINR, formatCount, formatDateTime, formatRelative, formatPercent,
 } from "@/lib/format";
 import { ROLE_LABEL, type ApprovalRequestType, type ApprovalStatus } from "@/lib/schemas/enums";
-import { Panel, PanelHeader, Overline, StatusBadge, EmptyState } from "@/components/patterns/primitives";
+import { Panel, PanelHeader, Overline, StatusBadge, EmptyState, Explainer } from "@/components/patterns/primitives";
 import {
   AuthorityNote, Btn, Checkbox, Field, FilteredEmpty, Note, SectionTitle, Segmented, Select,
   SlaMeter, Stat, TextArea, TextInput, ToastStack, useToasts,
@@ -144,10 +144,11 @@ export function ApprovalsClient({
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="t-display-md text-text-hi">My Approvals</h1>
-          <p className="t-body-sm mt-1 max-w-3xl text-text-mid">
-            Everything waiting on you, oldest first, with the records needed to decide already on screen. Age is
+          <p className="t-body-sm mt-1 max-w-3xl text-text-mid">Everything waiting on you, oldest first, with the records to decide.</p>
+        <Explainer className="mt-2" label="Why this screen reads the way it does">
+          Everything waiting on you, oldest first, with the records needed to decide already on screen. Age is
             measured against the current step&rsquo;s escalation SLA, not against the age of the request.
-          </p>
+        </Explainer>
         </div>
         <p className="t-body-sm text-text-lo">
           As at <span className="t-mono text-text-mid">{formatDateTime(now)}</span> IST
