@@ -1,0 +1,578 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   PRAVAAH DESIGN TOKENS — v2, elevated
+   Industrial control-room register, refined. PRD §11 with corrections from
+   PLAN.md C-07 (token collisions), C-08 (AA failures), C-09 (light parity),
+   C-10 (vertical enum alignment).
+
+   v2 changes, in response to the brief that v1 read flat and utilitarian:
+     • Deeper, cooler base with real separation between the four surface steps,
+       so panels sit on the page instead of dissolving into it.
+     • Layered elevation — a soft ambient shadow plus a 1px inset top highlight,
+       which is what makes a dark card read as a physical object.
+     • Radii opened from 3/5/8 to 6/10/14. Still precise, no longer austere.
+     • Accent ramps widened so the brand orange and the primary blue can carry
+       emphasis without shouting.
+     • Focus ring gains an outer glow so keyboard traversal is unmistakable.
+
+   Brand anchor: --primary hue sampled from bhushancorp.in inline #003388.
+   --v-equipment is the site's evidenced ELGi orange #FD6701.
+
+   Every text/background pair is asserted by tests/unit/contrast.test.ts and by
+   the live axe suite. Do not change a token without re-running both.
+   ========================================================================= */
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Surfaces — cool near-black, never pure #000 (OLED smear, hairlines vanish) */
+  --surface-0: #070b14;
+  --surface-1: #0e1420;
+  --surface-2: #151d2c;
+  --surface-3: #1c2739;
+  --surface-inset: #04070d;
+  --line: #222e42;
+  --line-strong: #33415b;
+
+  /* Text — verified against --surface-3, the worst case (hovered row) */
+  --text-hi: #f1f5fb;
+  --text-mid: #a9b8cc;
+  --text-lo: #849ab2;
+  --text-on-accent: #ffffff;
+
+  /* Primary — anchored to sampled #003388 (H222), lifted for dark legibility */
+  --primary-900: #061334;
+  --primary-800: #003388;
+  --primary-700: #0d4bb0;
+  --primary-600: #1a62d6;
+  --primary-500: #4489f0;
+  --primary-400: #7baef8;
+  --primary-300: #a8caff;
+  --primary-100: #0f2447;
+
+  /* Verticals — exactly four, matching the Vertical enum */
+  --v-equipment: #fd6701;
+  --v-service: #22b8b4;
+  --v-projects: #7c6cf0;
+  --v-rental: #94a3b8;
+
+  /* Product lines — only inside Equipment breakdowns, never as state */
+  --pl-compressor: #fd6701;
+  --pl-garage: #d9764f;
+  --pl-pump: #22b8b4;
+  --pl-piping: #6f8aa6;
+
+  /* Semantic state */
+  --ok: #3dbe72;
+  --ok-bg: #0a2417;
+  --warn: #e9a63b;
+  --warn-bg: #291d08;
+  --danger: #f0564c;
+  --danger-bg: #2a1009;
+  --info: #4489f0;
+  --info-bg: #0a1c34;
+  --sim: #d9a62e;
+  --sim-bg: #291f08;
+
+  /* SLA clock — its own four-step ramp, distinct from the semantic set */
+  --sla-comfortable: #2bb673;
+  --sla-approaching: #e3c13f;
+  --sla-imminent: #f08a2c;
+  --sla-breached: #e5484d;
+
+  /* Data visualisation — independent ramp, colour-blind safe, ordered */
+  --dv-1: #4c9aff;
+  --dv-2: #16c2c2;
+  --dv-3: #ffc53d;
+  --dv-4: #9b8afb;
+  --dv-5: #f2795f;
+  --dv-6: #56c271;
+  --dv-7: #c77dbb;
+  --dv-8: #8b9bb0;
+
+  --focus-ring: #7baef8;
+  --focus-glow: rgb(123 174 248 / 0.22);
+  --overlay: rgb(3 5 10 / 0.78);
+
+  /* Elevation — ambient shadow plus a hairline top highlight. The highlight is
+     what separates a raised surface from a flat one in a dark theme. */
+  --elev-1: 0 1px 2px rgb(0 0 0 / 0.34), 0 0 0 1px rgb(255 255 255 / 0.02) inset;
+  --elev-2: 0 8px 24px -6px rgb(0 0 0 / 0.55), 0 0 0 1px rgb(255 255 255 / 0.03) inset;
+  --elev-3: 0 20px 48px -12px rgb(0 0 0 / 0.68), 0 0 0 1px rgb(255 255 255 / 0.04) inset;
+  --hairline-top: linear-gradient(to bottom, rgb(255 255 255 / 0.055), transparent 42%);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --surface-0: #eef2f7;
+  --surface-1: #ffffff;
+  --surface-2: #f4f7fb;
+  --surface-3: #e6ecf4;
+  --surface-inset: #e2e8f0;
+  --line: #dbe3ec;
+  --line-strong: #b6c3d3;
+
+  --text-hi: #0c1520;
+  --text-mid: #45535f;
+  --text-lo: #5b6875;
+  --text-on-accent: #ffffff;
+
+  --primary-900: #041233;
+  --primary-800: #002a70;
+  --primary-700: #073a8f;
+  --primary-600: #0e47a6;
+  --primary-500: #1560cc;
+  --primary-400: #4489f0;
+  --primary-300: #8fbaf7;
+  --primary-100: #e6eefb;
+
+  --v-equipment: #c24e00;
+  --v-service: #0b7c7a;
+  --v-projects: #5348b8;
+  --v-rental: #5c6875;
+
+  --pl-compressor: #c24e00;
+  --pl-garage: #a2543a;
+  --pl-pump: #0b7c7a;
+  --pl-piping: #4e6a86;
+
+  --ok: #0e7c43;
+  --ok-bg: #e3f5ea;
+  --warn: #8a5a06;
+  --warn-bg: #fbf0da;
+  --danger: #b32218;
+  --danger-bg: #fce9e7;
+  --info: #0e47a6;
+  --info-bg: #e4edfb;
+  --sim: #8a5a06;
+  --sim-bg: #fbf0da;
+
+  /* Own ramp, distinct from --ok/--danger. The light theme originally aliased
+     both, which is the same C-07 collision corrected in dark. */
+  --sla-comfortable: #15704a;
+  --sla-approaching: #8a6708;
+  --sla-imminent: #a5510c;
+  --sla-breached: #c02617;
+
+  --dv-1: #1560cc;
+  --dv-2: #0b7c7a;
+  --dv-3: #8a6708;
+  --dv-4: #5348b8;
+  --dv-5: #b6472c;
+  --dv-6: #14713f;
+  --dv-7: #94408a;
+  --dv-8: #4e6a86;
+
+  --focus-ring: #0e47a6;
+  --focus-glow: rgb(14 71 166 / 0.16);
+  --overlay: rgb(12 21 32 / 0.42);
+
+  --elev-1: 0 1px 2px rgb(16 30 54 / 0.07), 0 0 0 1px rgb(16 30 54 / 0.015) inset;
+  --elev-2: 0 8px 24px -8px rgb(16 30 54 / 0.14), 0 0 0 1px rgb(255 255 255 / 0.6) inset;
+  --elev-3: 0 20px 48px -14px rgb(16 30 54 / 0.2), 0 0 0 1px rgb(255 255 255 / 0.7) inset;
+  --hairline-top: linear-gradient(to bottom, rgb(255 255 255 / 0.85), transparent 42%);
+}
+
+/* ---- Tailwind v4 theme mapping ---------------------------------------- */
+@theme inline {
+  --color-surface-0: var(--surface-0);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-surface-inset: var(--surface-inset);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+
+  --color-text-hi: var(--text-hi);
+  --color-text-mid: var(--text-mid);
+  --color-text-lo: var(--text-lo);
+  --color-text-on-accent: var(--text-on-accent);
+
+  --color-primary-900: var(--primary-900);
+  --color-primary-800: var(--primary-800);
+  --color-primary-700: var(--primary-700);
+  --color-primary-600: var(--primary-600);
+  --color-primary-500: var(--primary-500);
+  --color-primary-400: var(--primary-400);
+  --color-primary-300: var(--primary-300);
+  --color-primary-100: var(--primary-100);
+
+  --color-v-equipment: var(--v-equipment);
+  --color-v-service: var(--v-service);
+  --color-v-projects: var(--v-projects);
+  --color-v-rental: var(--v-rental);
+
+  --color-pl-compressor: var(--pl-compressor);
+  --color-pl-garage: var(--pl-garage);
+  --color-pl-pump: var(--pl-pump);
+  --color-pl-piping: var(--pl-piping);
+
+  --color-ok: var(--ok);
+  --color-ok-bg: var(--ok-bg);
+  --color-warn: var(--warn);
+  --color-warn-bg: var(--warn-bg);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-info: var(--info);
+  --color-info-bg: var(--info-bg);
+  --color-sim: var(--sim);
+  --color-sim-bg: var(--sim-bg);
+
+  --color-sla-comfortable: var(--sla-comfortable);
+  --color-sla-approaching: var(--sla-approaching);
+  --color-sla-imminent: var(--sla-imminent);
+  --color-sla-breached: var(--sla-breached);
+
+  --color-dv-1: var(--dv-1);
+  --color-dv-2: var(--dv-2);
+  --color-dv-3: var(--dv-3);
+  --color-dv-4: var(--dv-4);
+  --color-dv-5: var(--dv-5);
+  --color-dv-6: var(--dv-6);
+  --color-dv-7: var(--dv-7);
+  --color-dv-8: var(--dv-8);
+
+  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  /* Radii — opened from the original 3/5/8. Precise, no longer austere. */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --shadow-e1: var(--elev-1);
+  --shadow-e2: var(--elev-2);
+  --shadow-e3: var(--elev-3);
+}
+
+/* ---- Base ------------------------------------------------------------- */
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scrollbar-color: var(--line-strong) transparent;
+  }
+
+  body {
+    background: var(--surface-0);
+    color: var(--text-hi);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Every numeric surface aligns. PRD §11.3 rule 1. */
+  table,
+  [data-numeric],
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+
+  /* WCAG 2.2 2.4.11 — visible, unobscured, and now unmistakable */
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 0 0 5px var(--focus-glow);
+  }
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  ::selection {
+    background: var(--primary-600);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--line-strong);
+    border-radius: 6px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-lo);
+    background-clip: content-box;
+  }
+}
+
+/* ---- Type scale (PRD §11.3) ------------------------------------------- */
+@layer components {
+  .t-display-lg {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 2.375rem;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.028em;
+  }
+  .t-display-md {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.75rem;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+  }
+  .t-heading-lg {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.3;
+    letter-spacing: -0.012em;
+  }
+  .t-heading-md {
+    font-weight: 600;
+    font-size: 1.0625rem;
+    line-height: 1.35;
+    letter-spacing: -0.008em;
+  }
+  .t-body-lg {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+  .t-body {
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+  .t-body-sm {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+  .t-label {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+  .t-overline {
+    font-size: 0.6875rem;
+    line-height: 1.3;
+    font-weight: 600;
+    letter-spacing: 0.075em;
+    text-transform: uppercase;
+  }
+  .t-mono {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  /* Panels now read as objects: hairline, ambient shadow, top highlight. */
+  .panel {
+    position: relative;
+    background: var(--surface-1);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    box-shadow: var(--elev-1);
+  }
+  .panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--hairline-top);
+    pointer-events: none;
+  }
+  .panel-raised {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    box-shadow: var(--elev-2);
+  }
+
+  /* Hero surface for the figure that carries the room. */
+  .panel-hero {
+    position: relative;
+    background:
+      radial-gradient(120% 140% at 0% 0%, color-mix(in srgb, var(--primary-600) 12%, transparent), transparent 58%),
+      var(--surface-1);
+    border: 1px solid color-mix(in srgb, var(--primary-500) 26%, var(--line));
+    border-radius: var(--radius-lg);
+    box-shadow: var(--elev-2);
+  }
+
+  /* Interactive lift, used on cards and tiles. */
+  .lift {
+    transition:
+      transform 140ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 140ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      border-color 140ms ease-out,
+      background-color 140ms ease-out;
+  }
+  .lift:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--elev-2);
+    border-color: var(--line-strong);
+  }
+  .lift:active {
+    transform: translateY(0);
+  }
+
+  /* Accent rule used on vertical tiles and pipeline cards. */
+  .accent-rail {
+    position: relative;
+    overflow: hidden;
+  }
+  .accent-rail::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    width: 3px;
+    background: var(--accent, var(--primary-500));
+    border-start-start-radius: inherit;
+    border-end-start-radius: inherit;
+  }
+}
+
+/* ---- Density (E1-S4) --------------------------------------------------- */
+[data-density="compact"] {
+  --row-h: 36px;
+  --card-pad: 14px;
+  --stack-gap: 12px;
+}
+[data-density="comfortable"] {
+  --row-h: 44px;
+  --card-pad: 18px;
+  --stack-gap: 16px;
+}
+
+/* Field routes always run comfortable touch targets regardless of preference */
+[data-shell="field"] {
+  --row-h: 48px;
+  --card-pad: 16px;
+  --stack-gap: 16px;
+}
+
+/* ---- Motion (PRD §11.8) ------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .lift:hover {
+    transform: none;
+  }
+}
+
+@keyframes pv-caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes pv-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes pv-pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--sla-breached) 55%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--sla-breached) 0%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--sla-breached) 0%, transparent);
+  }
+}
+@keyframes pv-rise {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.pv-caret {
+  animation: pv-caret 1s step-end infinite;
+}
+.pv-breach-pulse {
+  animation: pv-pulse-ring 2s ease-out infinite;
+}
+.pv-rise {
+  animation: pv-rise 220ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.pv-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+}
+.pv-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--line-strong) 32%, transparent),
+    transparent
+  );
+  animation: pv-shimmer 1.4s infinite;
+}
+
+/* ---- Print (document previews, PRD §11.5) ------------------------------ */
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .panel::before,
+  .panel-hero {
+    background: none !important;
+  }
+  .print-sheet {
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+  }
+}
