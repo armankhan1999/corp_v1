@@ -51,3 +51,7 @@ _probe*.ts
 
 # Local design screenshots
 /shots
+
+# Scratch downloads from design reference work
+tuf*.html
+tuf-*.css
